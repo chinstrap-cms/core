@@ -19,12 +19,13 @@ final class Server extends Command
             ->setHelp('This command runs the development server');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         if (!$port = $input->getOption('port')) {
             $port = 8000;
         }
         $output->writeln('Running PHP development server on port ' . $port . '...');
         passthru('php -S localhost:' . $port . ' -t ' . getcwd() . '/public public/router.php');
+        return 1;
     }
 }

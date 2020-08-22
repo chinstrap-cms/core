@@ -1,0 +1,12 @@
+filesystem:
+  content:
+    driver: local
+    path: content
+  assets:
+    driver: local
+    path: public/storage
+  media:
+    driver: local
+    path: public/media
+  cache:
+    driver: memory

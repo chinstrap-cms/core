@@ -21,7 +21,7 @@ final class FlushCache extends Command
         parent::__construct();
         $this->cache = $cache;
     }
-    
+
     protected function configure(): void
     {
         $this->setName('cache:flush')
@@ -29,8 +29,9 @@ final class FlushCache extends Command
                 ->setHelp('This command will flush the cache');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->cache->purge();
+        return 1;
     }
 }

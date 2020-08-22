@@ -28,7 +28,7 @@ final class GenerateIndex extends Command
         $this->source = $source;
         $this->manager = $manager;
     }
-    
+
     protected function configure(): void
     {
         $this->setName('index:generate')
@@ -36,9 +36,10 @@ final class GenerateIndex extends Command
                 ->setHelp('This command will generate the search index file');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $searchable = $this->source->all();
         $this->manager->put('assets://index.json', json_encode($searchable->toArray()));
+        return 1;
     }
 }

@@ -28,7 +28,7 @@ final class GenerateSitemap extends Command
         $this->sitemap = $sitemap;
         $this->manager = $manager;
     }
-    
+
     protected function configure(): void
     {
         $this->setName('sitemap:generate')
@@ -36,8 +36,9 @@ final class GenerateSitemap extends Command
                 ->setHelp('This command will generate the sitemap');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->manager->put('assets://sitemap.xml', $this->sitemap->__invoke());
+        return 1;
     }
 }
