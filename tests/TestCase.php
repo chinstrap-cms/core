@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Tests;
 
-use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Chinstrap\Core\Kernel\Application;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
