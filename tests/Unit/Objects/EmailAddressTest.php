@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Chinstrap\Tests\Unit\Core\Objects;
+namespace Chinstrap\Core\Tests\Unit\Objects;
 
 use Chinstrap\Tests\TestCase;
 use Mockery as m;

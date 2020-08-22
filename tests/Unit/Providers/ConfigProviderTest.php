@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Chinstrap\Tests\Unit\Core\Providers;
+namespace Chinstrap\Core\Tests\Unit\Providers;
 
 use Chinstrap\Tests\TestCase;
 

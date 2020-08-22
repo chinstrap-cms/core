@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Chinstrap\Tests\Unit\Core\Console;
+namespace Chinstrap\Core\Tests\Unit\Console;
 
 use Chinstrap\Tests\TestCase;
 use Chinstrap\Tests\Traits\SetsPrivateProperties;

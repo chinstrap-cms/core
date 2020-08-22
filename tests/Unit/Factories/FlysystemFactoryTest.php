@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Chinstrap\Tests\Unit\Core\Factories;
+namespace Chinstrap\Core\Tests\Unit\Factories;
 
 use Chinstrap\Tests\TestCase;
 use Chinstrap\Core\Factories\FlysystemFactory;

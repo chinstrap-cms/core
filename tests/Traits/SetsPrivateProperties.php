@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Chinstrap\Tests\Traits;
+namespace Chinstrap\Core\Tests\Traits;
 
 use ReflectionClass;
 

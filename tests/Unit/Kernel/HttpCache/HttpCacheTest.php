@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Chinstrap\Tests\Unit\Core\Kernel\HttpCache;
+namespace Chinstrap\Core\Tests\Unit\Kernel\HttpCache;
 
 use Chinstrap\Tests\TestCase;
 use Mockery as m;
