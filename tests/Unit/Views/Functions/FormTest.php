@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Tests\Unit\Views\Functions;
 
-use Chinstrap\Tests\TestCase;
+use Chinstrap\Core\Tests\TestCase;
 use Mockery as m;
 use Chinstrap\Core\Views\Functions\Form;
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Tests\Unit\Kernel;
 
-use Chinstrap\Tests\TestCase;
+use Chinstrap\Core\Tests\TestCase;
 use Mockery as m;
 use Chinstrap\Core\Kernel\Application;
 use PublishingKit\Config\Config;

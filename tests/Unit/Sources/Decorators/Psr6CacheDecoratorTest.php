@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Tests\Unit\Sources\Decorators;
 
-use Chinstrap\Tests\TestCase;
+use Chinstrap\Core\Tests\TestCase;
 use Mockery as m;
 use Chinstrap\Core\Sources\Decorators\Psr6CacheDecorator;
 use PublishingKit\Utilities\Collections\Collection;

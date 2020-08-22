@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Tests\Unit\Factories;
 
-use Chinstrap\Tests\TestCase;
+use Chinstrap\Core\Tests\TestCase;
 use Chinstrap\Core\Factories\Forms\LaminasFormFactory;
 use Laminas\Form\Factory;
 use Mockery as m;

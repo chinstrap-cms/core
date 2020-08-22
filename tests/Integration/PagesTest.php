@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Tests\Integration;
 
-use Chinstrap\Tests\IntegrationTestCase;
+use Chinstrap\Core\Tests\IntegrationTestCase;
 use Mockery as m;
 
 /**

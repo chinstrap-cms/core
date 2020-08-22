@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Tests\Unit\Utilities;
 
-use Chinstrap\Tests\TestCase;
+use Chinstrap\Core\Tests\TestCase;
 use Mockery as m;
 use Chinstrap\Core\Utilities\YamlWrapper;
 use Symfony\Component\Yaml\Yaml;

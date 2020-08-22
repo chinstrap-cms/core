@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Tests\Unit\Console;
 
-use Chinstrap\Tests\TestCase;
-use Chinstrap\Tests\Traits\SetsPrivateProperties;
+use Chinstrap\Core\Tests\TestCase;
+use Chinstrap\Core\Tests\Traits\SetsPrivateProperties;
 use Chinstrap\Core\Console\Runner;
 use Chinstrap\Core\Kernel\Application;
 use Mockery as m;

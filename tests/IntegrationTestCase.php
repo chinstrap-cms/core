@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Chinstrap\Tests;
+namespace Chinstrap\Core\Tests;
 
 use Laminas\Diactoros\ServerRequest;
 
