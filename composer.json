@@ -37,6 +37,7 @@
         "publishing-kit/http-proxy": "^0.0.1",
         "publishing-kit/utilities": "^0.0.3",
         "symfony/console": "^5.1",
+        "symfony/http-foundation": "^5.1",
         "tedivm/stash": "^0.15.2",
         "twig/twig": "^3.0",
         "vlucas/phpdotenv": "^5.1"

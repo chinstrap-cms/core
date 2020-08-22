@@ -8,9 +8,6 @@ use League\Container\ServiceProvider\AbstractServiceProvider;
 use Twig\Environment;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
-use Asm89\Twig\CacheExtension\CacheProvider\PsrCacheAdapter;
-use Asm89\Twig\CacheExtension\CacheStrategy\LifetimeCacheStrategy;
-use Asm89\Twig\CacheExtension\Extension as CacheExtension;
 use Chinstrap\Core\Views\Filters\Mix;
 use Chinstrap\Core\Views\Filters\Version;
 use Chinstrap\Core\Views\Functions\Form;
@@ -44,11 +41,6 @@ final class TwigProvider extends AbstractServiceProvider
                 'form',
                 $container->get('Chinstrap\Core\Views\Functions\Form')
             ));
-            $cache = $container->get('Psr\Cache\CacheItemPoolInterface');
-            $cacheProvider  = new PsrCacheAdapter($cache);
-            $cacheStrategy  = new LifetimeCacheStrategy($cacheProvider);
-            $cacheExtension = new CacheExtension($cacheStrategy);
-            $twig->addExtension($cacheExtension);
             $twig->addGlobal('navigation', $container->get('Chinstrap\Core\Contracts\Services\Navigator')->__invoke());
 
             return $twig;
