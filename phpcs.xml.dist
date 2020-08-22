@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<ruleset name=":package_name">
-    <description>The coding standard of :package_name package</description>
+<ruleset name="core">
+    <description>The coding standard of core package</description>
 	<file>src</file>
 	<file>tests</file>
     <arg value="p" />

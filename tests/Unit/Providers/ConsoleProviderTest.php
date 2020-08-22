@@ -1,0 +1,16 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Chinstrap\Tests\Unit\Core\Providers;
+
+use Chinstrap\Tests\TestCase;
+
+final class ConsoleProviderTest extends TestCase
+{
+    public function testCreateConsole(): void
+    {
+        $console = $this->container->get('Symfony\Component\Console\Application');
+        $this->assertInstanceOf('Symfony\Component\Console\Application', $console);
+    }
+}

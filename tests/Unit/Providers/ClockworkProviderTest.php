@@ -1,0 +1,16 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Chinstrap\Tests\Unit\Core\Providers;
+
+use Chinstrap\Tests\TestCase;
+
+final class ClockworkProviderTest extends TestCase
+{
+    public function testCreateContainer(): void
+    {
+        $clockwork = $this->container->get('Clockwork\Support\Vanilla\Clockwork');
+        $this->assertInstanceOf('Clockwork\Support\Vanilla\Clockwork', $clockwork);
+    }
+}
