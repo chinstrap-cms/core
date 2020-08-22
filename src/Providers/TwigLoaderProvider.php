@@ -16,7 +16,7 @@ final class TwigLoaderProvider extends AbstractServiceProvider
         // Register items
         $container = $this->getContainer();
         $container->add('Twig\Loader\FilesystemLoader', function () {
-            return new FilesystemLoader(ROOT_DIR . 'views');
+            return new FilesystemLoader(ROOT_DIR . 'resources' . DIRECTORY_SEPARATOR . 'views');
         });
     }
 }
