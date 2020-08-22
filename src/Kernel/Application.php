@@ -24,7 +24,7 @@ final class Application implements KernelInterface
     private $container;
 
     /**
-     * @var \League\Route\Router
+     * @var \League\Route\Router|null
      */
     private $router;
 
@@ -84,6 +84,9 @@ final class Application implements KernelInterface
      */
     public function handle(ServerRequestInterface $request): \Psr\Http\Message\ResponseInterface
     {
+        if (!isset($this->router)) {
+            throw new Exception('Router not set');
+        }
         try {
             $response = $this->router->dispatch($request);
         } catch (\League\Route\Http\Exception\NotFoundException $e) {
@@ -138,8 +141,8 @@ final class Application implements KernelInterface
         }
         $router->get('/images/[{name}]', 'Chinstrap\Core\Http\Controllers\ImageController::get');
         $router->get('/[{name:[a-zA-Z0-9\-\/]+}]', 'Chinstrap\Core\Http\Controllers\MainController::index')
-            ->middleware(new \Chinstrap\Core\Http\Middleware\HttpCache())
-            ->middleware(new \Chinstrap\Core\Http\Middleware\ETag());
+               ->middleware(new \Chinstrap\Core\Http\Middleware\HttpCache())
+               ->middleware(new \Chinstrap\Core\Http\Middleware\ETag());
         $router->post('/[{name:[a-zA-Z0-9\-\/]+}]', 'Chinstrap\Core\Http\Controllers\MainController::submit');
         $this->router = $router;
     }

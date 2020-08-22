@@ -105,7 +105,7 @@ final class MarkdownDocument implements Document, JsonSerializable
     {
         if ($name == 'content') {
             $this->setContent($value);
-        } else if ($name == 'path') {
+        } elseif ($name == 'path') {
             $this->setPath($value);
         } else {
             $this->setField($name, $value);
