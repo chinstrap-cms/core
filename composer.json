@@ -24,6 +24,7 @@
         "laminas/laminas-escaper": "^2.6",
         "laminas/laminas-form": "^2.15",
         "laminas/laminas-httphandlerrunner": "^1.2",
+        "laminas/laminas-i18n": "^2.10",
         "laminas/laminas-view": "^2.11",
         "league/container": "^3.3",
         "league/event": "^2.2",
