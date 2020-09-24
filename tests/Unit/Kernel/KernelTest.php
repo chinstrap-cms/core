@@ -47,7 +47,7 @@ final class KernelTest extends TestCase
         $container->shouldReceive('get')->with('PublishingKit\Config\Config')
             ->once()
             ->andReturn(new Config([]));
-        $app = new Application($container);
+        $app = new Kernel($container);
         $app->bootstrap();
     }
 
