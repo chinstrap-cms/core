@@ -8,7 +8,7 @@ use Laminas\Diactoros\ServerRequestFactory;
 use League\Container\Container;
 use League\Container\ReflectionContainer;
 use Psr\Http\Message\ServerRequestInterface;
-use Chinstrap\Core\Kernel\Application;
+use Chinstrap\Core\Kernel\Kernel;
 use Chinstrap\Core\Exceptions\Plugins\PluginNotFound;
 use Chinstrap\Core\Exceptions\Plugins\PluginNotValid;
 use Chinstrap\Core\Contracts\Kernel\KernelInterface;
@@ -16,17 +16,12 @@ use Chinstrap\Core\Contracts\Kernel\KernelInterface;
 /**
  * Application instance
  */
-final class Application implements KernelInterface
+final class Kernel implements KernelInterface
 {
     /**
      * @var Container
      */
     private $container;
-
-    /**
-     * @var \League\Route\Router|null
-     */
-    private $router;
 
     /**
      * @var array
@@ -65,42 +60,13 @@ final class Application implements KernelInterface
     /**
      * Bootstrap the application
      *
-     * @return Application
+     * @return void
      */
-    public function bootstrap(): Application
+    public function bootstrap(): void
     {
         $this->setupContainer();
         $this->setErrorHandler();
         $this->setupPlugins();
-        $this->setupRoutes();
-        return $this;
-    }
-
-    /**
-     * Handle a request
-     *
-     * @param ServerRequestInterface $request HTTP request.
-     * @return \Psr\Http\Message\ResponseInterface
-     */
-    public function handle(ServerRequestInterface $request): \Psr\Http\Message\ResponseInterface
-    {
-        if (!isset($this->router)) {
-            throw new Exception('Router not set');
-        }
-        try {
-            $response = $this->router->dispatch($request);
-        } catch (\League\Route\Http\Exception\NotFoundException $e) {
-            $view = $this->container->get('Chinstrap\Core\Contracts\Views\Renderer');
-            $response = $view->render(
-                $this->container->get('response')->withStatus(404),
-                '404.html'
-            );
-        }
-        if (getenv('APP_ENV') == 'development') {
-            $clockwork = $this->container->get('Clockwork\Support\Vanilla\Clockwork');
-            $clockwork->requestProcessed();
-        }
-        return $response;
     }
 
     private function setupContainer(): void
@@ -121,30 +87,6 @@ final class Application implements KernelInterface
     private function setErrorHandler(): void
     {
         error_reporting(E_ALL);
-        $environment = getenv('APP_ENV');
-
-        $whoops = new \Whoops\Run();
-        if ($environment !== 'production') {
-            $whoops->prependHandler(new \Whoops\Handler\PrettyPageHandler());
-        } else {
-            $handler = $this->container->get('Chinstrap\Core\Contracts\Exceptions\Handler');
-            $whoops->prependHandler(new \Whoops\Handler\CallbackHandler($handler));
-        }
-        $whoops->register();
-    }
-
-    private function setupRoutes(): void
-    {
-        $router = $this->container->get('League\Route\Router');
-        if (getenv('APP_ENV') == 'development') {
-            $router->get('/__clockwork/{request:.+}', 'Chinstrap\Core\Http\Controllers\ClockworkController::process');
-        }
-        $router->get('/images/[{name}]', 'Chinstrap\Core\Http\Controllers\ImageController::get');
-        $router->get('/[{name:[a-zA-Z0-9\-\/]+}]', 'Chinstrap\Core\Http\Controllers\MainController::index')
-               ->middleware(new \Chinstrap\Core\Http\Middleware\HttpCache())
-               ->middleware(new \Chinstrap\Core\Http\Middleware\ETag());
-        $router->post('/[{name:[a-zA-Z0-9\-\/]+}]', 'Chinstrap\Core\Http\Controllers\MainController::submit');
-        $this->router = $router;
     }
 
     private function setupPlugins(): void

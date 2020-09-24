@@ -4,27 +4,27 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Console;
 
-use Chinstrap\Core\Kernel\Application;
+use Chinstrap\Core\Kernel\Kernel;
 use Dotenv\Dotenv;
 use Exception;
 
 final class Runner
 {
     /**
-     * @var Application
+     * @var Kernel
      */
-    protected $app;
+    protected $kernel;
 
     public function __construct()
     {
-        $this->app = new Application();
+        $this->kernel = new Kernel();
     }
 
     public function __invoke()
     {
         try {
-            $this->app->bootstrap();
-            $container = $this->app->getContainer();
+            $this->kernel->bootstrap();
+            $container = $this->kernel->getContainer();
             $console = $container->get('Symfony\Component\Console\Application');
             $console->add($container->get('Chinstrap\Core\Console\Commands\FlushCache'));
             $console->add($container->get('Chinstrap\Core\Console\Commands\Shell'));
