@@ -31,7 +31,10 @@ final class XmlStringSitemap implements Sitemap
     public function __invoke(): string
     {
         $documents = $this->source->all();
-        $xml = new SimpleXMLElement("<?xml version='1.0' encoding='UTF-8' ?>\n" . '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" />');
+        $xml = new SimpleXMLElement(
+            "<?xml version='1.0' encoding='UTF-8' ?>\n"
+            . '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" />'
+        );
         foreach ($documents as $document) {
             $item = $xml->addChild('url');
             $item->addChild('loc', $this->config->get('base_url') . $document->getUrl());

@@ -52,7 +52,10 @@ final class MainController
         $data = $document->getFields();
         $data['content'] = $document->getContent();
         $layout = isset($data['layout']) ? $data['layout'] . '.html' : 'default.html';
-        $response = $this->response->withAddedHeader('Last-Modified', $document->getUpdatedAt()->format('D, d M Y H:i:s') . ' GMT');
+        $response = $this->response->withAddedHeader(
+            'Last-Modified',
+            $document->getUpdatedAt()->format('D, d M Y H:i:s') . ' GMT'
+        );
         return $this->view->render($response, $layout, $data);
     }
 
