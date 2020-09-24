@@ -65,7 +65,6 @@ final class Kernel implements KernelInterface
     public function bootstrap(): void
     {
         $this->setupContainer();
-        $this->setErrorHandler();
         $this->setupPlugins();
     }
 
@@ -82,11 +81,6 @@ final class Kernel implements KernelInterface
         $container->share('response', \Laminas\Diactoros\Response::class);
         $container->share('Psr\Http\Message\ResponseInterface', \Laminas\Diactoros\Response::class);
         $this->container = $container;
-    }
-
-    private function setErrorHandler(): void
-    {
-        error_reporting(E_ALL);
     }
 
     private function setupPlugins(): void
