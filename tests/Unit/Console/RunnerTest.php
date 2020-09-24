@@ -7,7 +7,7 @@ namespace Chinstrap\Core\Tests\Unit\Console;
 use Chinstrap\Core\Tests\TestCase;
 use Chinstrap\Core\Tests\Traits\SetsPrivateProperties;
 use Chinstrap\Core\Console\Runner;
-use Chinstrap\Core\Kernel\Application;
+use Chinstrap\Core\Kernel\Kernel;
 use Mockery as m;
 
 final class RunnerTest extends TestCase
@@ -16,7 +16,7 @@ final class RunnerTest extends TestCase
 
     public function testExecute()
     {
-        $console = m::mock('Symfony\Component\Console\Application');
+        $console = m::mock('Symfony\Component\Console\Kernel');
         $console->shouldReceive('add')->times(5);
         $console->shouldReceive('run')->once();
         $container = m::mock('League\Container\Container');
@@ -45,24 +45,24 @@ final class RunnerTest extends TestCase
             ->with('Chinstrap\Core\Console\Commands\GenerateSitemap')
             ->once()
             ->andReturn($mockCommand);
-        $mockApp = m::mock(new Application());
+        $mockApp = m::mock(new Kernel());
         $mockApp->shouldReceive('getContainer')
             ->once()
             ->andReturn($container);
         $runner = new Runner();
-        $this->setPrivateProperty($runner, 'app', $mockApp);
+        $this->setPrivateProperty($runner, 'kernel', $mockApp);
         $runner();
     }
 
     public function testCatchError()
     {
         $this->expectOutputRegex('/^Unable to run/');
-        $mockApp = m::mock(new Application());
+        $mockApp = m::mock(new Kernel());
         $mockApp->shouldReceive('getContainer')
             ->once()
             ->andThrow('Exception');
         $runner = new Runner();
-        $this->setPrivateProperty($runner, 'app', $mockApp);
+        $this->setPrivateProperty($runner, 'kernel', $mockApp);
         $runner();
     }
 }
