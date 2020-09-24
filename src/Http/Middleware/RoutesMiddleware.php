@@ -39,13 +39,9 @@ final class RoutesMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         try {
-            $response = $this->router->dispatch($request);
+            return $this->router->dispatch($request);
         } catch (NotFoundException $e) {
-            $response = $this->renderer->render(
-                $this->response->withStatus(404),
-                '404.html'
-            );
+            return $handler->handle($request);
         }
-        return $response;
     }
 }
