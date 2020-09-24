@@ -6,10 +6,10 @@ namespace Chinstrap\Core\Tests\Unit\Kernel;
 
 use Chinstrap\Core\Tests\TestCase;
 use Mockery as m;
-use Chinstrap\Core\Kernel\Application;
+use Chinstrap\Core\Kernel\Kernel;
 use PublishingKit\Config\Config;
 
-final class ApplicationTest extends TestCase
+final class KernelTest extends TestCase
 {
     public function setUp(): void
     {
@@ -71,7 +71,7 @@ final class ApplicationTest extends TestCase
         $container->shouldReceive('get')->with('PublishingKit\Config\Config')
             ->once()
             ->andReturn($config);
-        $app = new Application($container);
+        $app = new Kernel($container);
         $app->bootstrap();
     }
 
@@ -95,45 +95,7 @@ final class ApplicationTest extends TestCase
         $container->shouldReceive('get')->with('PublishingKit\Config\Config')
             ->once()
             ->andReturn($config);
-        $app = new Application($container);
+        $app = new Kernel($container);
         $app->bootstrap();
-    }
-
-    public function testClockwork()
-    {
-        putenv('APP_ENV=development');
-        if (defined('E_STRICT')) {
-            error_reporting('E_ALL | E_STRICT');
-        }
-        $handler = m::mock('Chinstrap\Core\Contracts\Exceptions\Handler');
-        $clockwork = m::mock('Clockwork\Support\Vanilla\Clockwork')->makePartial();
-        $clockwork->shouldReceive('requestProcessed')->once();
-        $container = m::mock('League\Container\Container');
-        $container->shouldReceive('delegate')->once();
-        $container->shouldReceive('addServiceProvider');
-        $container->shouldReceive('share');
-        $container->shouldReceive('get')->with('Clockwork\Support\Vanilla\Clockwork')
-            ->once()
-            ->andReturn($clockwork);
-        $router = m::mock('League\Route\Router');
-        $router->shouldReceive('get')
-            ->with('/__clockwork/{request:.+}', 'Chinstrap\Core\Http\Controllers\ClockworkController::process')
-            ->once()
-            ->andReturn($router);
-        $router->shouldReceive('get')->andReturn($router);
-        $router->shouldReceive('middleware')->andReturn($router);
-        $router->shouldReceive('post')->andReturn($router);
-        $response = m::mock('Psr\Http\Message\ResponseInterface');
-        $router->shouldReceive('dispatch')->andReturn($response);
-        $container->shouldReceive('get')->with('League\Route\Router')
-            ->once()
-            ->andReturn($router);
-        $container->shouldReceive('get')->with('PublishingKit\Config\Config')
-            ->once()
-            ->andReturn(new Config([]));
-        $request = m::mock('Psr\Http\Message\ServerRequestInterface');
-        $app = new Application($container);
-        $app->bootstrap();
-        $this->assertEquals($response, $app->handle($request));
     }
 }
