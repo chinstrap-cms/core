@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Chinstrap\Core\Providers;
 
 use Chinstrap\Core\Events\RegisterDynamicRoutes;
-use Chinstrap\Core\Events\RegisterStaticRoutes;
 use Chinstrap\Core\Listeners\RegisterSystemDynamicRoutes;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Event\Emitter;
