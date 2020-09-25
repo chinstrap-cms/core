@@ -22,22 +22,22 @@ final class WhoopsMiddleware implements MiddlewareInterface
     /**
      * @var Handler
      */
-    private $handler;
+    private $errorHandler;
 
-    public function __construct(Run $whoops, Handler $handler)
+    public function __construct(Run $whoops, Handler $errorHandler)
     {
         $this->whoops = $whoops;
-        $this->handler = $handler;
+        $this->errorHandler = $errorHandler;
     }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         if ($_ENV['APP_ENV'] === 'production') {
-            $this->whoops->prependHandler(new CallbackHandler($this->handler));
+            $this->whoops->prependHandler(new CallbackHandler($this->errorHandler));
         } else {
             $this->whoops->prependHandler(new PrettyPageHandler());
         }
         $this->whoops->register();
-        return $this->handler->handle($request);
+        return $handler->handle($request);
     }
 }
