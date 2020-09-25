@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Kernel;
 
+use Chinstrap\Core\Events\RegisterViewHelpers;
 use Laminas\Diactoros\ServerRequestFactory;
 use League\Container\Container;
 use League\Container\ReflectionContainer;
+use League\Event\EmitterInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Chinstrap\Core\Kernel\Kernel;
 use Chinstrap\Core\Exceptions\Plugins\PluginNotFound;
@@ -66,6 +68,7 @@ final class Kernel implements KernelInterface
     {
         $this->setupContainer();
         $this->setupPlugins();
+        $this->setupViews();
     }
 
     private function setupContainer(): void
@@ -103,5 +106,12 @@ final class Kernel implements KernelInterface
     public function getContainer(): Container
     {
         return $this->container;
+    }
+
+    private function setupViews(): void
+    {
+        $emitter = $this->container->get(EmitterInterface::class);
+        $event = $this->container->get(RegisterViewHelpers::class);
+        $emitter->emit($event);
     }
 }
