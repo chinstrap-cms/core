@@ -9,7 +9,7 @@ use Chinstrap\Core\Http\Middleware\HttpCache;
 use League\Event\EventInterface;
 use League\Route\Router;
 
-final class RegisterAllStaticRoutes extends BaseListener
+final class RegisterSystemDynamicRoutes extends BaseListener
 {
     /**
      * @var Router
