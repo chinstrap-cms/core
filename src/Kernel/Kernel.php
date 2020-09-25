@@ -29,33 +29,33 @@ final class Kernel implements KernelInterface
      * @var array
      */
     private $baseProviders = [
-        'Chinstrap\Core\Providers\ContainerProvider',
-        'Chinstrap\Core\Providers\CacheProvider',
-        'Chinstrap\Core\Providers\ClockworkProvider',
-        'Chinstrap\Core\Providers\YamlProvider',
-        'Chinstrap\Core\Providers\ConfigProvider',
-        'Chinstrap\Core\Providers\ConsoleProvider',
-        'Chinstrap\Core\Providers\EventProvider',
-        'Chinstrap\Core\Providers\FlysystemProvider',
-        'Chinstrap\Core\Providers\FormsProvider',
-        'Chinstrap\Core\Providers\HandlerProvider',
-        'Chinstrap\Core\Providers\LoggerProvider',
-        'Chinstrap\Core\Providers\RouterProvider',
-        'Chinstrap\Core\Providers\SessionProvider',
-        'Chinstrap\Core\Providers\SourceProvider',
-        'Chinstrap\Core\Providers\TwigProvider',
-        'Chinstrap\Core\Providers\TwigLoaderProvider',
-    ];
+                              'Chinstrap\Core\Providers\ContainerProvider',
+                              'Chinstrap\Core\Providers\CacheProvider',
+                              'Chinstrap\Core\Providers\ClockworkProvider',
+                              'Chinstrap\Core\Providers\YamlProvider',
+                              'Chinstrap\Core\Providers\ConfigProvider',
+                              'Chinstrap\Core\Providers\ConsoleProvider',
+                              'Chinstrap\Core\Providers\EventProvider',
+                              'Chinstrap\Core\Providers\FlysystemProvider',
+                              'Chinstrap\Core\Providers\FormsProvider',
+                              'Chinstrap\Core\Providers\HandlerProvider',
+                              'Chinstrap\Core\Providers\LoggerProvider',
+                              'Chinstrap\Core\Providers\RouterProvider',
+                              'Chinstrap\Core\Providers\SessionProvider',
+                              'Chinstrap\Core\Providers\SourceProvider',
+                              'Chinstrap\Core\Providers\TwigProvider',
+                              'Chinstrap\Core\Providers\TwigLoaderProvider',
+                             ];
 
     /**
      * @var array
      */
     private $additionalProviders = [
-        'Chinstrap\Core\Providers\ViewProvider',
-        'Chinstrap\Core\Providers\MailerProvider',
-        'Chinstrap\Core\Providers\GlideProvider',
-        'Chinstrap\Core\Providers\SitemapGeneratorProvider',
-    ];
+                                    'Chinstrap\Core\Providers\ViewProvider',
+                                    'Chinstrap\Core\Providers\MailerProvider',
+                                    'Chinstrap\Core\Providers\GlideProvider',
+                                    'Chinstrap\Core\Providers\SitemapGeneratorProvider',
+                                   ];
 
     public function __construct(Container $container = null)
     {

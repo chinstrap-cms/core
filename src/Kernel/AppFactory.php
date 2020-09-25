@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Chinstrap\Core\Kernel;
 
 use Chinstrap\Core\Http\Middleware\ClockworkMiddleware;
-use Chinstrap\Core\Http\Middleware\HttpCachingProxyMiddleware;
 use Chinstrap\Core\Http\Middleware\NotFoundMiddleware;
 use Chinstrap\Core\Http\Middleware\RoutesMiddleware;
 use Chinstrap\Core\Http\Middleware\WhoopsMiddleware;
@@ -23,7 +22,6 @@ final class AppFactory
 
         $app->pipe($container->get(WhoopsMiddleware::class));
         $app->pipe($container->get(ClockworkMiddleware::class));
-        $app->pipe($container->get(HttpCachingProxyMiddleware::class));
         $app->pipe($container->get(RoutesMiddleware::class));
         $app->pipe($container->get(NotFoundMiddleware::class));
         return $app;
