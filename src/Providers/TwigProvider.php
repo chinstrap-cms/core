@@ -21,7 +21,7 @@ final class TwigProvider extends AbstractServiceProvider
         $container->add('Chinstrap\Core\Contracts\Services\Navigator', function () use ($container) {
             return $container->get('Chinstrap\Core\Services\Navigation\DynamicNavigator');
         });
-        $container->add('Twig\Environment', function () use ($container) {
+        $container->share('Twig\Environment', function () use ($container) {
             $config = [];
             if (getenv('APP_ENV') !== 'development') {
                 $config['cache'] = ROOT_DIR . '/cache/views';
