@@ -36,8 +36,12 @@ final class RoutesMiddleware implements MiddlewareInterface
      */
     private $registerDynamic;
 
-    public function __construct(Router $router, EmitterInterface $emitter, RegisterStaticRoutes $registerStatic, RegisterDynamicRoutes $registerDynamic)
-    {
+    public function __construct(
+        Router $router,
+        EmitterInterface $emitter,
+        RegisterStaticRoutes $registerStatic,
+        RegisterDynamicRoutes $registerDynamic
+    ) {
         $this->router = $router;
         $this->emitter = $emitter;
         $this->registerStatic = $registerStatic;
