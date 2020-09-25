@@ -9,7 +9,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-final class HttpCache implements MiddlewareInterface
+final class HttpCacheMiddleware implements MiddlewareInterface
 {
     /**
      * @var array

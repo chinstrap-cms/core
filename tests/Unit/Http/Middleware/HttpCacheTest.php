@@ -6,7 +6,7 @@ namespace Chinstrap\Core\Tests\Unit\Http\Middleware;
 
 use Chinstrap\Core\Tests\TestCase;
 use Mockery as m;
-use Chinstrap\Core\Http\Middleware\HttpCache;
+use Chinstrap\Core\Http\Middleware\HttpCacheMiddleware;
 
 final class HttpCacheTest extends TestCase
 {
@@ -17,7 +17,7 @@ final class HttpCacheTest extends TestCase
         $response = m::mock('Psr\Http\Message\ResponseInterface');
         $handler = m::mock('Psr\Http\Server\RequestHandlerInterface');
         $handler->shouldReceive('handle')->with($request)->andReturn($response);
-        $middleware = new HttpCache();
+        $middleware = new HttpCacheMiddleware();
         $received = $middleware->process($request, $handler);
         $this->assertEquals($received, $response);
     }
@@ -32,7 +32,7 @@ final class HttpCacheTest extends TestCase
         $response->shouldReceive('withAddedHeader')->andReturn($response);
         $handler = m::mock('Psr\Http\Server\RequestHandlerInterface');
         $handler->shouldReceive('handle')->with($request)->andReturn($response);
-        $middleware = new HttpCache();
+        $middleware = new HttpCacheMiddleware();
         $received = $middleware->process($request, $handler);
     }
 
@@ -44,7 +44,7 @@ final class HttpCacheTest extends TestCase
         $response = m::mock('Psr\Http\Message\ResponseInterface');
         $handler = m::mock('Psr\Http\Server\RequestHandlerInterface');
         $handler->shouldReceive('handle')->with($request)->andReturn($response);
-        $middleware = new HttpCache();
+        $middleware = new HttpCacheMiddleware();
         $received = $middleware->process($request, $handler);
         $this->assertEquals($received, $response);
         putenv('APP_ENV=testing');

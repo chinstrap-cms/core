@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Listeners;
 
-use Chinstrap\Core\Http\Middleware\ETag;
-use Chinstrap\Core\Http\Middleware\HttpCache;
+use Chinstrap\Core\Http\Middleware\ETagMiddleware;
+use Chinstrap\Core\Http\Middleware\HttpCacheMiddleware;
 use League\Event\EventInterface;
 use League\Route\Router;
 
@@ -26,7 +26,7 @@ final class RegisterSystemDynamicRoutes extends BaseListener
      */
     private $etagMiddleware;
 
-    public function __construct(Router $router, HttpCache $cacheMiddleware, ETag $etagMiddleware)
+    public function __construct(Router $router, HttpCacheMiddleware $cacheMiddleware, ETagMiddleware $etagMiddleware)
     {
         $this->router = $router;
         $this->cacheMiddleware = $cacheMiddleware;

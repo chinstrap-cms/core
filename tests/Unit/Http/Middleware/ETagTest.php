@@ -6,7 +6,7 @@ namespace Chinstrap\Core\Tests\Unit\Http\Middleware;
 
 use Chinstrap\Core\Tests\TestCase;
 use Mockery as m;
-use Chinstrap\Core\Http\Middleware\ETag;
+use Chinstrap\Core\Http\Middleware\ETagMiddleware;
 
 final class ETagTest extends TestCase
 {
@@ -17,7 +17,7 @@ final class ETagTest extends TestCase
         $response = m::mock('Psr\Http\Message\ResponseInterface');
         $handler = m::mock('Psr\Http\Server\RequestHandlerInterface');
         $handler->shouldReceive('handle')->with($request)->andReturn($response);
-        $middleware = new ETag();
+        $middleware = new ETagMiddleware();
         $received = $middleware->process($request, $handler);
         $this->assertEquals($received, $response);
     }
@@ -33,7 +33,7 @@ final class ETagTest extends TestCase
         $response->shouldReceive('withStatus')->with(304)->andReturn($response);
         $handler = m::mock('Psr\Http\Server\RequestHandlerInterface');
         $handler->shouldReceive('handle')->with($request)->andReturn($response);
-        $middleware = new ETag();
+        $middleware = new ETagMiddleware();
         $received = $middleware->process($request, $handler);
     }
 
@@ -45,7 +45,7 @@ final class ETagTest extends TestCase
         $response = m::mock('Psr\Http\Message\ResponseInterface');
         $handler = m::mock('Psr\Http\Server\RequestHandlerInterface');
         $handler->shouldReceive('handle')->with($request)->andReturn($response);
-        $middleware = new ETag();
+        $middleware = new ETagMiddleware();
         $received = $middleware->process($request, $handler);
         $this->assertEquals($received, $response);
         putenv('APP_ENV=testing');
