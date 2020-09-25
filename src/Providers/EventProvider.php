@@ -20,7 +20,10 @@ final class EventProvider extends AbstractServiceProvider
         $container = $this->getContainer();
         $container->share('League\Event\EmitterInterface', function () use ($container) {
                 $emitter = $container->get('League\Event\Emitter');
-                $emitter->addListener(RegisterDynamicRoutes::class, $container->get(RegisterSystemDynamicRoutes::class));
+                $emitter->addListener(
+                    RegisterDynamicRoutes::class,
+                    $container->get(RegisterSystemDynamicRoutes::class)
+                );
                 return $emitter;
         });
     }
