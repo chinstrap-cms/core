@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Http\Middleware;
 
-use Chinstrap\Core\Contracts\Views\Renderer;
 use League\Route\Http\Exception\NotFoundException;
 use League\Route\Router;
 use Psr\Http\Message\ServerRequestInterface;
@@ -19,21 +18,9 @@ final class RoutesMiddleware implements MiddlewareInterface
      */
     private $router;
 
-    /**
-     * @var Renderer
-     */
-    private $renderer;
-
-    /**
-     * @var ResponseInterface
-     */
-    private $response;
-
-    public function __construct(Router $router, Renderer $renderer, ResponseInterface $response)
+    public function __construct(Router $router)
     {
         $this->router = $router;
-        $this->renderer = $renderer;
-        $this->response = $response;
     }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
