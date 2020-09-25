@@ -32,7 +32,7 @@ final class WhoopsMiddleware implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        if (getenv('APP_ENV') === 'production') {
+        if ($_ENV['APP_ENV'] === 'production') {
             $this->whoops->prependHandler(new CallbackHandler($this->handler));
         } else {
             $this->whoops->prependHandler(new PrettyPageHandler());

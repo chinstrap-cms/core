@@ -35,7 +35,7 @@ final class RegisterSystemDynamicRoutes extends BaseListener
 
     public function handle(EventInterface $event)
     {
-        if (getenv('APP_ENV') == 'development') {
+        if ($_ENV['APP_ENV'] == 'development') {
             $this->router->get(
                 '/__clockwork/{request:.+}',
                 'Chinstrap\Core\Http\Controllers\ClockworkController::process'

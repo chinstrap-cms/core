@@ -23,7 +23,7 @@ final class TwigProvider extends AbstractServiceProvider
         });
         $container->share('Twig\Environment', function () use ($container) {
             $config = [];
-            if (getenv('APP_ENV') !== 'development') {
+            if ($_ENV['APP_ENV'] !== 'development') {
                 $config['cache'] = ROOT_DIR . '/cache/views';
             }
             return new Environment($container->get('Twig\Loader\FilesystemLoader'), $config);
