@@ -11,23 +11,23 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 final class ContentLengthMiddleware implements MiddlewareInterface
 {
-	/**
-	 * {@inheritDoc}
-	 */
-	public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
-	{
-		$response = $handler->handle($request);
+    /**
+     * {@inheritDoc}
+     */
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    {
+        $response = $handler->handle($request);
 
-		if ($response->hasHeader('Content-Length')) {
-			return $response;
-		}
+        if ($response->hasHeader('Content-Length')) {
+            return $response;
+        }
 
-		$size = $response->getBody()->getSize();
+        $size = $response->getBody()->getSize();
 
-		if ($size === null) {
-			return $response;
-		}
+        if ($size === null) {
+            return $response;
+        }
 
-		return $response->withHeader('Content-Length', (string) $size);
-	}
+        return $response->withHeader('Content-Length', (string) $size);
+    }
 }
