@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Providers;
 
+use Laminas\Session\Container;
 use League\Container\ServiceProvider\AbstractServiceProvider;
-use Symfony\Component\HttpFoundation\Session\Session;
 
 class SessionProvider extends AbstractServiceProvider
 {
-    protected $provides = ['Symfony\Component\HttpFoundation\Session\SessionInterface'];
+    protected $provides = [Container::class];
 
     public function register(): void
     {
         // Register items
         $this->getContainer()
-                ->add('Symfony\Component\HttpFoundation\Session\SessionInterface', function () {
-                    return new Session();
-                });
+             ->share(Container::class, function () {
+                 return new Container();
+             });
     }
 }
