@@ -7,7 +7,7 @@ namespace Chinstrap\Core\Providers;
 use Laminas\Session\Container;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 
-class SessionProvider extends AbstractServiceProvider
+final class SessionProvider extends AbstractServiceProvider
 {
     protected $provides = [Container::class];
 

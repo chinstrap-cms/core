@@ -42,6 +42,7 @@ final class Kernel implements KernelInterface
                               'Chinstrap\Core\Providers\LoggerProvider',
                               'Chinstrap\Core\Providers\RouterProvider',
                               'Chinstrap\Core\Providers\SessionProvider',
+                              'Chinstrap\Core\Providers\CsrfProvider',
                               'Chinstrap\Core\Providers\SourceProvider',
                               'Chinstrap\Core\Providers\TwigProvider',
                               'Chinstrap\Core\Providers\TwigLoaderProvider',
