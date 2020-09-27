@@ -6,6 +6,7 @@ namespace Chinstrap\Core\Kernel;
 
 use Chinstrap\Core\Http\Middleware\ClockworkMiddleware;
 use Chinstrap\Core\Http\Middleware\ContentLengthMiddleware;
+use Chinstrap\Core\Http\Middleware\CsrfMiddleware;
 use Chinstrap\Core\Http\Middleware\NotFoundMiddleware;
 use Chinstrap\Core\Http\Middleware\RoutesMiddleware;
 use Chinstrap\Core\Http\Middleware\WhoopsMiddleware;
@@ -24,6 +25,7 @@ final class AppFactory
         $app->pipe($container->get(WhoopsMiddleware::class));
         $app->pipe($container->get(ClockworkMiddleware::class));
         $app->pipe($container->get(ContentLengthMiddleware::class));
+        $app->pipe($container->get(CsrfMiddleware::class));
         $app->pipe($container->get(RoutesMiddleware::class));
         $app->pipe($container->get(NotFoundMiddleware::class));
         return $app;
