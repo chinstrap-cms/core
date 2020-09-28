@@ -40,7 +40,6 @@
         "psy/psysh": "^0.10.4",
         "publishing-kit/cache": "^0.0.1",
         "publishing-kit/config": "^0.0.7",
-        "publishing-kit/csrf": "^0.0.2",
         "publishing-kit/http-proxy": "^0.0.1",
         "publishing-kit/utilities": "^0.0.3",
         "symfony/console": "^5.1",
