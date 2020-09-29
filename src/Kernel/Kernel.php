@@ -11,7 +11,6 @@ use Chinstrap\Core\Exceptions\Plugins\PluginNotValid;
 use Chinstrap\Core\Kernel\Kernel;
 use Laminas\Diactoros\ServerRequestFactory;
 use Laminas\EventManager\EventManagerInterface;
-use League\Container\ReflectionContainer;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
