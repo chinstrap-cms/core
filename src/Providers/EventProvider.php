@@ -8,28 +8,29 @@ use Chinstrap\Core\Events\RegisterDynamicRoutes;
 use Chinstrap\Core\Events\RegisterViewHelpers;
 use Chinstrap\Core\Listeners\RegisterSystemDynamicRoutes;
 use Chinstrap\Core\Listeners\RegisterViews;
+use Laminas\EventManager\EventManager;
+use Laminas\EventManager\EventManagerInterface;
 use League\Container\ServiceProvider\AbstractServiceProvider;
-use League\Event\Emitter;
 
 final class EventProvider extends AbstractServiceProvider
 {
-    protected $provides = ['League\Event\EmitterInterface'];
+    protected $provides = [EventManagerInterface::class];
 
     public function register(): void
     {
         // Register items
         $container = $this->getContainer();
-        $container->share('League\Event\EmitterInterface', function () use ($container) {
-                $emitter = $container->get('League\Event\Emitter');
-                $emitter->addListener(
+        $container->share(EventManagerInterface::class, function () use ($container) {
+                $manager = $container->get(EventManager::class);
+                $manager->attach(
                     RegisterDynamicRoutes::class,
                     $container->get(RegisterSystemDynamicRoutes::class)
                 );
-                $emitter->addListener(
+                $manager->attach(
                     RegisterViewHelpers::class,
                     $container->get(RegisterViews::class)
                 );
-                return $emitter;
+                return $manager;
         });
     }
 }
