@@ -21,6 +21,7 @@ use Chinstrap\Core\Listeners\RegisterViews;
 use Chinstrap\Core\Services\Navigation\DynamicNavigator;
 use Chinstrap\Core\Views\TwigRenderer;
 use Clockwork\Support\Vanilla\Clockwork;
+use Laminas\Diactoros\Response;
 use Laminas\Diactoros\Stream;
 use Laminas\EventManager\EventManager;
 use Laminas\EventManager\EventManagerInterface;
@@ -37,6 +38,7 @@ use League\Route\Router;
 use League\Route\Strategy\ApplicationStrategy;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Container\ContainerInterface;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use PublishingKit\Cache\Contracts\Factories\CacheFactory;
 use PublishingKit\Cache\Contracts\Services\CacheContract;
@@ -65,6 +67,8 @@ final class ContainerFactory
                 Navigator::class => DynamicNavigator::class,
                 CacheFactory::class => StashCacheFactory::class,
                 CacheItemPoolInterface::class => Pool::class,
+                ResponseInterface::class => Response::class,
+                'response' => Response::class,
             ],
             'factories' => [
                 Clockwork::class => function (ContainerInterface $container, string $requestedName) {
@@ -110,7 +114,7 @@ final class ContainerFactory
                     return new Environment($container->get('Twig\Loader\FilesystemLoader'), $config);
                 },
                 Router::class => function (ContainerInterface $container, string $requestedName) {
-                    $strategy = (new ApplicationStrategy())->setContainer($this->getContainer());
+                    $strategy = (new ApplicationStrategy())->setContainer($container);
                     $router = new Router();
                     $router->setStrategy($strategy);
                     return $router;

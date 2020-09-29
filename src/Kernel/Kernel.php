@@ -11,8 +11,8 @@ use Chinstrap\Core\Exceptions\Plugins\PluginNotValid;
 use Chinstrap\Core\Kernel\Kernel;
 use Laminas\Diactoros\ServerRequestFactory;
 use Laminas\EventManager\EventManagerInterface;
-use League\Container\Container;
 use League\Container\ReflectionContainer;
+use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
 /**
@@ -21,14 +21,14 @@ use Psr\Http\Message\ServerRequestInterface;
 final class Kernel implements KernelInterface
 {
     /**
-     * @var Container
+     * @var ContainerInterface
      */
     private $container;
 
-    public function __construct(Container $container = null)
+    public function __construct(ContainerInterface $container = null)
     {
         if (!$container) {
-            $container = new Container();
+            $container = (new ContainerFactory())();
         }
         $this->container = $container;
     }
@@ -40,21 +40,8 @@ final class Kernel implements KernelInterface
      */
     public function bootstrap(): void
     {
-        $this->setupContainer();
         $this->setupPlugins();
         $this->registerViewHelpers();
-    }
-
-    private function setupContainer(): void
-    {
-        $container = $this->container;
-        $container->delegate(
-            new ReflectionContainer()
-        );
-
-        $container->share('response', \Laminas\Diactoros\Response::class);
-        $container->share('Psr\Http\Message\ResponseInterface', \Laminas\Diactoros\Response::class);
-        $this->container = $container;
     }
 
     private function setupPlugins(): void
@@ -74,7 +61,7 @@ final class Kernel implements KernelInterface
         }
     }
 
-    public function getContainer(): Container
+    public function getContainer(): ContainerInterface
     {
         return $this->container;
     }
