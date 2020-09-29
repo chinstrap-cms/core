@@ -21,6 +21,7 @@ use Chinstrap\Core\Listeners\RegisterViews;
 use Chinstrap\Core\Services\Navigation\DynamicNavigator;
 use Chinstrap\Core\Views\TwigRenderer;
 use Clockwork\Support\Vanilla\Clockwork;
+use Laminas\Diactoros\Stream;
 use Laminas\EventManager\EventManager;
 use Laminas\EventManager\EventManagerInterface;
 use Laminas\Mail\Transport\InMemory;
@@ -29,6 +30,9 @@ use Laminas\ServiceManager\AbstractFactory\ReflectionBasedAbstractFactory;
 use Laminas\ServiceManager\ServiceManager;
 use League\Flysystem\Filesystem;
 use League\Flysystem\MountManager;
+use League\Glide\Responses\PsrResponseFactory;
+use League\Glide\Server;
+use League\Glide\ServerFactory;
 use League\Route\Router;
 use League\Route\Strategy\ApplicationStrategy;
 use Psr\Container\ContainerInterface;
@@ -114,6 +118,18 @@ final class ContainerFactory
                         $container->get(RegisterViews::class)
                     );
                     return $manager;
+                },
+                Server::class => function (ContainerInterface $container, string $requestedName) {
+                    $fs = $container->get('League\Flysystem\FilesystemInterface');
+                    $source = $fs->getFilesystem('media');
+                    $cache = $fs->getFilesystem('cache');
+                    return ServerFactory::create([
+                        'source'   => $source,
+                        'cache'    => $cache,
+                        'response' => new PsrResponseFactory(new Response(), function ($stream) {
+                            return new Stream($stream);
+                        }),
+                    ]);
                 }
             ]
         ]);

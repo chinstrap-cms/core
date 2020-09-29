@@ -36,7 +36,6 @@ final class Kernel implements KernelInterface
      * @var array
      */
     private $additionalProviders = [
-                                    'Chinstrap\Core\Providers\GlideProvider',
                                    ];
 
     public function __construct(Container $container = null)
