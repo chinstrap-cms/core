@@ -4,17 +4,18 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Tests\Unit\Http\Controllers;
 
-use Chinstrap\Core\Tests\TestCase;
-use Mockery as m;
 use Chinstrap\Core\Http\Controllers\MainController;
 use Chinstrap\Core\Objects\MarkdownDocument;
+use Chinstrap\Core\Tests\TestCase;
 use DateTime;
+use Laminas\EventManager\EventManagerInterface;
+use Mockery as m;
 
 final class MainControllerTest extends TestCase
 {
     public function testGetResponse()
     {
-        $emitter = m::mock('League\Event\EmitterInterface');
+        $emitter = m::mock(EventManagerInterface::class);
         $response = m::mock('Psr\Http\Message\ResponseInterface');
         $timestamp = (new DateTime())->setTimestamp(1568840820);
         $response->shouldReceive('withAddedHeader')
@@ -49,8 +50,8 @@ final class MainControllerTest extends TestCase
 
     public function testPostResponse()
     {
-        $emitter = m::mock('League\Event\EmitterInterface');
-        $emitter->shouldReceive('emit')->with('Chinstrap\Core\Events\FormSubmitted')->once();
+        $emitter = m::mock(EventManagerInterface::class);
+        $emitter->shouldReceive('trigger')->with('Chinstrap\Core\Events\FormSubmitted')->once();
         $response = m::mock('Psr\Http\Message\ResponseInterface');
         $doc = (new MarkdownDocument())
             ->setField('title', 'Foo')
@@ -81,7 +82,7 @@ final class MainControllerTest extends TestCase
 
     public function testPostResponseToUnregisteredForm()
     {
-        $emitter = m::mock('League\Event\EmitterInterface');
+        $emitter = m::mock(EventManagerInterface::class);
         $response = m::mock('Psr\Http\Message\ResponseInterface');
         $doc = (new MarkdownDocument())
             ->setField('title', 'Foo')
@@ -104,7 +105,7 @@ final class MainControllerTest extends TestCase
     public function test404()
     {
         $this->expectException('League\Route\Http\Exception\NotFoundException');
-        $emitter = m::mock('League\Event\EmitterInterface');
+        $emitter = m::mock(EventManagerInterface::class);
         $response = m::mock('Psr\Http\Message\ResponseInterface');
         $source = m::mock('Chinstrap\Core\Contracts\Sources\Source');
         $source->shouldReceive('find')->once()->andReturn(null);

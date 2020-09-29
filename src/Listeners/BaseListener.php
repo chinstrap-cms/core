@@ -6,7 +6,7 @@ namespace Chinstrap\Core\Listeners;
 
 use Laminas\EventManager\EventInterface;
 
-abstract class BaseListener extends AbstractListener
+abstract class BaseListener
 {
     abstract public function __invoke(EventInterface $event): void;
 }

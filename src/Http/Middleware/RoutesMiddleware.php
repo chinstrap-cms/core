@@ -6,11 +6,11 @@ namespace Chinstrap\Core\Http\Middleware;
 
 use Chinstrap\Core\Events\RegisterDynamicRoutes;
 use Chinstrap\Core\Events\RegisterStaticRoutes;
-use League\Event\EmitterInterface;
+use Laminas\EventManager\EventManagerInterface;
 use League\Route\Http\Exception\NotFoundException;
 use League\Route\Router;
-use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
@@ -22,9 +22,9 @@ final class RoutesMiddleware implements MiddlewareInterface
     private $router;
 
     /**
-     * @var EmitterInterface
+     * @var EventManagerInterface
      */
-    private $emitter;
+    private $eventManager;
 
     /**
      * @var RegisterStaticRoutes
@@ -38,20 +38,20 @@ final class RoutesMiddleware implements MiddlewareInterface
 
     public function __construct(
         Router $router,
-        EmitterInterface $emitter,
+        EventManagerInterface $eventManager,
         RegisterStaticRoutes $registerStatic,
         RegisterDynamicRoutes $registerDynamic
     ) {
         $this->router = $router;
-        $this->emitter = $emitter;
+        $this->eventManager = $eventManager;
         $this->registerStatic = $registerStatic;
         $this->registerDynamic = $registerDynamic;
     }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $this->emitter->emit($this->registerStatic);
-        $this->emitter->emit($this->registerDynamic);
+        $this->eventManager->trigger($this->registerStatic);
+        $this->eventManager->trigger($this->registerDynamic);
         try {
             return $this->router->dispatch($request);
         } catch (NotFoundException $e) {

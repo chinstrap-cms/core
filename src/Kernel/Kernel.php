@@ -10,10 +10,11 @@ use Chinstrap\Core\Exceptions\Plugins\PluginNotFound;
 use Chinstrap\Core\Exceptions\Plugins\PluginNotValid;
 use Chinstrap\Core\Kernel\Kernel;
 use Laminas\Diactoros\ServerRequestFactory;
+use Laminas\EventManager\EventManagerInterface;
 use League\Container\Container;
 use League\Container\ReflectionContainer;
-use League\Event\EmitterInterface;
 use Psr\Http\Message\ServerRequestInterface;
+
 
 /**
  * Application instance
@@ -126,8 +127,8 @@ final class Kernel implements KernelInterface
 
     private function registerViewHelpers()
     {
-        $emitter = $this->container->get(EmitterInterface::class);
+        $emitter = $this->container->get(EventManagerInterface::class);
         $event = $this->container->get(RegisterViewHelpers::class);
-        $emitter->emit($event);
+        $emitter->trigger($event);
     }
 }

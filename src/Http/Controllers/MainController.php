@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Http\Controllers;
 
-use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Message\ResponseInterface;
-use Chinstrap\Core\Contracts\Views\Renderer;
-use League\Route\Http\Exception\NotFoundException;
 use Chinstrap\Core\Contracts\Sources\Source;
-use League\Event\EmitterInterface;
+use Chinstrap\Core\Contracts\Views\Renderer;
 use Chinstrap\Core\Events\FormSubmitted;
 use Laminas\Diactoros\Response\EmptyResponse;
+use Laminas\EventManager\EventManagerInterface;
+use League\Route\Http\Exception\NotFoundException;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 final class MainController
 {
@@ -31,16 +31,16 @@ final class MainController
     protected $view;
 
     /**
-     * @var EmitterInterface
+     * @var EventManagerInterface
      */
-    protected $emitter;
+    protected $eventManager;
 
-    public function __construct(ResponseInterface $response, Source $source, Renderer $view, EmitterInterface $emitter)
+    public function __construct(ResponseInterface $response, Source $source, Renderer $view, EventManagerInterface $eventManager)
     {
         $this->response = $response;
         $this->source = $source;
         $this->view = $view;
-        $this->emitter = $emitter;
+        $this->eventManager = $eventManager;
     }
 
     public function index(ServerRequestInterface $request, array $args): ResponseInterface
@@ -72,7 +72,7 @@ final class MainController
         $data['content'] = $document->getContent();
         $layout = isset($data['layout']) ? $data['layout'] . '.html' : 'default.html';
         $event = new FormSubmitted();
-        $this->emitter->emit($event);
+        $this->eventManager->trigger($event);
         return $this->view->render($this->response, $layout, $data);
     }
 }
