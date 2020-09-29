@@ -19,7 +19,7 @@ final class Container extends Collection
         $this->items = $items;
     }
 
-    public static function make(iterable $items): Collection
+    public static function make(iterable $items): self
     {
         $pages = [];
         foreach ($items as $item) {

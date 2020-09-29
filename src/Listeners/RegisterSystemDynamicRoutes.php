@@ -17,12 +17,12 @@ final class RegisterSystemDynamicRoutes extends BaseListener
     private $router;
 
     /**
-     * @var HttpCache
+     * @var HttpCacheMiddleware
      */
     private $cacheMiddleware;
 
     /**
-     * @var ETag
+     * @var ETagMiddleware
      */
     private $etagMiddleware;
 

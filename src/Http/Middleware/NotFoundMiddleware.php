@@ -12,6 +12,16 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 final class NotFoundMiddleware implements MiddlewareInterface
 {
+    /**
+     * @var Renderer
+     */
+    private $renderer;
+
+    /**
+     * @var ResponseInterface
+     */
+    private $response;
+
     public function __construct(Renderer $renderer, ResponseInterface $response)
     {
         $this->renderer = $renderer;
