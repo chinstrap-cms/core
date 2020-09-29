@@ -4,20 +4,19 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Providers;
 
+use Laminas\Mail\Transport\InMemory;
+use Laminas\Mail\Transport\TransportInterface;
 use League\Container\ServiceProvider\AbstractServiceProvider;
-use Symfony\Component\Mailer\Mailer;
-use Symfony\Component\Mailer\Transport\SendmailTransport;
 
 final class MailerProvider extends AbstractServiceProvider
 {
-    protected $provides = ['Symfony\Component\Mailer\MailerInterface'];
+    protected $provides = [TransportInterface::class];
 
     public function register(): void
     {
         $this->getContainer()
-            ->add('Symfony\Component\Mailer\MailerInterface', function () {
-                $transport = new SendmailTransport();
-                return new Mailer($transport);
+            ->add(TransportInterface::class, function () {
+                return new InMemory();
             });
     }
 }
