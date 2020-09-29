@@ -35,11 +35,15 @@ use League\Glide\Server;
 use League\Glide\ServerFactory;
 use League\Route\Router;
 use League\Route\Strategy\ApplicationStrategy;
+use Psr\Cache\CacheItemPoolInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use PublishingKit\Cache\Contracts\Factories\CacheFactory;
+use PublishingKit\Cache\Contracts\Services\CacheContract;
 use PublishingKit\Cache\Factories\StashCacheFactory;
+use PublishingKit\Cache\Services\Cache\Psr6Cache;
 use PublishingKit\Config\Config;
+use Stash\Pool;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
@@ -60,6 +64,7 @@ final class ContainerFactory
                 FormFactory::class => LaminasFormFactory::class,
                 Navigator::class => DynamicNavigator::class,
                 CacheFactory::class => StashCacheFactory::class,
+                CacheItemPoolInterface::class => Pool::class,
             ],
             'factories' => [
                 Clockwork::class => function (ContainerInterface $container, string $requestedName) {
@@ -68,7 +73,7 @@ final class ContainerFactory
                 Config::class => function (ContainerInterface $container, string $requestedName) {
                     return Config::fromFiles(glob(ROOT_DIR . 'config/*.*'));
                 },
-                Filesystem::class => function (ContainerInterface $container, string $requestedName) {
+                Filesystem::class => function (ContainerInterface $container, string $requestedName): MountManager {
                     $factory = $container->get('Chinstrap\Core\Factories\FlysystemFactory');
                     $config = $container->get('PublishingKit\Config\Config');
 
@@ -133,6 +138,14 @@ final class ContainerFactory
                             return new Stream($stream);
                         }),
                     ]);
+                },
+                CacheContract::class => function (ContainerInterface $container, string $requestedName): CacheContract {
+                    return new Psr6Cache($container->get(CacheItemPoolInterface::class));
+                },
+                Pool::class => function (ContainerInterface $container, string $requestedName): Pool {
+                    $factory = $container->get(CacheFactory::class);
+                    $config = $container->get(Config::class);
+                    return $factory->make($config->cache->toArray());
                 }
             ]
         ]);

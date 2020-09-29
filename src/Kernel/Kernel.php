@@ -25,19 +25,6 @@ final class Kernel implements KernelInterface
      */
     private $container;
 
-    /**
-     * @var array
-     */
-    private $baseProviders = [
-                              'Chinstrap\Core\Providers\CacheProvider',
-                             ];
-
-    /**
-     * @var array
-     */
-    private $additionalProviders = [
-                                   ];
-
     public function __construct(Container $container = null)
     {
         if (!$container) {
@@ -54,10 +41,8 @@ final class Kernel implements KernelInterface
     public function bootstrap(): void
     {
         $this->setupContainer();
-        $this->setupBaseProviders();
         $this->setupPlugins();
         $this->registerViewHelpers();
-        $this->setupAdditionalProvideers();
     }
 
     private function setupContainer(): void
