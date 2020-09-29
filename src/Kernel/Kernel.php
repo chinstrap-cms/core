@@ -15,7 +15,6 @@ use League\Container\Container;
 use League\Container\ReflectionContainer;
 use Psr\Http\Message\ServerRequestInterface;
 
-
 /**
  * Application instance
  */
