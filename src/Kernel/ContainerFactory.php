@@ -12,6 +12,7 @@ use Chinstrap\Core\Generators\XmlStringSitemap;
 use Chinstrap\Core\Views\TwigRenderer;
 use Laminas\ServiceManager\AbstractFactory\ReflectionBasedAbstractFactory;
 use Laminas\ServiceManager\ServiceManager;
+use League\Flysystem\Filesystem;
 use Psr\Container\ContainerInterface;
 
 final class ContainerFactory
@@ -27,6 +28,25 @@ final class ContainerFactory
                 ContainerInterface::class => ServiceManager::class,
                 Handler::class => LogHandler::class,
                 Sitemap::class => XmlStringSitemap::class,
+            ],
+            'factories' => [
+                Filesystem::class => function (ContainerInterface $container, string $requestedName) {
+                    $factory = $container->get('Chinstrap\Core\Factories\FlysystemFactory');
+                    $config = $container->get('PublishingKit\Config\Config');
+
+                    // Decorate the adapter
+                    $contentFilesystem = $factory->make($config->filesystem->content->toArray());
+                    $assetFilesystem = $factory->make($config->filesystem->assets->toArray());
+                    $mediaFilesystem = $factory->make($config->filesystem->media->toArray());
+                    $cacheFilesystem = $factory->make($config->filesystem->cache->toArray());
+
+                    return new MountManager([
+                                             'content' => $contentFilesystem,
+                                             'assets'  => $assetFilesystem,
+                                             'media'   => $mediaFilesystem,
+                                             'cache'   => $cacheFilesystem,
+                                            ]);
+                },
             ]
         ]);
     }

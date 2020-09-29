@@ -14,5 +14,4 @@
     <!-- Use the PSR12 Standard-->
     <rule ref="PSR12" />
 	<rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
-	<rule ref="Squiz.Arrays.ArrayDeclaration"/>
 </ruleset>
