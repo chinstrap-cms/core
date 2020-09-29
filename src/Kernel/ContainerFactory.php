@@ -8,6 +8,7 @@ use Chinstrap\Core\Contracts\Views\Renderer;
 use Chinstrap\Core\Views\TwigRenderer;
 use Laminas\ServiceManager\AbstractFactory\ReflectionBasedAbstractFactory;
 use Laminas\ServiceManager\ServiceManager;
+use Psr\Container\ContainerInterface;
 
 final class ContainerFactory
 {
@@ -19,6 +20,7 @@ final class ContainerFactory
             ],
             'aliases' => [
                 Renderer::class => TwigRenderer::class,
+                ContainerInterface::class => ServiceManager::class,
             ]
         ]);
     }

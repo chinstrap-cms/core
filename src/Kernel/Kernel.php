@@ -29,7 +29,6 @@ final class Kernel implements KernelInterface
      * @var array
      */
     private $baseProviders = [
-                              'Chinstrap\Core\Providers\ContainerProvider',
                               'Chinstrap\Core\Providers\CacheProvider',
                               'Chinstrap\Core\Providers\ClockworkProvider',
                               'Chinstrap\Core\Providers\ConfigProvider',
@@ -48,7 +47,6 @@ final class Kernel implements KernelInterface
      * @var array
      */
     private $additionalProviders = [
-                                    'Chinstrap\Core\Providers\ViewProvider',
                                     'Chinstrap\Core\Providers\MailerProvider',
                                     'Chinstrap\Core\Providers\GlideProvider',
                                     'Chinstrap\Core\Providers\SitemapGeneratorProvider',
