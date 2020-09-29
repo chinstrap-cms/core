@@ -57,12 +57,7 @@ final class Kernel implements KernelInterface
         }
     }
 
-    public function getContainer(): ContainerInterface
-    {
-        return $this->container;
-    }
-
-    private function registerViewHelpers()
+    private function registerViewHelpers(): void
     {
         $manager = $this->container->get(EventManagerInterface::class);
         $manager->trigger(RegisterViewHelpers::class);
