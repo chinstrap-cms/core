@@ -31,7 +31,6 @@ final class Kernel implements KernelInterface
     private $baseProviders = [
                               'Chinstrap\Core\Providers\CacheProvider',
                               'Chinstrap\Core\Providers\EventProvider',
-                              'Chinstrap\Core\Providers\RouterProvider',
                              ];
 
     /**

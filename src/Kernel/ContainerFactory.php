@@ -23,6 +23,8 @@ use Laminas\ServiceManager\AbstractFactory\ReflectionBasedAbstractFactory;
 use Laminas\ServiceManager\ServiceManager;
 use League\Flysystem\Filesystem;
 use League\Flysystem\MountManager;
+use League\Route\Router;
+use League\Route\Strategy\ApplicationStrategy;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use PublishingKit\Config\Config;
@@ -88,6 +90,12 @@ final class ContainerFactory
                         $config['cache'] = ROOT_DIR . '/cache/views';
                     }
                     return new Environment($container->get('Twig\Loader\FilesystemLoader'), $config);
+                },
+                Router::class => function (ContainerInterface $container, string $requestedName) {
+                    $strategy = (new ApplicationStrategy())->setContainer($this->getContainer());
+                    $router = new Router();
+                    $router->setStrategy($strategy);
+                    return $router;
                 }
             ]
         ]);
