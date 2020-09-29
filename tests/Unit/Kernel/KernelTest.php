@@ -28,9 +28,6 @@ final class KernelTest extends TestCase
     {
         $this->expectException('Chinstrap\Core\Exceptions\Plugins\PluginNotFound');
         $container = m::mock('Psr\Container\ContainerInterface');
-        $container->shouldReceive('delegate')->once();
-        $container->shouldReceive('addServiceProvider');
-        $container->shouldReceive('share')->times(2);
         $container->shouldReceive('get')->with('My\Nonexistent\Plugin')
             ->once()
             ->andReturn(null);
@@ -48,9 +45,6 @@ final class KernelTest extends TestCase
     {
         $this->expectException('Chinstrap\Core\Exceptions\Plugins\PluginNotValid');
         $container = m::mock('Psr\Container\ContainerInterface');
-        $container->shouldReceive('delegate')->once();
-        $container->shouldReceive('addServiceProvider');
-        $container->shouldReceive('share')->times(2);
         $container->shouldReceive('get')->with('stdClass')
             ->once()
             ->andReturn(new \stdClass());
