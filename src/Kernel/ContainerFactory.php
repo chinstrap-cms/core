@@ -6,6 +6,7 @@ namespace Chinstrap\Core\Kernel;
 
 use Chinstrap\Core\Contracts\Exceptions\Handler;
 use Chinstrap\Core\Contracts\Generators\Sitemap;
+use Chinstrap\Core\Contracts\Sources\Source;
 use Chinstrap\Core\Contracts\Views\Renderer;
 use Chinstrap\Core\Exceptions\LogHandler;
 use Chinstrap\Core\Generators\XmlStringSitemap;
@@ -56,6 +57,10 @@ final class ContainerFactory
                         'cache'   => $cacheFilesystem,
                     ]);
                 },
+                Source::class => function (ContainerInterface $container, string $requestedName) {
+                    $config = $container->get(Config::class);
+                    return $container->get($config->get('source'));
+                }
             ]
         ]);
     }
