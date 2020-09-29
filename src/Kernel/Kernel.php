@@ -65,20 +65,6 @@ final class Kernel implements KernelInterface
         return $this->container;
     }
 
-    private function setupBaseProviders()
-    {
-        foreach ($this->baseProviders as $provider) {
-            $this->container->addServiceProvider($provider);
-        }
-    }
-
-    private function setupAdditionalProvideers()
-    {
-        foreach ($this->additionalProviders as $provider) {
-            $this->container->addServiceProvider($provider);
-        }
-    }
-
     private function registerViewHelpers()
     {
         $manager = $this->container->get(EventManagerInterface::class);
