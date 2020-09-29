@@ -71,8 +71,7 @@ final class MainController
         }
         $data['content'] = $document->getContent();
         $layout = isset($data['layout']) ? $data['layout'] . '.html' : 'default.html';
-        $event = new FormSubmitted();
-        $this->eventManager->triggerEvent($event);
+        $this->eventManager->trigger(FormSubmitted::class);
         return $this->view->render($this->response, $layout, $data);
     }
 }

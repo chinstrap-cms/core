@@ -30,7 +30,6 @@
         "laminas/laminas-stratigility": "^3.2",
         "laminas/laminas-view": "^2.11",
         "league/container": "^3.3",
-        "league/event": "^2.2",
         "league/flysystem": "^1.1",
         "league/flysystem-cached-adapter": "^1.1",
         "league/flysystem-memory": "^1.0",
