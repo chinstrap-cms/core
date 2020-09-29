@@ -27,6 +27,7 @@ use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use PublishingKit\Config\Config;
 use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 final class ContainerFactory
 {
@@ -77,6 +78,9 @@ final class ContainerFactory
                     $config = $container->get('PublishingKit\Config\Config');
                     $factory = new MonologFactory();
                     return $factory->make($config->get('loggers'));
+                },
+                FilesystemLoader::class => function (ContainerInterface $container, string $requestedName) {
+                    return new FilesystemLoader(ROOT_DIR . 'resources' . DIRECTORY_SEPARATOR . 'views');
                 },
                 Environment::class => function (ContainerInterface $container, string $requestedName) {
                     $config = [];

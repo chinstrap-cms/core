@@ -32,7 +32,6 @@ final class Kernel implements KernelInterface
                               'Chinstrap\Core\Providers\CacheProvider',
                               'Chinstrap\Core\Providers\EventProvider',
                               'Chinstrap\Core\Providers\RouterProvider',
-                              'Chinstrap\Core\Providers\TwigLoaderProvider',
                              ];
 
     /**
