@@ -48,7 +48,6 @@ final class Kernel implements KernelInterface
     private $additionalProviders = [
                                     'Chinstrap\Core\Providers\MailerProvider',
                                     'Chinstrap\Core\Providers\GlideProvider',
-                                    'Chinstrap\Core\Providers\SitemapGeneratorProvider',
                                    ];
 
     public function __construct(Container $container = null)
