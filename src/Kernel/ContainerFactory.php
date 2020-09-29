@@ -10,13 +10,19 @@ use Chinstrap\Core\Contracts\Generators\Sitemap;
 use Chinstrap\Core\Contracts\Services\Navigator;
 use Chinstrap\Core\Contracts\Sources\Source;
 use Chinstrap\Core\Contracts\Views\Renderer;
+use Chinstrap\Core\Events\RegisterDynamicRoutes;
+use Chinstrap\Core\Events\RegisterViewHelpers;
 use Chinstrap\Core\Exceptions\LogHandler;
 use Chinstrap\Core\Factories\Forms\LaminasFormFactory;
 use Chinstrap\Core\Factories\MonologFactory;
 use Chinstrap\Core\Generators\XmlStringSitemap;
+use Chinstrap\Core\Listeners\RegisterSystemDynamicRoutes;
+use Chinstrap\Core\Listeners\RegisterViews;
 use Chinstrap\Core\Services\Navigation\DynamicNavigator;
 use Chinstrap\Core\Views\TwigRenderer;
 use Clockwork\Support\Vanilla\Clockwork;
+use Laminas\EventManager\EventManager;
+use Laminas\EventManager\EventManagerInterface;
 use Laminas\Mail\Transport\InMemory;
 use Laminas\Mail\Transport\TransportInterface;
 use Laminas\ServiceManager\AbstractFactory\ReflectionBasedAbstractFactory;
@@ -96,6 +102,18 @@ final class ContainerFactory
                     $router = new Router();
                     $router->setStrategy($strategy);
                     return $router;
+                },
+                EventManagerInterface::class => function (ContainerInterface $container, string $requestedName) {
+                    $manager = $container->get(EventManager::class);
+                    $manager->attach(
+                        RegisterDynamicRoutes::class,
+                        $container->get(RegisterSystemDynamicRoutes::class)
+                    );
+                    $manager->attach(
+                        RegisterViewHelpers::class,
+                        $container->get(RegisterViews::class)
+                    );
+                    return $manager;
                 }
             ]
         ]);
