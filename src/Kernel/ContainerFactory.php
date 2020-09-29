@@ -10,6 +10,7 @@ use Chinstrap\Core\Contracts\Views\Renderer;
 use Chinstrap\Core\Exceptions\LogHandler;
 use Chinstrap\Core\Generators\XmlStringSitemap;
 use Chinstrap\Core\Views\TwigRenderer;
+use Clockwork\Support\Vanilla\Clockwork;
 use Laminas\ServiceManager\AbstractFactory\ReflectionBasedAbstractFactory;
 use Laminas\ServiceManager\ServiceManager;
 use League\Flysystem\Filesystem;
@@ -32,6 +33,9 @@ final class ContainerFactory
                 Sitemap::class => XmlStringSitemap::class,
             ],
             'factories' => [
+                Clockwork::class => function (ContainerInterface $container, string $requestedName) {
+                    return Clockwork::init();
+                },
                 Config::class => function (ContainerInterface $container, string $requestedName) {
                     return Config::fromFiles(glob(ROOT_DIR . 'config/*.*'));
                 },
