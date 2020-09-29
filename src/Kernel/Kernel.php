@@ -35,7 +35,6 @@ final class Kernel implements KernelInterface
                               'Chinstrap\Core\Providers\EventProvider',
                               'Chinstrap\Core\Providers\FlysystemProvider',
                               'Chinstrap\Core\Providers\FormsProvider',
-                              'Chinstrap\Core\Providers\HandlerProvider',
                               'Chinstrap\Core\Providers\LoggerProvider',
                               'Chinstrap\Core\Providers\RouterProvider',
                               'Chinstrap\Core\Providers\SourceProvider',

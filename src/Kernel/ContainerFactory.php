@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Kernel;
 
+use Chinstrap\Core\Contracts\Exceptions\Handler;
 use Chinstrap\Core\Contracts\Views\Renderer;
+use Chinstrap\Core\Exceptions\LogHandler;
 use Chinstrap\Core\Views\TwigRenderer;
 use Laminas\ServiceManager\AbstractFactory\ReflectionBasedAbstractFactory;
 use Laminas\ServiceManager\ServiceManager;
@@ -21,6 +23,7 @@ final class ContainerFactory
             'aliases' => [
                 Renderer::class => TwigRenderer::class,
                 ContainerInterface::class => ServiceManager::class,
+                Handler::class => LogHandler::class
             ]
         ]);
     }
