@@ -37,6 +37,8 @@ use League\Route\Router;
 use League\Route\Strategy\ApplicationStrategy;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
+use PublishingKit\Cache\Contracts\Factories\CacheFactory;
+use PublishingKit\Cache\Factories\StashCacheFactory;
 use PublishingKit\Config\Config;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
@@ -57,6 +59,7 @@ final class ContainerFactory
                 TransportInterface::class => InMemory::class,
                 FormFactory::class => LaminasFormFactory::class,
                 Navigator::class => DynamicNavigator::class,
+                CacheFactory::class => StashCacheFactory::class,
             ],
             'factories' => [
                 Clockwork::class => function (ContainerInterface $container, string $requestedName) {
