@@ -26,32 +26,18 @@ final class RoutesMiddleware implements MiddlewareInterface
      */
     private $eventManager;
 
-    /**
-     * @var RegisterStaticRoutes
-     */
-    private $registerStatic;
-
-    /**
-     * @var RegisterDynamicRoutes
-     */
-    private $registerDynamic;
-
     public function __construct(
         Router $router,
-        EventManagerInterface $eventManager,
-        RegisterStaticRoutes $registerStatic,
-        RegisterDynamicRoutes $registerDynamic
+        EventManagerInterface $eventManager
     ) {
         $this->router = $router;
         $this->eventManager = $eventManager;
-        $this->registerStatic = $registerStatic;
-        $this->registerDynamic = $registerDynamic;
     }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $this->eventManager->triggerEvent($this->registerStatic);
-        $this->eventManager->triggerEvent($this->registerDynamic);
+        $this->eventManager->trigger(RegisterStaticRoutes::class);
+        $this->eventManager->trigger(RegisterDynamicRoutes::class);
         try {
             return $this->router->dispatch($request);
         } catch (NotFoundException $e) {
