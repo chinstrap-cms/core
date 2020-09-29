@@ -27,7 +27,7 @@ final class KernelTest extends TestCase
     public function testPluginNotFound()
     {
         $this->expectException('Chinstrap\Core\Exceptions\Plugins\PluginNotFound');
-        $container = m::mock('League\Container\Container');
+        $container = m::mock('Psr\Container\ContainerInterface');
         $container->shouldReceive('delegate')->once();
         $container->shouldReceive('addServiceProvider');
         $container->shouldReceive('share')->times(2);
@@ -47,7 +47,7 @@ final class KernelTest extends TestCase
     public function testPluginNotValid()
     {
         $this->expectException('Chinstrap\Core\Exceptions\Plugins\PluginNotValid');
-        $container = m::mock('League\Container\Container');
+        $container = m::mock('Psr\Container\ContainerInterface');
         $container->shouldReceive('delegate')->once();
         $container->shouldReceive('addServiceProvider');
         $container->shouldReceive('share')->times(2);

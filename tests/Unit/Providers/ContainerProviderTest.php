@@ -12,6 +12,6 @@ final class ContainerProviderTest extends TestCase
     {
         $container = $this->container->get('Psr\Container\ContainerInterface');
         $this->assertInstanceOf('Psr\Container\ContainerInterface', $container);
-        $this->assertInstanceOf('League\Container\Container', $container);
+        $this->assertInstanceOf('Laminas\ServiceManager\ServiceManager', $container);
     }
 }

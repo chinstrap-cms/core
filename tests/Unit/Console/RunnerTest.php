@@ -19,7 +19,7 @@ final class RunnerTest extends TestCase
         $console = m::mock('Symfony\Component\Console\Kernel');
         $console->shouldReceive('add')->times(5);
         $console->shouldReceive('run')->once();
-        $container = m::mock('League\Container\Container');
+        $container = m::mock('Psr\Container\ContainerInterface');
         $container->shouldReceive('get')
             ->with('Symfony\Component\Console\Application')
             ->once()
