@@ -8,7 +8,7 @@ use Laminas\EventManager\Event;
 
 abstract class BaseEvent extends Event
 {
-    public function __toString(): string
+    public function getName(): string
     {
         return self::class;
     }

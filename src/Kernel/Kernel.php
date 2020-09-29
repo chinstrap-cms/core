@@ -127,8 +127,8 @@ final class Kernel implements KernelInterface
 
     private function registerViewHelpers()
     {
-        $emitter = $this->container->get(EventManagerInterface::class);
+        $manager = $this->container->get(EventManagerInterface::class);
         $event = $this->container->get(RegisterViewHelpers::class);
-        $emitter->trigger($event);
+        $manager->triggerEvent($event);
     }
 }

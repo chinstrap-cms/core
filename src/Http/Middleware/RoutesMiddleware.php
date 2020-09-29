@@ -50,8 +50,8 @@ final class RoutesMiddleware implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $this->eventManager->trigger($this->registerStatic);
-        $this->eventManager->trigger($this->registerDynamic);
+        $this->eventManager->triggerEvent($this->registerStatic);
+        $this->eventManager->triggerEvent($this->registerDynamic);
         try {
             return $this->router->dispatch($request);
         } catch (NotFoundException $e) {
