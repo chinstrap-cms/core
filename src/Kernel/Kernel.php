@@ -42,7 +42,6 @@ final class Kernel implements KernelInterface
      * @var array
      */
     private $additionalProviders = [
-                                    'Chinstrap\Core\Providers\MailerProvider',
                                     'Chinstrap\Core\Providers\GlideProvider',
                                    ];
 

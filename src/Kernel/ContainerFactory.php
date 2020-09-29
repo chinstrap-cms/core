@@ -12,6 +12,8 @@ use Chinstrap\Core\Exceptions\LogHandler;
 use Chinstrap\Core\Generators\XmlStringSitemap;
 use Chinstrap\Core\Views\TwigRenderer;
 use Clockwork\Support\Vanilla\Clockwork;
+use Laminas\Mail\Transport\InMemory;
+use Laminas\Mail\Transport\TransportInterface;
 use Laminas\ServiceManager\AbstractFactory\ReflectionBasedAbstractFactory;
 use Laminas\ServiceManager\ServiceManager;
 use League\Flysystem\Filesystem;
@@ -32,6 +34,7 @@ final class ContainerFactory
                 ContainerInterface::class => ServiceManager::class,
                 Handler::class => LogHandler::class,
                 Sitemap::class => XmlStringSitemap::class,
+                TransportInterface::class => InMemory::class,
             ],
             'factories' => [
                 Clockwork::class => function (ContainerInterface $container, string $requestedName) {
