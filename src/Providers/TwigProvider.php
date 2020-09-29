@@ -11,16 +11,12 @@ final class TwigProvider extends AbstractServiceProvider
 {
     protected $provides = [
                            'Twig\Environment',
-                           'Chinstrap\Core\Contracts\Services\Navigator',
                           ];
 
     public function register(): void
     {
         // Register items
         $container = $this->getContainer();
-        $container->add('Chinstrap\Core\Contracts\Services\Navigator', function () use ($container) {
-            return $container->get('Chinstrap\Core\Services\Navigation\DynamicNavigator');
-        });
         $container->share('Twig\Environment', function () use ($container) {
             $config = [];
             if ($_ENV['APP_ENV'] !== 'development') {
