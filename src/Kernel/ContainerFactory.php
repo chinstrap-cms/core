@@ -11,6 +11,7 @@ use Chinstrap\Core\Contracts\Sources\Source;
 use Chinstrap\Core\Contracts\Views\Renderer;
 use Chinstrap\Core\Exceptions\LogHandler;
 use Chinstrap\Core\Factories\Forms\LaminasFormFactory;
+use Chinstrap\Core\Factories\MonologFactory;
 use Chinstrap\Core\Generators\XmlStringSitemap;
 use Chinstrap\Core\Views\TwigRenderer;
 use Clockwork\Support\Vanilla\Clockwork;
@@ -21,6 +22,7 @@ use Laminas\ServiceManager\ServiceManager;
 use League\Flysystem\Filesystem;
 use League\Flysystem\MountManager;
 use Psr\Container\ContainerInterface;
+use Psr\Log\LoggerInterface;
 use PublishingKit\Config\Config;
 
 final class ContainerFactory
@@ -66,8 +68,13 @@ final class ContainerFactory
                 Source::class => function (ContainerInterface $container, string $requestedName) {
                     $config = $container->get(Config::class);
                     return $container->get($config->get('source'));
+                },
+                LoggerInterface::class => function (ContainerInterface $container, string $requestedName) {
+                    $config = $container->get('PublishingKit\Config\Config');
+                    $factory = new MonologFactory();
+                    return $factory->make($config->get('loggers'));
                 }
-            ]
+        ]
         ]);
     }
 }
