@@ -6,7 +6,7 @@ namespace Chinstrap\Core\Listeners;
 
 use Chinstrap\Core\Http\Middleware\ETagMiddleware;
 use Chinstrap\Core\Http\Middleware\HttpCacheMiddleware;
-use League\Event\EventInterface;
+use Laminas\EventManager\EventInterface;
 use League\Route\Router;
 
 final class RegisterSystemDynamicRoutes extends BaseListener
@@ -33,7 +33,7 @@ final class RegisterSystemDynamicRoutes extends BaseListener
         $this->etagMiddleware = $etagMiddleware;
     }
 
-    public function handle(EventInterface $event)
+    public function __invoke(EventInterface $event): void
     {
         if ($_ENV['APP_ENV'] == 'development') {
             $this->router->get(

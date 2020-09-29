@@ -8,7 +8,7 @@ use Chinstrap\Core\Contracts\Services\Navigator;
 use Chinstrap\Core\Views\Filters\Mix;
 use Chinstrap\Core\Views\Filters\Version;
 use Chinstrap\Core\Views\Functions\Form;
-use League\Event\EventInterface;
+use Laminas\EventManager\EventInterface;
 use Twig\Environment;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
@@ -49,7 +49,7 @@ final class RegisterViews extends BaseListener
         $this->navigator = $navigator;
     }
 
-    public function handle(EventInterface $event)
+    public function __invoke(EventInterface $event): void
     {
         $this->twig->addFilter(new TwigFilter('version', $this->version));
         $this->twig->addFilter(new TwigFilter('mix', $this->mix));
