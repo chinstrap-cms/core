@@ -26,6 +26,7 @@ use League\Flysystem\MountManager;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use PublishingKit\Config\Config;
+use Twig\Environment;
 
 final class ContainerFactory
 {
@@ -76,6 +77,13 @@ final class ContainerFactory
                     $config = $container->get('PublishingKit\Config\Config');
                     $factory = new MonologFactory();
                     return $factory->make($config->get('loggers'));
+                },
+                Environment::class => function (ContainerInterface $container, string $requestedName) {
+                    $config = [];
+                    if ($_ENV['APP_ENV'] !== 'development') {
+                        $config['cache'] = ROOT_DIR . '/cache/views';
+                    }
+                    return new Environment($container->get('Twig\Loader\FilesystemLoader'), $config);
                 }
             ]
         ]);
