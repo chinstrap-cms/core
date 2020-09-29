@@ -29,7 +29,7 @@ use Laminas\Mail\Transport\InMemory;
 use Laminas\Mail\Transport\TransportInterface;
 use Laminas\ServiceManager\AbstractFactory\ReflectionBasedAbstractFactory;
 use Laminas\ServiceManager\ServiceManager;
-use League\Flysystem\Filesystem;
+use League\Flysystem\FilesystemInterface;
 use League\Flysystem\MountManager;
 use League\Glide\Responses\PsrResponseFactory;
 use League\Glide\Server;
@@ -77,7 +77,7 @@ final class ContainerFactory
                 Config::class => function (ContainerInterface $container, string $requestedName) {
                     return Config::fromFiles(glob(ROOT_DIR . 'config/*.*'));
                 },
-                Filesystem::class => function (ContainerInterface $container, string $requestedName): MountManager {
+                FilesystemInterface::class => function (ContainerInterface $container, string $requestedName): MountManager {
                     $factory = $container->get('Chinstrap\Core\Factories\FlysystemFactory');
                     $config = $container->get('PublishingKit\Config\Config');
 
