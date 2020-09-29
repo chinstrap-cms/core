@@ -45,24 +45,15 @@ final class RunnerTest extends TestCase
             ->with('Chinstrap\Core\Console\Commands\GenerateSitemap')
             ->once()
             ->andReturn($mockCommand);
-        $mockApp = m::mock(new Kernel());
-        $mockApp->shouldReceive('getContainer')
-            ->once()
-            ->andReturn($container);
-        $runner = new Runner();
-        $this->setPrivateProperty($runner, 'kernel', $mockApp);
+        $runner = new Runner($container);
         $runner();
     }
 
     public function testCatchError()
     {
         $this->expectOutputRegex('/^Unable to run/');
-        $mockApp = m::mock(new Kernel());
-        $mockApp->shouldReceive('getContainer')
-            ->once()
-            ->andThrow('Exception');
-        $runner = new Runner();
-        $this->setPrivateProperty($runner, 'kernel', $mockApp);
+        $container = m::mock('Psr\Container\ContainerInterface');
+        $runner = new Runner($container);
         $runner();
     }
 }

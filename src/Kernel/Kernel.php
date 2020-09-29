@@ -24,11 +24,8 @@ final class Kernel implements KernelInterface
      */
     private $container;
 
-    public function __construct(ContainerInterface $container = null)
+    public function __construct(ContainerInterface $container)
     {
-        if (!$container) {
-            $container = (new ContainerFactory())();
-        }
         $this->container = $container;
     }
 

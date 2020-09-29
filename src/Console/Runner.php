@@ -6,30 +6,29 @@ namespace Chinstrap\Core\Console;
 
 use Chinstrap\Core\Kernel\Kernel;
 use Exception;
+use Psr\Container\ContainerInterface;
 
 final class Runner
 {
     /**
-     * @var Kernel
+     * @var ContainerInterface
      */
-    protected $kernel;
+    private $container;
 
-    public function __construct()
+    public function __construct(ContainerInterface $container)
     {
-        $this->kernel = new Kernel();
+        $this->container = $container;
     }
 
     public function __invoke()
     {
         try {
-            $this->kernel->bootstrap();
-            $container = $this->kernel->getContainer();
-            $console = $container->get('Symfony\Component\Console\Application');
-            $console->add($container->get('Chinstrap\Core\Console\Commands\FlushCache'));
-            $console->add($container->get('Chinstrap\Core\Console\Commands\Shell'));
-            $console->add($container->get('Chinstrap\Core\Console\Commands\Server'));
-            $console->add($container->get('Chinstrap\Core\Console\Commands\GenerateIndex'));
-            $console->add($container->get('Chinstrap\Core\Console\Commands\GenerateSitemap'));
+            $console = $this->container->get('Symfony\Component\Console\Application');
+            $console->add($this->container->get('Chinstrap\Core\Console\Commands\FlushCache'));
+            $console->add($this->container->get('Chinstrap\Core\Console\Commands\Shell'));
+            $console->add($this->container->get('Chinstrap\Core\Console\Commands\Server'));
+            $console->add($this->container->get('Chinstrap\Core\Console\Commands\GenerateIndex'));
+            $console->add($this->container->get('Chinstrap\Core\Console\Commands\GenerateSitemap'));
             $console->run();
         } catch (Exception $err) {
             $this->returnError($err);

@@ -10,22 +10,31 @@ use Chinstrap\Core\Http\Middleware\NotFoundMiddleware;
 use Chinstrap\Core\Http\Middleware\RoutesMiddleware;
 use Chinstrap\Core\Http\Middleware\WhoopsMiddleware;
 use Laminas\Stratigility\MiddlewarePipe;
+use Psr\Container\ContainerInterface;
 
 final class AppFactory
 {
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+
     public function __invoke(): MiddlewarePipe
     {
         $app = new MiddlewarePipe();
-
-        $kernel = new Kernel();
+        $kernel = new Kernel($this->container);
         $kernel->bootstrap();
-        $container = $kernel->getContainer();
 
-        $app->pipe($container->get(WhoopsMiddleware::class));
-        $app->pipe($container->get(ClockworkMiddleware::class));
-        $app->pipe($container->get(ContentLengthMiddleware::class));
-        $app->pipe($container->get(RoutesMiddleware::class));
-        $app->pipe($container->get(NotFoundMiddleware::class));
+        $app->pipe($this->container->get(WhoopsMiddleware::class));
+        $app->pipe($this->container->get(ClockworkMiddleware::class));
+        $app->pipe($this->container->get(ContentLengthMiddleware::class));
+        $app->pipe($this->container->get(RoutesMiddleware::class));
+        $app->pipe($this->container->get(NotFoundMiddleware::class));
         return $app;
     }
 }
