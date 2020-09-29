@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Events;
 
-use League\Event\AbstractEvent;
+use Laminas\EventManager\Event;
 
-final class FormSubmitted extends AbstractEvent
+final class FormSubmitted extends Event
 {
 }
