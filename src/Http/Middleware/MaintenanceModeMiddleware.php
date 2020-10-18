@@ -33,9 +33,10 @@ final class MaintenanceModeMiddleware implements MiddlewareInterface
      */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        if (isset($_ENV['MAINTENANCE'])) {
+        $env = $request->getServerParams();
+        if (isset($env['MAINTENANCE'])) {
             return $this->renderer->render(
-                $this->response->withStatus(503)->withAddedHeader('Retry-After', $_ENV['MAINTENANCE']),
+                $this->response->withStatus(503)->withAddedHeader('Retry-After', $env['MAINTENANCE']),
                 'maintenance.html'
             );
         }
