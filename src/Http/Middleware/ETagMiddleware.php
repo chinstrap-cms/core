@@ -15,7 +15,8 @@ final class ETagMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $response = $handler->handle($request);
-        if ($_ENV['APP_ENV'] === 'development') {
+        $env = $request->getServerParams();
+        if ($env['APP_ENV'] === 'development') {
             return $response;
         }
         $method = $request->getMethod();
