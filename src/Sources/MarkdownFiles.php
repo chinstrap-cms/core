@@ -31,7 +31,7 @@ final class MarkdownFiles implements Source
         $this->fs = $fs;
         $this->parser = $parser;
     }
- 
+
     public function all(): Collectable
     {
         return LazyCollection::make(function () {
