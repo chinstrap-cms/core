@@ -14,6 +14,7 @@ final class ETagTest extends TestCase
     {
         $request = m::mock('Psr\Http\Message\ServerRequestInterface');
         $request->shouldReceive('getMethod')->andReturn('POST');
+        $request->shouldReceive('getServerParams')->andReturn(['APP_ENV' => 'production']);
         $response = m::mock('Psr\Http\Message\ResponseInterface');
         $handler = m::mock('Psr\Http\Server\RequestHandlerInterface');
         $handler->shouldReceive('handle')->with($request)->andReturn($response);
@@ -26,6 +27,7 @@ final class ETagTest extends TestCase
     {
         $request = m::mock('Psr\Http\Message\ServerRequestInterface');
         $request->shouldReceive('getMethod')->andReturn('GET');
+        $request->shouldReceive('getServerParams')->andReturn(['APP_ENV' => 'production']);
         $request->shouldReceive('getHeader')->with('if-none-match')->andReturn([md5('foo')]);
         $response = m::mock('Psr\Http\Message\ResponseInterface');
         $response->shouldReceive('getBody->getContents')->andReturn('foo');
@@ -39,15 +41,14 @@ final class ETagTest extends TestCase
 
     public function testInactiveInDevelopment()
     {
-        putenv('APP_ENV=development');
         $request = m::mock('Psr\Http\Message\ServerRequestInterface');
         $request->shouldReceive('getMethod')->andReturn('POST');
+        $request->shouldReceive('getServerParams')->andReturn(['APP_ENV' => 'production']);
         $response = m::mock('Psr\Http\Message\ResponseInterface');
         $handler = m::mock('Psr\Http\Server\RequestHandlerInterface');
         $handler->shouldReceive('handle')->with($request)->andReturn($response);
         $middleware = new ETagMiddleware();
         $received = $middleware->process($request, $handler);
         $this->assertEquals($received, $response);
-        putenv('APP_ENV=testing');
     }
 }
