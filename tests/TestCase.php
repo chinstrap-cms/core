@@ -4,13 +4,29 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Tests;
 
+use Chinstrap\Core\Kernel\AppFactory;
 use Chinstrap\Core\Kernel\ContainerFactory;
-use Chinstrap\Core\Kernel\Kernel;
+use Laminas\ServiceManager\ServiceManager;
+use Laminas\Stratigility\MiddlewarePipe;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
     use MockeryPHPUnitIntegration;
+
+    /**
+     * Container instance
+     *
+     * @var ServiceManager|null
+     */
+    protected $container;
+
+    /**
+     * App instance
+     *
+     * @var MiddlewarePipe|null
+     */
+    protected $app;
 
     public function setUp(): void
     {
@@ -24,8 +40,8 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
             define('PUBLIC_DIR', __DIR__ . '/../public/');
         }
         $this->container = (new ContainerFactory())();
-        $this->app = new Kernel($this->container);
-        $this->app->bootstrap();
+        $factory = new AppFactory($this->container);
+        $this->app = $factory();
     }
 
     public function tearDown(): void
