@@ -43,7 +43,7 @@ final class ETagTest extends TestCase
     {
         $request = m::mock('Psr\Http\Message\ServerRequestInterface');
         $request->shouldReceive('getMethod')->andReturn('POST');
-        $request->shouldReceive('getServerParams')->andReturn(['APP_ENV' => 'production']);
+        $request->shouldReceive('getServerParams')->andReturn(['APP_ENV' => 'development']);
         $response = m::mock('Psr\Http\Message\ResponseInterface');
         $handler = m::mock('Psr\Http\Server\RequestHandlerInterface');
         $handler->shouldReceive('handle')->with($request)->andReturn($response);
