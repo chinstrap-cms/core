@@ -11,7 +11,9 @@ use Throwable;
 final class ErrorHandler
 {
     /**
-     * @var ResponseFactory
+     * Response factory instance
+     *
+     * @var ResponseFactoryInterface
      */
     private $factory;
 
