@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Exceptions;
 
-use Laminas\Diactoros\ResponseFactory;
+use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Throwable;
 
@@ -15,7 +15,7 @@ final class ErrorHandler
      */
     private $factory;
 
-    public function __construct(ResponseFactory $factory)
+    public function __construct(ResponseFactoryInterface $factory)
     {
         $this->factory = $factory;
     }
@@ -25,7 +25,7 @@ final class ErrorHandler
         $response = $this->factory->createResponse(500);
         $response->getBody()->write(sprintf(
             'An error occurred: %s',
-            $e->getMessage
+            $e->getMessage()
         ));
         return $response;
     }
