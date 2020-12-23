@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Exceptions;
 
+use Chinstrap\Core\Contracts\Exceptions\Handler;
 use Psr\Log\LoggerInterface;
 use Throwable;
 use Whoops\Exception\Inspector;
 use Whoops\RunInterface;
-use Chinstrap\Core\Contracts\Exceptions\Handler;
 
 final class LogHandler implements Handler
 {
