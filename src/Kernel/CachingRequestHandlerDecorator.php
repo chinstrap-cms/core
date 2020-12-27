@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Kernel;
 
-use Http\Message\StreamFactory\DiactorosStreamFactory;
+use Laminas\Diactoros\StreamFactory;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -35,10 +35,10 @@ final class CachingRequestHandlerDecorator implements RequestHandlerInterface
      */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $client = new Client(function ($request) {
+        $client = new Client(function (ServerRequestInterface $request): ResponseInterface {
             return $this->handler->handle($request);
         });
-        $proxy = new Proxy($client, $this->cache, new DiactorosStreamFactory());
+        $proxy = new Proxy($client, $this->cache, new StreamFactory());
         return $proxy->handle($request);
     }
 }
