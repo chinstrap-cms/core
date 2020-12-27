@@ -23,12 +23,13 @@ final class Runner
     public function __invoke()
     {
         try {
-            $console = $this->container->get('Symfony\Component\Console\Application');
-            $console->add($this->container->get('Chinstrap\Core\Console\Commands\FlushCache'));
-            $console->add($this->container->get('Chinstrap\Core\Console\Commands\Shell'));
-            $console->add($this->container->get('Chinstrap\Core\Console\Commands\Server'));
-            $console->add($this->container->get('Chinstrap\Core\Console\Commands\GenerateIndex'));
-            $console->add($this->container->get('Chinstrap\Core\Console\Commands\GenerateSitemap'));
+            /** @var Symfony\Component\Console\Application $console **/
+            $console = $this->container->get(\Symfony\Component\Console\Application::class);
+            $console->add($this->container->get(\Chinstrap\Core\Console\Commands\FlushCache::class));
+            $console->add($this->container->get(\Chinstrap\Core\Console\Commands\Shell::class));
+            $console->add($this->container->get(\Chinstrap\Core\Console\Commands\Server::class));
+            $console->add($this->container->get(\Chinstrap\Core\Console\Commands\GenerateIndex::class));
+            $console->add($this->container->get(\Chinstrap\Core\Console\Commands\GenerateSitemap::class));
             $console->run();
         } catch (Exception $err) {
             $this->returnError($err);
