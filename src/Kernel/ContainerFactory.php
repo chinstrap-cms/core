@@ -72,6 +72,10 @@ final class ContainerFactory
                 'response' => Response::class,
             ],
             'factories' => [
+                \Faker\Generator::class => function (ContainerInterface $container, string $requestedName): \Faker\Generator {
+                    $config = $container->get(Config::class);
+                    return \Faker\Factory::create($config->get('locale'));
+                },
                 Clockwork::class => function (ContainerInterface $container, string $requestedName): Clockwork {
                     return Clockwork::init();
                 },
