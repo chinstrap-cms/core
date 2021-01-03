@@ -98,6 +98,7 @@ final class ContainerFactory
                     ]);
                 },
                 Source::class => function (ContainerInterface $container, string $requestedName): Source {
+                    /** @var Config **/
                     $config = $container->get(Config::class);
                     return $container->get($config->get('source'));
                 },
@@ -107,17 +108,17 @@ final class ContainerFactory
                     $factory = new MonologFactory();
                     return $factory->make($config->get('loggers'));
                 },
-                FilesystemLoader::class => function (ContainerInterface $container, string $requestedName) {
+                FilesystemLoader::class => function (ContainerInterface $container, string $requestedName): FilesystemLoader {
                     return new FilesystemLoader(ROOT_DIR . 'resources' . DIRECTORY_SEPARATOR . 'views');
                 },
-                Environment::class => function (ContainerInterface $container, string $requestedName) {
+                Environment::class => function (ContainerInterface $container, string $requestedName): Environment {
                     $config = [];
                     if ($_ENV['APP_ENV'] !== 'development') {
                         $config['cache'] = ROOT_DIR . '/cache/views';
                     }
                     return new Environment($container->get('Twig\Loader\FilesystemLoader'), $config);
                 },
-                Router::class => function (ContainerInterface $container, string $requestedName) {
+                Router::class => function (ContainerInterface $container, string $requestedName): Router {
                     $strategy = (new ApplicationStrategy())->setContainer($container);
                     $router = new Router();
                     $router->setStrategy($strategy);
