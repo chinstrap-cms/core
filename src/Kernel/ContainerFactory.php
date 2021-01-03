@@ -58,6 +58,11 @@ final class ContainerFactory
             'abstract_factories' => [
                 ReflectionBasedAbstractFactory::class,
             ],
+            'lazy_services' => [
+                'classmap' => [
+                    \Faker\Generator::class => Faker\Generator::class,
+                ],
+            ],
             'aliases' => [
                 Renderer::class => TwigRenderer::class,
                 ContainerInterface::class => ServiceManager::class,
