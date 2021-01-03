@@ -25,7 +25,7 @@ final class Runner
     public function __invoke()
     {
         try {
-            /** @var Symfony\Component\Console\Application $console **/
+            /** @var Application $console **/
             $console = $this->container->get(Application::class);
             $console->add($this->container->get(\Chinstrap\Core\Console\Commands\FlushCache::class));
             $console->add(
