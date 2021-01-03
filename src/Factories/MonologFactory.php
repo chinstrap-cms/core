@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Factories;
 
-use Psr\Log\LoggerInterface;
-use Monolog\Logger;
-use Monolog\Handler\HandlerInterface;
+use Chinstrap\Core\Contracts\Factories\LoggerFactory;
 use Monolog\Handler\BrowserConsoleHandler;
 use Monolog\Handler\ChromePHPHandler;
 use Monolog\Handler\FirePHPHandler;
+use Monolog\Handler\HandlerInterface;
+use Monolog\Handler\NativeMailerHandler;
 use Monolog\Handler\SlackHandler;
 use Monolog\Handler\StreamHandler;
-use Monolog\Handler\NativeMailerHandler;
+use Monolog\Logger;
+use Psr\Log\LoggerInterface;
 use PublishingKit\Config\Config;
 use PublishingKit\Utilities\Str;
-use Chinstrap\Core\Contracts\Factories\LoggerFactory;
 
 final class MonologFactory implements LoggerFactory
 {
