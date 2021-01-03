@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace Chinstrap\Core\Tests\Unit\Utilities;
 
 use Chinstrap\Core\Tests\TestCase;
-use Mockery as m;
 use Chinstrap\Core\Utilities\YamlWrapper;
-use Symfony\Component\Yaml\Yaml;
+use Mockery as m;
 
 final class YamlWrapperTest extends TestCase
 {

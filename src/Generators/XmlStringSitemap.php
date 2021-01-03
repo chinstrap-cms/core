@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Generators;
 
-use DOMDocument;
-use SimpleXMLElement;
-use Chinstrap\Core\Contracts\Sources\Source;
 use Chinstrap\Core\Contracts\Generators\Sitemap;
+use Chinstrap\Core\Contracts\Sources\Source;
+use DOMDocument;
 use PublishingKit\Config\Config;
+use SimpleXMLElement;
 
 final class XmlStringSitemap implements Sitemap
 {

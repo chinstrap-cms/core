@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Tests\Unit\Generators;
 
+use Chinstrap\Core\Generators\XmlStringSitemap;
+use Chinstrap\Core\Objects\MarkdownDocument;
 use Chinstrap\Core\Tests\TestCase;
 use Mockery as m;
-use Chinstrap\Core\Objects\MarkdownDocument;
-use Chinstrap\Core\Generators\XmlStringSitemap;
 use PublishingKit\Utilities\Collections\Collection;
-use PublishingKit\Config\Config;
 
 final class SitemapTest extends TestCase
 {

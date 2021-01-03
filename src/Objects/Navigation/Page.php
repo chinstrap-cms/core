@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Objects\Navigation;
 
+use ArrayIterator;
 use Exception;
 use IteratorAggregate;
-use ArrayIterator;
 
 final class Page implements IteratorAggregate
 {

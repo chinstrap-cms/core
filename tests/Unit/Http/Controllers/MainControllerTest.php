@@ -34,7 +34,7 @@ final class MainControllerTest extends TestCase
             $response,
             'default.html',
             [
-             'title'   => 'Foo',
+             'title' => 'Foo',
              'content' => 'foo',
             ]
         )->once();
@@ -65,9 +65,9 @@ final class MainControllerTest extends TestCase
             $response,
             'default.html',
             [
-             'title'   => 'Foo',
+             'title' => 'Foo',
              'content' => 'foo',
-             'forms'   => ['contact'],
+             'forms' => ['contact'],
             ]
         )->once();
         $request = m::mock('Psr\Http\Message\ServerRequestInterface');

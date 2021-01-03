@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Tests\Unit\Console\Commands;
 
+use Chinstrap\Core\Console\Commands\Shell;
 use Chinstrap\Core\Tests\TestCase;
 use Mockery as m;
-use Chinstrap\Core\Console\Commands\Shell;
 use Symfony\Component\Console\Tester\CommandTester;
 
 final class ShellTest extends TestCase

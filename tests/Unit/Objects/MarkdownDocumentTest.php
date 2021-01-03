@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Tests\Unit\Objects;
 
-use Chinstrap\Core\Tests\TestCase;
-use Mockery as m;
 use Chinstrap\Core\Objects\MarkdownDocument;
+use Chinstrap\Core\Tests\TestCase;
 
 final class MarkdownDocumentTest extends TestCase
 {
@@ -64,7 +63,7 @@ final class MarkdownDocumentTest extends TestCase
         $doc->setField('layout', 'custom.html');
         $doc->setPath('foo');
         $this->assertEquals([
-                             'title'  => 'My Page',
+                             'title' => 'My Page',
                              'layout' => 'custom.html',
                             ], $doc->getFields());
     }
@@ -77,10 +76,10 @@ final class MarkdownDocumentTest extends TestCase
         $doc->setField('layout', 'custom.html');
         $doc->setPath('foo');
         $this->assertEquals([
-                             'title'   => 'My Page',
-                             'layout'  => 'custom.html',
+                             'title' => 'My Page',
+                             'layout' => 'custom.html',
                              'content' => 'This is my content',
-                             'url'     => '/foo',
+                             'url' => '/foo',
                             ], $doc->jsonSerialize());
     }
 }

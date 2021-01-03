@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Views\Functions;
 
-use PublishingKit\Config\Config;
-use Laminas\Form\ElementInterface;
-use Chinstrap\Core\Exceptions\Forms\FormNotFound;
 use Chinstrap\Core\Contracts\Factories\FormFactory;
+use Chinstrap\Core\Exceptions\Forms\FormNotFound;
 use Laminas\Form\View\Helper\Form as FormHelper;
 use Laminas\View\Renderer\PhpRenderer;
+use PublishingKit\Config\Config;
 use Twig\Markup;
 
 final class Form
@@ -53,15 +52,15 @@ final class Form
     private function getInvokables(): array
     {
         return [
-                'formRow'             => 'Laminas\Form\View\Helper\FormRow',
-                'form_label'          => 'Laminas\Form\View\Helper\FormLabel',
-                'form_element'        => 'Laminas\Form\View\Helper\FormElement',
+                'formRow' => 'Laminas\Form\View\Helper\FormRow',
+                'form_label' => 'Laminas\Form\View\Helper\FormLabel',
+                'form_element' => 'Laminas\Form\View\Helper\FormElement',
                 'form_element_errors' => 'Laminas\Form\View\Helper\FormElementErrors',
-                'forminput'           => 'Laminas\Form\View\Helper\FormInput',
-                'formtext'            => 'Laminas\Form\View\Helper\FormText',
-                'formtextarea'        => 'Laminas\Form\View\Helper\FormTextarea',
-                'formemail'           => 'Laminas\Form\View\Helper\FormEmail',
-                'formsubmit'          => 'Laminas\Form\View\Helper\FormSubmit',
+                'forminput' => 'Laminas\Form\View\Helper\FormInput',
+                'formtext' => 'Laminas\Form\View\Helper\FormText',
+                'formtextarea' => 'Laminas\Form\View\Helper\FormTextarea',
+                'formemail' => 'Laminas\Form\View\Helper\FormEmail',
+                'formsubmit' => 'Laminas\Form\View\Helper\FormSubmit',
                ];
     }
 }

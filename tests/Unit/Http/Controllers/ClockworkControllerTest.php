@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Tests\Unit\Http\Controllers;
 
+use Chinstrap\Core\Http\Controllers\ClockworkController;
 use Chinstrap\Core\Tests\TestCase;
 use Mockery as m;
-use Chinstrap\Core\Http\Controllers\ClockworkController;
 
 final class ClockworkControllerTest extends TestCase
 {

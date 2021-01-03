@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Http\Controllers;
 
-use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Message\ResponseInterface;
-use Laminas\Diactoros\Response\JsonResponse;
 use Clockwork\Support\Vanilla\Clockwork;
+use Laminas\Diactoros\Response\JsonResponse;
+use Psr\Http\Message\ServerRequestInterface;
 
 final class ClockworkController
 {

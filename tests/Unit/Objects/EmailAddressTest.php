@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Tests\Unit\Objects;
 
-use Chinstrap\Core\Tests\TestCase;
-use Mockery as m;
 use Chinstrap\Core\Objects\EmailAddress;
+use Chinstrap\Core\Tests\TestCase;
 
 final class EmailAddressTest extends TestCase
 {

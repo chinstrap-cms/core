@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Tests\Unit\Factories;
 
-use Chinstrap\Core\Tests\TestCase;
 use Chinstrap\Core\Factories\MonologFactory;
-use Mockery as m;
+use Chinstrap\Core\Tests\TestCase;
 use PublishingKit\Config\Config;
 
 final class LoggerFactoryTest extends TestCase
@@ -20,8 +19,8 @@ final class LoggerFactoryTest extends TestCase
         $config = new Config([
                               [
                                'logger' => 'stream',
-                               'path'   => './logs/site.log',
-                               'level'  => $level,
+                               'path' => './logs/site.log',
+                               'level' => $level,
                               ],
                              ]);
         $logger = $factory->make($config);
@@ -86,9 +85,9 @@ final class LoggerFactoryTest extends TestCase
         $factory = new MonologFactory();
         $config = new Config([
                               [
-                               'logger'  => 'mailer',
-                               'from'    => 'bob@example.com',
-                               'to'      => 'eric@example.com',
+                               'logger' => 'mailer',
+                               'from' => 'bob@example.com',
+                               'to' => 'eric@example.com',
                                'subject' => 'Error',
                               ],
                              ]);
@@ -104,12 +103,12 @@ final class LoggerFactoryTest extends TestCase
         $factory = new MonologFactory();
         $config = new Config([
                               [
-                               'logger'     => 'slack',
-                               'token'      => 'foo',
-                               'channel'    => 'bar',
-                               'username'   => 'baz',
+                               'logger' => 'slack',
+                               'token' => 'foo',
+                               'channel' => 'bar',
+                               'username' => 'baz',
                                'attachment' => true,
-                               'emoji'      => 'poo',
+                               'emoji' => 'poo',
                               ],
                              ]);
         $logger = $factory->make($config);

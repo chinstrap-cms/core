@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Tests\Unit\Factories;
 
-use Chinstrap\Core\Tests\TestCase;
 use Chinstrap\Core\Factories\Forms\LaminasFormFactory;
+use Chinstrap\Core\Tests\TestCase;
 use Laminas\Form\Factory;
 use Mockery as m;
 
@@ -18,9 +18,9 @@ final class LaminasFormFactoryTest extends TestCase
         $formData = [
                      [
                       'spec' => [
-                                 'name'    => 'name',
+                                 'name' => 'name',
                                  'options' => ['label' => 'Your name'],
-                                 'type'    => 'Text',
+                                 'type' => 'Text',
                                 ],
                      ],
                     ];

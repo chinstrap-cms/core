@@ -107,9 +107,9 @@ final class ContainerFactory
 
                     return new MountManager([
                         'content' => $contentFilesystem,
-                        'assets'  => $assetFilesystem,
-                        'media'   => $mediaFilesystem,
-                        'cache'   => $cacheFilesystem,
+                        'assets' => $assetFilesystem,
+                        'media' => $mediaFilesystem,
+                        'cache' => $cacheFilesystem,
                     ]);
                 },
                 Source::class => function (ContainerInterface $container, string $requestedName): Source {
@@ -166,8 +166,8 @@ final class ContainerFactory
                     $source = $fs->getFilesystem('media');
                     $cache = $fs->getFilesystem('cache');
                     return ServerFactory::create([
-                        'source'   => $source,
-                        'cache'    => $cache,
+                        'source' => $source,
+                        'cache' => $cache,
                         'response' => new PsrResponseFactory(new Response(), function ($stream) {
                             return new Stream($stream);
                         }),

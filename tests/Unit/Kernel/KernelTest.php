@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Tests\Unit\Kernel;
 
+use Chinstrap\Core\Kernel\Kernel;
 use Chinstrap\Core\Tests\TestCase;
 use Mockery as m;
-use Chinstrap\Core\Kernel\Kernel;
 use PublishingKit\Config\Config;
 
 final class KernelTest extends TestCase

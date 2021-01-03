@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Console\Commands;
 
+use Chinstrap\Core\Contracts\Sources\Source;
+use League\Flysystem\FilesystemInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Chinstrap\Core\Contracts\Sources\Source;
-use League\Flysystem\FilesystemInterface;
 
 final class GenerateIndex extends Command
 {

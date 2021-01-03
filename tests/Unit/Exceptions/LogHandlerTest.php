@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Tests\Unit\Exceptions;
 
-use Chinstrap\Core\Tests\TestCase;
 use Chinstrap\Core\Exceptions\LogHandler;
-use Mockery as m;
+use Chinstrap\Core\Tests\TestCase;
 use Exception;
+use Mockery as m;
 
 final class LogHandlerTest extends TestCase
 {

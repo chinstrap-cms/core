@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Tests\Unit\Http\Middleware;
 
+use Chinstrap\Core\Http\Middleware\HttpCacheMiddleware;
 use Chinstrap\Core\Tests\TestCase;
 use Mockery as m;
-use Chinstrap\Core\Http\Middleware\HttpCacheMiddleware;
 
 final class HttpCacheTest extends TestCase
 {

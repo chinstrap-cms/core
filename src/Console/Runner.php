@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Console;
 
-use Chinstrap\Core\Kernel\Kernel;
 use Exception;
 use Psr\Container\ContainerInterface;
 use Psy\Shell as Psysh;
@@ -31,7 +30,7 @@ final class Runner
             $console->add(
                 new \Chinstrap\Core\Console\Commands\Shell(
                     $this->container,
-                    $this->container->get(PsySh::class)
+                    $this->container->get(Psysh::class)
                 )
             );
             $console->add($this->container->get(\Chinstrap\Core\Console\Commands\Server::class));

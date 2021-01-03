@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Chinstrap\Core\Http\Middleware;
 
 use Chinstrap\Core\Contracts\Views\Renderer;
-use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 

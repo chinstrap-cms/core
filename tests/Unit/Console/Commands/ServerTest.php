@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Tests\Unit\Console\Commands;
 
-use Chinstrap\Core\Tests\TestCase;
-use Mockery as m;
-use Symfony\Component\Console\Tester\CommandTester;
 use Chinstrap\Core\Console\Commands\Server;
+use Chinstrap\Core\Tests\TestCase;
 use phpmock\mockery\PHPMockery;
+use Symfony\Component\Console\Tester\CommandTester;
 
 final class ServerTest extends TestCase
 {

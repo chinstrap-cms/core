@@ -6,8 +6,6 @@ namespace Chinstrap\Core\Tests;
 
 use Chinstrap\Core\Kernel\AppFactory;
 use Chinstrap\Core\Kernel\ContainerFactory;
-use Laminas\ServiceManager\ServiceManager;
-use Laminas\Stratigility\MiddlewarePipe;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase

@@ -8,11 +8,8 @@ use Chinstrap\Core\Contracts\Kernel\KernelInterface;
 use Chinstrap\Core\Events\RegisterViewHelpers;
 use Chinstrap\Core\Exceptions\Plugins\PluginNotFound;
 use Chinstrap\Core\Exceptions\Plugins\PluginNotValid;
-use Chinstrap\Core\Kernel\Kernel;
-use Laminas\Diactoros\ServerRequestFactory;
 use Laminas\EventManager\EventManagerInterface;
 use Psr\Container\ContainerInterface;
-use Psr\Http\Message\ServerRequestInterface;
 
 /**
  * Application instance

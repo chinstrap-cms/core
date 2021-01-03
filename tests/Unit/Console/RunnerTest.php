@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Tests\Unit\Console;
 
+use Chinstrap\Core\Console\Runner;
 use Chinstrap\Core\Tests\TestCase;
 use Chinstrap\Core\Tests\Traits\SetsPrivateProperties;
-use Chinstrap\Core\Console\Runner;
-use Chinstrap\Core\Kernel\Kernel;
 use Mockery as m;
 
 final class RunnerTest extends TestCase

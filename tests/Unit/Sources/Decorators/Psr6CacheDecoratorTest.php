@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Tests\Unit\Sources\Decorators;
 
+use Chinstrap\Core\Objects\MarkdownDocument;
+use Chinstrap\Core\Sources\Decorators\Psr6CacheDecorator;
 use Chinstrap\Core\Tests\TestCase;
 use Mockery as m;
-use Chinstrap\Core\Sources\Decorators\Psr6CacheDecorator;
 use PublishingKit\Utilities\Collections\Collection;
-use Chinstrap\Core\Objects\MarkdownDocument;
 
 final class Psr6CacheDecoratorTest extends TestCase
 {

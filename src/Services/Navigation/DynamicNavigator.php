@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Services\Navigation;
 
-use Chinstrap\Core\Contracts\Sources\Source;
 use Chinstrap\Core\Contracts\Services\Navigator;
+use Chinstrap\Core\Contracts\Sources\Source;
 use Chinstrap\Core\Objects\Navigation\Container;
-use Chinstrap\Core\Objects\Navigation\Page;
 use PublishingKit\Utilities\Collections\Collection;
 
 final class DynamicNavigator implements Navigator
@@ -31,7 +30,7 @@ final class DynamicNavigator implements Navigator
         $items = Collection::make($items)->map(function ($item) {
             return [
                     'label' => $item->getField('title'),
-                    'uri'   => $item->getUrl(),
+                    'uri' => $item->getUrl(),
                     'pages' => [],
                    ];
         })->sort(function ($a, $b) {
@@ -44,7 +43,7 @@ final class DynamicNavigator implements Navigator
 
     private function sortByParent(array $result, array $item): array
     {
-        foreach ($result as $k => &$parent) {
+        foreach ($result as $k => $parent) {
             if ($this->isParent($parent, $item)) {
                 $parent['pages'][] = $item;
                 return $result;

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Objects\Navigation;
 
-use TypeError;
 use PublishingKit\Utilities\Collections\Collection;
+use TypeError;
 
 final class Container extends Collection
 {

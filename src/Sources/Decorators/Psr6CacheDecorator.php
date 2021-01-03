@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Sources\Decorators;
 
-use Chinstrap\Core\Contracts\Sources\Source;
 use Chinstrap\Core\Contracts\Objects\Document;
-use PublishingKit\Utilities\Contracts\Collectable;
+use Chinstrap\Core\Contracts\Sources\Source;
 use Psr\Cache\CacheItemPoolInterface;
+use PublishingKit\Utilities\Contracts\Collectable;
 
 final class Psr6CacheDecorator implements Source
 {

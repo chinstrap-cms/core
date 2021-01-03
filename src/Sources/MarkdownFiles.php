@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Sources;
 
-use League\Flysystem\FilesystemInterface;
-use Mni\FrontYAML\Parser;
-use Mni\FrontYAML\Document as ParsedDocument;
-use Chinstrap\Core\Contracts\Sources\Source;
 use Chinstrap\Core\Contracts\Objects\Document;
+use Chinstrap\Core\Contracts\Sources\Source;
 use Chinstrap\Core\Objects\MarkdownDocument;
-use PublishingKit\Utilities\Contracts\Collectable;
-use PublishingKit\Utilities\Collections\LazyCollection;
 use DateTime;
+use League\Flysystem\FilesystemInterface;
+use Mni\FrontYAML\Document as ParsedDocument;
+use Mni\FrontYAML\Parser;
+use PublishingKit\Utilities\Collections\LazyCollection;
+use PublishingKit\Utilities\Contracts\Collectable;
 
 final class MarkdownFiles implements Source
 {

@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Factories;
 
+use Aws\S3\S3Client;
+use Chinstrap\Core\Exceptions\Factories\BadFlysystemConfigurationException;
+use League\Flysystem\Adapter\Ftp as FTPAdapter;
 use League\Flysystem\Adapter\Local;
-use League\Flysystem\Memory\MemoryAdapter;
-use League\Flysystem\Filesystem;
+use League\Flysystem\AwsS3v3\AwsS3Adapter;
+use League\Flysystem\AzureBlobStorage\AzureBlobStorageAdapter;
 use League\Flysystem\Cached\CachedAdapter;
 use League\Flysystem\Cached\Storage\Stash as StashStore;
-use League\Flysystem\AzureBlobStorage\AzureBlobStorageAdapter;
-use League\Flysystem\AwsS3v3\AwsS3Adapter;
+use League\Flysystem\Filesystem;
+use League\Flysystem\Memory\MemoryAdapter;
 use League\Flysystem\Sftp\SftpAdapter;
-use League\Flysystem\Adapter\Ftp as FTPAdapter;
-use Stash\Pool;
+use MicrosoftAzure\Storage\Blob\BlobRestProxy;
 use Spatie\Dropbox\Client;
 use Spatie\FlysystemDropbox\DropboxAdapter;
-use Chinstrap\Core\Exceptions\Factories\BadFlysystemConfigurationException;
-use MicrosoftAzure\Storage\Blob\BlobRestProxy;
-use Aws\S3\S3Client;
+use Stash\Pool;
 
 final class FlysystemFactory
 {
@@ -130,11 +130,11 @@ final class FlysystemFactory
         }
         $client = new S3Client([
                                 'credentials' => [
-                                                  'key'    => $config['key'],
+                                                  'key' => $config['key'],
                                                   'secret' => $config['secret'],
                                                  ],
-                                'region'      => $config['region'],
-                                'version'     => $config['version'],
+                                'region' => $config['region'],
+                                'version' => $config['version'],
                                ]);
         return new AwsS3Adapter($client, $config['bucket']);
     }
@@ -151,13 +151,13 @@ final class FlysystemFactory
             throw new BadFlysystemConfigurationException('Neither password nor private key set for SFTP driver');
         }
         return new SftpAdapter([
-                                'host'       => $config['host'],
-                                'port'       => isset($config['port']) ? $config['port'] : 22,
-                                'username'   => $config['username'],
-                                'password'   => $config['password'],
+                                'host' => $config['host'],
+                                'port' => isset($config['port']) ? $config['port'] : 22,
+                                'username' => $config['username'],
+                                'password' => $config['password'],
                                 'privateKey' => isset($config['privatekey']) ? $config['privatekey'] : null,
-                                'root'       => isset($config['root']) ? $config['root'] : null,
-                                'timeout'    => isset($config['timeout']) ? $config['timeout'] : 10,
+                                'root' => isset($config['root']) ? $config['root'] : null,
+                                'timeout' => isset($config['timeout']) ? $config['timeout'] : 10,
                                ]);
     }
 
@@ -173,13 +173,13 @@ final class FlysystemFactory
             throw new BadFlysystemConfigurationException('Neither password nor private key set for FTP driver');
         }
         return new FTPAdapter([
-                               'host'       => $config['host'],
-                               'port'       => isset($config['port']) ? $config['port'] : 22,
-                               'username'   => $config['username'],
-                               'password'   => $config['password'],
+                               'host' => $config['host'],
+                               'port' => isset($config['port']) ? $config['port'] : 22,
+                               'username' => $config['username'],
+                               'password' => $config['password'],
                                'privateKey' => isset($config['privatekey']) ? $config['privatekey'] : null,
-                               'root'       => isset($config['root']) ? $config['root'] : null,
-                               'timeout'    => isset($config['timeout']) ? $config['timeout'] : 10,
+                               'root' => isset($config['root']) ? $config['root'] : null,
+                               'timeout' => isset($config['timeout']) ? $config['timeout'] : 10,
                               ]);
     }
 }

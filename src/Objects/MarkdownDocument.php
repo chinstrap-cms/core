@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Chinstrap\Core\Objects;
 
 use Chinstrap\Core\Contracts\Objects\Document;
-use JsonSerializable;
 use DateTime;
+use JsonSerializable;
 
 final class MarkdownDocument implements Document, JsonSerializable
 {

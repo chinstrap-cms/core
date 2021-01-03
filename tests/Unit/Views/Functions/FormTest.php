@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Chinstrap\Core\Tests\Unit\Views\Functions;
 
 use Chinstrap\Core\Tests\TestCase;
-use Mockery as m;
 use Chinstrap\Core\Views\Functions\Form;
+use Mockery as m;
 
 final class FormTest extends TestCase
 {
@@ -123,20 +123,20 @@ final class FormTest extends TestCase
                  [
                   "contact" => [
                                 "attributes" => ["class" => "form-inline my-2 my-lg-0 pull-right"],
-                                "elements"   => [
+                                "elements" => [
                                                  [
                                                   "spec" => [
-                                                             "name"       => "name",
-                                                             "options"    => ["label" => "Your name"],
-                                                             "type"       => "Text",
+                                                             "name" => "name",
+                                                             "options" => ["label" => "Your name"],
+                                                             "type" => "Text",
                                                              "attributes" => ["class" => "form-control mr-sm-2"],
                                                             ],
                                                  ],
                                                  [
                                                   "spec" => [
-                                                             "name"       => "submit",
-                                                             "options"    => ["label" => "submit"],
-                                                             "type"       => "Submit",
+                                                             "name" => "submit",
+                                                             "options" => ["label" => "submit"],
+                                                             "type" => "Submit",
                                                              "attributes" => ["class" => "form-control mr-sm-2"],
                                                             ],
                                                  ],

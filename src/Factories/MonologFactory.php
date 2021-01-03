@@ -28,8 +28,8 @@ final class MonologFactory implements LoggerFactory
         if (!count($config)) {
             $configItem = new Config([
                                       'logger' => 'stream',
-                                      'path'   => 'logs/site.log',
-                                      'level'  => 'warning',
+                                      'path' => 'logs/site.log',
+                                      'level' => 'warning',
                                      ]);
             $log->pushHandler($this->createHandler($configItem));
         }

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Factories\Forms;
 
+use Chinstrap\Core\Contracts\Factories\FormFactory;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Factory;
 use Laminas\Hydrator\ArraySerializableHydrator;
 use PublishingKit\Config\Config;
-use Chinstrap\Core\Contracts\Factories\FormFactory;
 
 final class LaminasFormFactory implements FormFactory
 {

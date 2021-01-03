@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Tests\Unit\Factories;
 
-use Chinstrap\Core\Tests\TestCase;
 use Chinstrap\Core\Factories\FlysystemFactory;
+use Chinstrap\Core\Tests\TestCase;
 use Mockery as m;
 
 final class FlysystemFactoryTest extends TestCase
@@ -19,7 +19,7 @@ final class FlysystemFactoryTest extends TestCase
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
                               'driver' => 'local',
-                              'path'   => 'content/',
+                              'path' => 'content/',
                              ]);
         $this->assertInstanceOf('League\Flysystem\Filesystem', $fs);
         $cache = $fs->getAdapter();
@@ -72,7 +72,7 @@ final class FlysystemFactoryTest extends TestCase
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
                               'driver' => 'dropbox',
-                              'token'  => 'foo',
+                              'token' => 'foo',
                              ]);
         $this->assertInstanceOf('League\Flysystem\Filesystem', $fs);
         $cache = $fs->getAdapter();
@@ -96,10 +96,10 @@ final class FlysystemFactoryTest extends TestCase
         $pool->shouldReceive('isMiss')->once()->andReturn(true);
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-                              'driver'    => 'azure',
+                              'driver' => 'azure',
                               'container' => 'foo',
-                              'name'      => 'bar',
-                              'key'       => 'baz',
+                              'name' => 'bar',
+                              'key' => 'baz',
                              ]);
         $this->assertInstanceOf('League\Flysystem\Filesystem', $fs);
         $cache = $fs->getAdapter();
@@ -114,8 +114,8 @@ final class FlysystemFactoryTest extends TestCase
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
                               'driver' => 'azure',
-                              'name'   => 'bar',
-                              'key'    => 'baz',
+                              'name' => 'bar',
+                              'key' => 'baz',
                              ]);
     }
 
@@ -125,9 +125,9 @@ final class FlysystemFactoryTest extends TestCase
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-                              'driver'    => 'azure',
+                              'driver' => 'azure',
                               'container' => 'foo',
-                              'key'       => 'baz',
+                              'key' => 'baz',
                              ]);
     }
 
@@ -137,9 +137,9 @@ final class FlysystemFactoryTest extends TestCase
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-                              'driver'    => 'azure',
+                              'driver' => 'azure',
                               'container' => 'foo',
-                              'name'      => 'bar',
+                              'name' => 'bar',
                              ]);
     }
 
@@ -151,11 +151,11 @@ final class FlysystemFactoryTest extends TestCase
         $pool->shouldReceive('isMiss')->once()->andReturn(true);
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-                              'driver'  => 's3',
-                              'bucket'  => 'foo',
-                              'key'     => 'bar',
-                              'secret'  => 'baz',
-                              'region'  => 'foo',
+                              'driver' => 's3',
+                              'bucket' => 'foo',
+                              'key' => 'bar',
+                              'secret' => 'baz',
+                              'region' => 'foo',
                               'version' => 'latest',
                              ]);
         $this->assertInstanceOf('League\Flysystem\Filesystem', $fs);
@@ -170,9 +170,9 @@ final class FlysystemFactoryTest extends TestCase
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-                              'driver'  => 's3',
-                              'secret'  => 'baz',
-                              'region'  => 'foo',
+                              'driver' => 's3',
+                              'secret' => 'baz',
+                              'region' => 'foo',
                               'version' => 'latest',
                              ]);
     }
@@ -183,10 +183,10 @@ final class FlysystemFactoryTest extends TestCase
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-                              'driver'  => 's3',
-                              'bucket'  => 'foo',
-                              'secret'  => 'baz',
-                              'region'  => 'foo',
+                              'driver' => 's3',
+                              'bucket' => 'foo',
+                              'secret' => 'baz',
+                              'region' => 'foo',
                               'version' => 'latest',
                              ]);
     }
@@ -197,10 +197,10 @@ final class FlysystemFactoryTest extends TestCase
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-                              'driver'  => 's3',
-                              'bucket'  => 'foo',
-                              'key'     => 'bar',
-                              'region'  => 'foo',
+                              'driver' => 's3',
+                              'bucket' => 'foo',
+                              'key' => 'bar',
+                              'region' => 'foo',
                               'version' => 'latest',
                              ]);
     }
@@ -211,10 +211,10 @@ final class FlysystemFactoryTest extends TestCase
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-                              'driver'  => 's3',
-                              'bucket'  => 'foo',
-                              'key'     => 'bar',
-                              'secret'  => 'baz',
+                              'driver' => 's3',
+                              'bucket' => 'foo',
+                              'key' => 'bar',
+                              'secret' => 'baz',
                               'version' => 'latest',
                              ]);
     }
@@ -227,7 +227,7 @@ final class FlysystemFactoryTest extends TestCase
         $fs = $factory->make([
                               'driver' => 's3',
                               'bucket' => 'foo',
-                              'key'    => 'bar',
+                              'key' => 'bar',
                               'secret' => 'baz',
                               'region' => 'foo',
                              ]);
@@ -241,11 +241,11 @@ final class FlysystemFactoryTest extends TestCase
         $pool->shouldReceive('isMiss')->once()->andReturn(true);
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-                              'driver'   => 'sftp',
-                              'host'     => 'foo.com',
+                              'driver' => 'sftp',
+                              'host' => 'foo.com',
                               'username' => 'bob',
                               'password' => 'password',
-                              'root'     => 'foo',
+                              'root' => 'foo',
                              ]);
         $this->assertInstanceOf('League\Flysystem\Filesystem', $fs);
         $cache = $fs->getAdapter();
@@ -259,10 +259,10 @@ final class FlysystemFactoryTest extends TestCase
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-                              'driver'   => 'sftp',
+                              'driver' => 'sftp',
                               'username' => 'bob',
                               'password' => 'password',
-                              'root'     => 'foo',
+                              'root' => 'foo',
                              ]);
     }
 
@@ -272,10 +272,10 @@ final class FlysystemFactoryTest extends TestCase
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-                              'driver'   => 'sftp',
-                              'host'     => 'foo.com',
+                              'driver' => 'sftp',
+                              'host' => 'foo.com',
                               'password' => 'password',
-                              'root'     => 'foo',
+                              'root' => 'foo',
                              ]);
     }
 
@@ -285,10 +285,10 @@ final class FlysystemFactoryTest extends TestCase
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-                              'driver'   => 'sftp',
-                              'host'     => 'foo.com',
+                              'driver' => 'sftp',
+                              'host' => 'foo.com',
                               'username' => 'bob',
-                              'root'     => 'foo',
+                              'root' => 'foo',
                              ]);
     }
 
@@ -300,11 +300,11 @@ final class FlysystemFactoryTest extends TestCase
         $pool->shouldReceive('isMiss')->once()->andReturn(true);
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-                              'driver'   => 'ftp',
-                              'host'     => 'foo.com',
+                              'driver' => 'ftp',
+                              'host' => 'foo.com',
                               'username' => 'bob',
                               'password' => 'password',
-                              'root'     => 'foo',
+                              'root' => 'foo',
                              ]);
         $this->assertInstanceOf('League\Flysystem\Filesystem', $fs);
         $cache = $fs->getAdapter();
@@ -318,10 +318,10 @@ final class FlysystemFactoryTest extends TestCase
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-                              'driver'   => 'ftp',
+                              'driver' => 'ftp',
                               'username' => 'bob',
                               'password' => 'password',
-                              'root'     => 'foo',
+                              'root' => 'foo',
                              ]);
     }
 
@@ -331,10 +331,10 @@ final class FlysystemFactoryTest extends TestCase
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-                              'driver'   => 'ftp',
-                              'host'     => 'foo.com',
+                              'driver' => 'ftp',
+                              'host' => 'foo.com',
                               'password' => 'password',
-                              'root'     => 'foo',
+                              'root' => 'foo',
                              ]);
     }
 
@@ -344,10 +344,10 @@ final class FlysystemFactoryTest extends TestCase
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-                              'driver'   => 'ftp',
-                              'host'     => 'foo.com',
+                              'driver' => 'ftp',
+                              'host' => 'foo.com',
                               'username' => 'bob',
-                              'root'     => 'foo',
+                              'root' => 'foo',
                              ]);
     }
 }

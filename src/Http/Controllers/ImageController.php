@@ -4,12 +4,9 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Http\Controllers;
 
-use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Message\ResponseInterface;
-use League\Route\Http\Exception\NotFoundException;
-use Chinstrap\Core\Events\FormSubmitted;
-use Laminas\Diactoros\Response\EmptyResponse;
 use League\Glide\Server;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 final class ImageController
 {

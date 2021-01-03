@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Console\Commands;
 
+use Psr\Cache\CacheItemPoolInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Psr\Cache\CacheItemPoolInterface;
 
 final class FlushCache extends Command
 {
