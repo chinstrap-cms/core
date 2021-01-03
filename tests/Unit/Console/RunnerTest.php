@@ -24,15 +24,16 @@ final class RunnerTest extends TestCase
             ->with('Symfony\Component\Console\Application')
             ->once()
             ->andReturn($console);
+        $mockShell = m::mock('Psy\Shell');
         $mockCommand = m::mock('Symfony\Component\Console\Command\Command');
         $container->shouldReceive('get')
             ->with('Chinstrap\Core\Console\Commands\FlushCache')
             ->once()
             ->andReturn($mockCommand);
         $container->shouldReceive('get')
-            ->with('Chinstrap\Core\Console\Commands\Shell')
+            ->with('Psy\Shell')
             ->once()
-            ->andReturn($mockCommand);
+            ->andReturn($mockShell);
         $container->shouldReceive('get')
             ->with('Chinstrap\Core\Console\Commands\Server')
             ->once()
