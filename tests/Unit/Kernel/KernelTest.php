@@ -29,7 +29,10 @@ final class KernelTest extends TestCase
         $this->expectException('Chinstrap\Core\Exceptions\Plugins\PluginNotFound');
         $emitter = m::mock('Laminas\EventManager\EventManagerInterface');
         $container = m::mock('Psr\Container\ContainerInterface');
-        $container->shouldReceive('get')->with('Laminas\EventManager\EventManagerInterface')->once()->andReturn($emitter);
+        $container->shouldReceive('get')
+                  ->with('Laminas\EventManager\EventManagerInterface')
+                  ->once()
+                  ->andReturn($emitter);
         $container->shouldReceive('get')->with('My\Nonexistent\Plugin')
             ->once()
             ->andReturn(null);
@@ -48,7 +51,10 @@ final class KernelTest extends TestCase
         $this->expectException('Chinstrap\Core\Exceptions\Plugins\PluginNotValid');
         $emitter = m::mock('Laminas\EventManager\EventManagerInterface');
         $container = m::mock('Psr\Container\ContainerInterface');
-        $container->shouldReceive('get')->with('Laminas\EventManager\EventManagerInterface')->once()->andReturn($emitter);
+        $container->shouldReceive('get')
+                  ->with('Laminas\EventManager\EventManagerInterface')
+                  ->once()
+                  ->andReturn($emitter);
         $container->shouldReceive('get')->with('stdClass')
             ->once()
             ->andReturn(new \stdClass());

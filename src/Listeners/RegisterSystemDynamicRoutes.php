@@ -32,8 +32,12 @@ final class RegisterSystemDynamicRoutes extends BaseListener
      */
     private $clockworkMiddleware;
 
-    public function __construct(Router $router, HttpCacheMiddleware $cacheMiddleware, ETagMiddleware $etagMiddleware, ClockworkMiddleware $clockworkMiddleware)
-    {
+    public function __construct(
+        Router $router,
+        HttpCacheMiddleware $cacheMiddleware,
+        ETagMiddleware $etagMiddleware,
+        ClockworkMiddleware $clockworkMiddleware
+    ) {
         $this->router = $router;
         $this->cacheMiddleware = $cacheMiddleware;
         $this->etagMiddleware = $etagMiddleware;

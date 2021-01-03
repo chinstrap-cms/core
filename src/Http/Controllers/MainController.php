@@ -35,8 +35,12 @@ final class MainController
      */
     protected $eventManager;
 
-    public function __construct(ResponseInterface $response, Source $source, Renderer $view, EventManagerInterface $eventManager)
-    {
+    public function __construct(
+        ResponseInterface $response,
+        Source $source,
+        Renderer $view,
+        EventManagerInterface $eventManager
+    ) {
         $this->response = $response;
         $this->source = $source;
         $this->view = $view;

@@ -77,7 +77,10 @@ final class ContainerFactory
                 'response' => Response::class,
             ],
             'factories' => [
-                \Faker\Generator::class => function (ContainerInterface $container, string $requestedName): \Faker\Generator {
+                \Faker\Generator::class => function (
+                    ContainerInterface $container,
+                    string $requestedName
+): \Faker\Generator {
                     $config = $container->get(Config::class);
                     return \Faker\Factory::create($config->get('locale'));
                 },
@@ -87,7 +90,10 @@ final class ContainerFactory
                 Config::class => function (ContainerInterface $container, string $requestedName): Config {
                     return Config::fromFiles(glob(ROOT_DIR . 'config/*.*'));
                 },
-                FilesystemInterface::class => function (ContainerInterface $container, string $requestedName): MountManager {
+                FilesystemInterface::class => function (
+                    ContainerInterface $container,
+                    string $requestedName
+): MountManager {
                     /** @var FlysystemFactory **/
                     $factory = $container->get(FlysystemFactory::class);
                     /** @var Config **/
@@ -111,13 +117,19 @@ final class ContainerFactory
                     $config = $container->get(Config::class);
                     return $container->get($config->get('source'));
                 },
-                LoggerInterface::class => function (ContainerInterface $container, string $requestedName): LoggerInterface {
+                LoggerInterface::class => function (
+                    ContainerInterface $container,
+                    string $requestedName
+): LoggerInterface {
                     /** @var Config **/
                     $config = $container->get('PublishingKit\Config\Config');
                     $factory = new MonologFactory();
                     return $factory->make($config->get('loggers'));
                 },
-                FilesystemLoader::class => function (ContainerInterface $container, string $requestedName): FilesystemLoader {
+                FilesystemLoader::class => function (
+                    ContainerInterface $container,
+                    string $requestedName
+): FilesystemLoader {
                     return new FilesystemLoader(ROOT_DIR . 'resources' . DIRECTORY_SEPARATOR . 'views');
                 },
                 Environment::class => function (ContainerInterface $container, string $requestedName): Environment {
@@ -133,7 +145,10 @@ final class ContainerFactory
                     $router->setStrategy($strategy);
                     return $router;
                 },
-                EventManagerInterface::class => function (ContainerInterface $container, string $requestedName): EventManagerInterface {
+                EventManagerInterface::class => function (
+                    ContainerInterface $container,
+                    string $requestedName
+): EventManagerInterface {
                     /** @var EventManagerInterface **/
                     $manager = $container->get(EventManager::class);
                     $manager->attach(
