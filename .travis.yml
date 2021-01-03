@@ -28,3 +28,4 @@ after_script:
 
 after_success:
     - travis_retry php vendor/bin/php-coveralls
+    - travis_retry php vendor/bin/psalm --shepherd
