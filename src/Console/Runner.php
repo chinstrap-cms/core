@@ -7,6 +7,7 @@ namespace Chinstrap\Core\Console;
 use Chinstrap\Core\Kernel\Kernel;
 use Exception;
 use Psr\Container\ContainerInterface;
+use Symfony\Component\Console\Application;
 
 final class Runner
 {
@@ -24,7 +25,7 @@ final class Runner
     {
         try {
             /** @var Symfony\Component\Console\Application $console **/
-            $console = $this->container->get(\Symfony\Component\Console\Application::class);
+            $console = $this->container->get(Application::class);
             $console->add($this->container->get(\Chinstrap\Core\Console\Commands\FlushCache::class));
             $console->add($this->container->get(\Chinstrap\Core\Console\Commands\Shell::class));
             $console->add($this->container->get(\Chinstrap\Core\Console\Commands\Server::class));
