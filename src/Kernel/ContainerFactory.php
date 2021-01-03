@@ -13,6 +13,7 @@ use Chinstrap\Core\Contracts\Views\Renderer;
 use Chinstrap\Core\Events\RegisterDynamicRoutes;
 use Chinstrap\Core\Events\RegisterViewHelpers;
 use Chinstrap\Core\Exceptions\LogHandler;
+use Chinstrap\Core\Factories\FlysystemFactory;
 use Chinstrap\Core\Factories\Forms\LaminasFormFactory;
 use Chinstrap\Core\Factories\MonologFactory;
 use Chinstrap\Core\Generators\XmlStringSitemap;
@@ -71,14 +72,16 @@ final class ContainerFactory
                 'response' => Response::class,
             ],
             'factories' => [
-                Clockwork::class => function (ContainerInterface $container, string $requestedName) {
+                Clockwork::class => function (ContainerInterface $container, string $requestedName): Clockwork {
                     return Clockwork::init();
                 },
-                Config::class => function (ContainerInterface $container, string $requestedName) {
+                Config::class => function (ContainerInterface $container, string $requestedName): Config {
                     return Config::fromFiles(glob(ROOT_DIR . 'config/*.*'));
                 },
                 FilesystemInterface::class => function (ContainerInterface $container, string $requestedName): MountManager {
-                    $factory = $container->get('Chinstrap\Core\Factories\FlysystemFactory');
+                    /** @var FlysystemFactory **/
+                    $factory = $container->get(FlysystemFactory::class);
+                    /** @var Config **/
                     $config = $container->get('PublishingKit\Config\Config');
 
                     // Decorate the adapter
@@ -94,11 +97,12 @@ final class ContainerFactory
                         'cache'   => $cacheFilesystem,
                     ]);
                 },
-                Source::class => function (ContainerInterface $container, string $requestedName) {
+                Source::class => function (ContainerInterface $container, string $requestedName): Source {
                     $config = $container->get(Config::class);
                     return $container->get($config->get('source'));
                 },
-                LoggerInterface::class => function (ContainerInterface $container, string $requestedName) {
+                LoggerInterface::class => function (ContainerInterface $container, string $requestedName): LoggerInterface {
+                    /** @var Config **/
                     $config = $container->get('PublishingKit\Config\Config');
                     $factory = new MonologFactory();
                     return $factory->make($config->get('loggers'));
@@ -119,7 +123,8 @@ final class ContainerFactory
                     $router->setStrategy($strategy);
                     return $router;
                 },
-                EventManagerInterface::class => function (ContainerInterface $container, string $requestedName) {
+                EventManagerInterface::class => function (ContainerInterface $container, string $requestedName): EventManagerInterface {
+                    /** @var EventManagerInterface **/
                     $manager = $container->get(EventManager::class);
                     $manager->attach(
                         RegisterDynamicRoutes::class,
