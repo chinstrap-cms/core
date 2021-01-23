@@ -11,7 +11,7 @@ use Psr\Http\Message\ResponseInterface;
 
 final class MaintenanceModeMiddlewareTest extends TestCase
 {
-    public function testActive()
+    public function testActive(): void
     {
         $request = m::mock('Psr\Http\Message\ServerRequestInterface');
         $request->shouldReceive('getServerParams')
@@ -31,7 +31,7 @@ final class MaintenanceModeMiddlewareTest extends TestCase
         $this->assertInstanceOf(ResponseInterface::class, $received);
     }
 
-    public function testInactive()
+    public function testInactive(): void
     {
         $request = m::mock('Psr\Http\Message\ServerRequestInterface');
         $request->shouldReceive('getServerParams')
