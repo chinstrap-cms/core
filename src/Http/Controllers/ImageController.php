@@ -11,18 +11,12 @@ use Psr\Http\Message\ServerRequestInterface;
 final class ImageController
 {
     /**
-     * @var ResponseInterface
-     */
-    protected $response;
-
-    /**
      * @var Server
      */
     private $glide;
 
-    public function __construct(ResponseInterface $response, Server $glide)
+    public function __construct(Server $glide)
     {
-        $this->response = $response;
         $this->glide = $glide;
     }
 
