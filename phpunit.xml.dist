@@ -3,6 +3,8 @@
   <php>
     <env name="APP_ENV" value="testing" />
     <env name="BASE_URL" value="http://localhost" />
+    <env name="APP_KEY" value="8p4OCeC+geSjQ+x5jYAiA6P9HFl2NCgRoB1X+Z/1PWE=" />
+    <env name="SESSION_TIME" value="1200" />
   </php>
   <coverage>
     <include>
