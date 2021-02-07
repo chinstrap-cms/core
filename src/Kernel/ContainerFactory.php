@@ -37,6 +37,7 @@ use League\Glide\Server;
 use League\Glide\ServerFactory;
 use League\Route\Router;
 use League\Route\Strategy\ApplicationStrategy;
+use PSR7Sessions\Storageless\Http\SessionMiddleware;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -77,6 +78,13 @@ final class ContainerFactory
                 'response' => Response::class,
             ],
             'factories' => [
+                SessionMiddleware::class => function (ContainerInterface $container, string $requestedName): SessionMiddleware {
+                    $config = $container->get(Config::class);
+                    return SessionMiddleware::fromSymmetricKeyDefaults(
+                        $config->get('key'),
+                        (int)$config->get('session_time')
+                    );
+                },
                 \Faker\Generator::class => function (
                     ContainerInterface $container,
                     string $requestedName

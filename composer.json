@@ -39,6 +39,7 @@
         "mnapoli/front-yaml": "^1.7",
         "monolog/monolog": "^2.1",
         "ocramius/proxy-manager": "^2.8",
+        "psr7-sessions/storageless": "^7.0",
         "psy/psysh": "^0.10.4",
         "publishing-kit/cache": "^0.0",
         "publishing-kit/config": "^0.0",
