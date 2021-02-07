@@ -10,8 +10,8 @@ use Chinstrap\Core\Http\Middleware\NotFoundMiddleware;
 use Chinstrap\Core\Http\Middleware\RoutesMiddleware;
 use Chinstrap\Core\Http\Middleware\WhoopsMiddleware;
 use Laminas\Stratigility\MiddlewarePipe;
-use PSR7Sessions\Storageless\Http\SessionMiddleware;
 use Psr\Container\ContainerInterface;
+use PSR7Sessions\Storageless\Http\SessionMiddleware;
 
 final class AppFactory
 {
