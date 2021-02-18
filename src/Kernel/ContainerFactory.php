@@ -82,7 +82,7 @@ final class ContainerFactory
                     $config = $container->get(Config::class);
                     return SessionMiddleware::fromSymmetricKeyDefaults(
                         $config->get('key'),
-                        (int)$config->get('session_time')
+                        (string)$config->get('session_time')
                     );
                 },
                 \Faker\Generator::class => function (
