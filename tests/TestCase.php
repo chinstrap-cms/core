@@ -15,14 +15,14 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * Container instance
      *
-     * @var ServiceManager|null
+     * @var Laminas\ServiceManager\ServiceManager|null
      */
     protected $container;
 
     /**
      * App instance
      *
-     * @var MiddlewarePipe|null
+     * @var Laminas\Stratigility\MiddlewarePipe|null
      */
     protected $app;
 
