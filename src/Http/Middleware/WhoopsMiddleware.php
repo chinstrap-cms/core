@@ -11,12 +11,12 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Whoops\Handler\CallbackHandler;
 use Whoops\Handler\PrettyPageHandler;
-use Whoops\Run;
+use Whoops\RunInterface;
 
 final class WhoopsMiddleware implements MiddlewareInterface
 {
     /**
-     * @var Run
+     * @var RunInterface
      */
     private $whoops;
     /**
@@ -24,7 +24,7 @@ final class WhoopsMiddleware implements MiddlewareInterface
      */
     private $errorHandler;
 
-    public function __construct(Run $whoops, Handler $errorHandler)
+    public function __construct(RunInterface $whoops, Handler $errorHandler)
     {
         $this->whoops = $whoops;
         $this->errorHandler = $errorHandler;

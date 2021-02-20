@@ -50,6 +50,8 @@ use PublishingKit\Config\Config;
 use Stash\Pool;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
+use Whoops\Run;
+use Whoops\RunInterface;
 
 final class ContainerFactory
 {
@@ -75,6 +77,7 @@ final class ContainerFactory
                 CacheFactory::class => StashCacheFactory::class,
                 CacheItemPoolInterface::class => Pool::class,
                 ResponseInterface::class => Response::class,
+                RunInterface::class => Run::class,
                 'response' => Response::class,
             ],
             'factories' => [
