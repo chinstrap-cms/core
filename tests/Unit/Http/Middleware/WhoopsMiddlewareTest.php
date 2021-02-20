@@ -8,7 +8,6 @@ use Chinstrap\Core\Contracts\Exceptions\Handler;
 use Chinstrap\Core\Http\Middleware\WhoopsMiddleware;
 use Chinstrap\Core\Tests\TestCase;
 use Mockery as m;
-use Psr\Http\Message\ResponseInterface;
 use Whoops\Handler\CallbackHandler;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\RunInterface;
@@ -56,5 +55,4 @@ final class WhoopsMiddlewareTest extends TestCase
         $received = $middleware->process($request, $handler);
         $this->assertSame($response, $received);
     }
-
 }
