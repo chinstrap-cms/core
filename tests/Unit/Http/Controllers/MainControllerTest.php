@@ -119,4 +119,22 @@ final class MainControllerTest extends TestCase
         );
         $controller->index($request, ['name' => 'foo']);
     }
+
+    public function test404Submit(): void
+    {
+        $this->expectException('League\Route\Http\Exception\NotFoundException');
+        $emitter = m::mock(EventManagerInterface::class);
+        $response = m::mock('Psr\Http\Message\ResponseInterface');
+        $source = m::mock('Chinstrap\Core\Contracts\Sources\Source');
+        $source->shouldReceive('find')->once()->andReturn(null);
+        $view = m::mock('Chinstrap\Core\Contracts\Views\Renderer');
+        $request = m::mock('Psr\Http\Message\ServerRequestInterface');
+        $controller = new MainController(
+            $response,
+            $source,
+            $view,
+            $emitter
+        );
+        $controller->submit($request, ['name' => 'foo']);
+    }
 }
