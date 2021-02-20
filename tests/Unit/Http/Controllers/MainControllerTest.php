@@ -13,7 +13,7 @@ use Mockery as m;
 
 final class MainControllerTest extends TestCase
 {
-    public function testGetResponse()
+    public function testGetResponse(): void
     {
         $emitter = m::mock(EventManagerInterface::class);
         $response = m::mock('Psr\Http\Message\ResponseInterface');
@@ -48,7 +48,7 @@ final class MainControllerTest extends TestCase
         $controller->index($request, ['name' => 'foo']);
     }
 
-    public function testPostResponse()
+    public function testPostResponse(): void
     {
         $emitter = m::mock(EventManagerInterface::class);
         $emitter->shouldReceive('trigger')->with('Chinstrap\Core\Events\FormSubmitted')->once();
@@ -80,7 +80,7 @@ final class MainControllerTest extends TestCase
         $controller->submit($request, ['name' => 'foo']);
     }
 
-    public function testPostResponseToUnregisteredForm()
+    public function testPostResponseToUnregisteredForm(): void
     {
         $emitter = m::mock(EventManagerInterface::class);
         $response = m::mock('Psr\Http\Message\ResponseInterface');
@@ -102,7 +102,7 @@ final class MainControllerTest extends TestCase
         $this->assertEquals(405, $response->getStatusCode());
     }
 
-    public function test404()
+    public function test404(): void
     {
         $this->expectException('League\Route\Http\Exception\NotFoundException');
         $emitter = m::mock(EventManagerInterface::class);
