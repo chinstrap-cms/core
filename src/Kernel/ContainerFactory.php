@@ -78,7 +78,10 @@ final class ContainerFactory
                 'response' => Response::class,
             ],
             'factories' => [
-                SessionMiddleware::class => function (ContainerInterface $container, string $requestedName): SessionMiddleware {
+                SessionMiddleware::class => function (
+                    ContainerInterface $container,
+                    string $requestedName
+                ): SessionMiddleware {
                     $config = $container->get(Config::class);
                     return SessionMiddleware::fromSymmetricKeyDefaults(
                         $config->get('key'),
