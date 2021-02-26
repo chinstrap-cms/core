@@ -7,7 +7,6 @@ namespace Chinstrap\Core\Kernel;
 use Chinstrap\Core\Contracts\Exceptions\Handler;
 use Chinstrap\Core\Contracts\Factories\FormFactory;
 use Chinstrap\Core\Contracts\Generators\Sitemap;
-use Chinstrap\Core\Contracts\Services\Navigator;
 use Chinstrap\Core\Contracts\Sources\Source;
 use Chinstrap\Core\Contracts\Views\Renderer;
 use Chinstrap\Core\Events\RegisterDynamicRoutes;
@@ -19,7 +18,6 @@ use Chinstrap\Core\Factories\MonologFactory;
 use Chinstrap\Core\Generators\XmlStringSitemap;
 use Chinstrap\Core\Listeners\RegisterSystemDynamicRoutes;
 use Chinstrap\Core\Listeners\RegisterViews;
-use Chinstrap\Core\Services\Navigation\DynamicNavigator;
 use Chinstrap\Core\Views\TwigRenderer;
 use Clockwork\Support\Vanilla\Clockwork;
 use Laminas\Diactoros\Response;
@@ -73,7 +71,6 @@ final class ContainerFactory
                 Sitemap::class => XmlStringSitemap::class,
                 TransportInterface::class => InMemory::class,
                 FormFactory::class => LaminasFormFactory::class,
-                Navigator::class => DynamicNavigator::class,
                 CacheFactory::class => StashCacheFactory::class,
                 CacheItemPoolInterface::class => Pool::class,
                 ResponseInterface::class => Response::class,
