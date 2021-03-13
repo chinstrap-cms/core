@@ -21,7 +21,7 @@ final class Runner
         $this->container = $container;
     }
 
-    public function __invoke()
+    public function __invoke(): void
     {
         try {
             /** @var Application $console **/
