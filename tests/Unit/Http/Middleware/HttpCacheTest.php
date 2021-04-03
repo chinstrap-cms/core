@@ -31,7 +31,7 @@ final class HttpCacheTest extends TestCase
         $response = m::mock('Psr\Http\Message\ResponseInterface');
         $response->shouldReceive('getStatusCode')->andReturn(200);
         $response->shouldReceive('getBody->getContents')->andReturn('foo');
-        $response->shouldReceive('withAddedHeader')->andReturn($response);
+        $response->shouldReceive('withAddedHeader')->twice()->andReturn($response);
         $handler = m::mock('Psr\Http\Server\RequestHandlerInterface');
         $handler->shouldReceive('handle')->with($request)->andReturn($response);
         $middleware = new HttpCacheMiddleware();

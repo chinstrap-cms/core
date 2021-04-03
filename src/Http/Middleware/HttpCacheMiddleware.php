@@ -31,8 +31,12 @@ final class HttpCacheMiddleware implements MiddlewareInterface
             return $response;
         }
 
-        $maxLifetime = 3600; // cache for 1 hour
+        $maxLifetime = isset($env['CACHE_TIME']) ? (int)$env['CACHE_TIME'] : 3600; // cache for 1 hour
+
         return $response->withAddedHeader(
+            'Cache-Control',
+            "public, max-age=$maxLifetime"
+        )->withAddedHeader(
             'Expires',
             gmdate("D, d M Y H:i:s", time() + $maxLifetime) . " GMT"
         );
