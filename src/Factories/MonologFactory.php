@@ -57,7 +57,7 @@ final class MonologFactory implements LoggerFactory
 
     private function createStreamHandler(Config $config): StreamHandler
     {
-        $path = Str::make($config->get('path') ? $config->get('path') : 'log/site.logs');
+        $path = Str::make($config->get('path') ? (string)$config->get('path') : 'log/site.logs');
         return new StreamHandler(ROOT_DIR . $path->path()->__toString(), $this->getLevel($config->get('level')));
     }
 

@@ -53,7 +53,7 @@
     </PossiblyNullReference>
   </file>
   <file src="src/Factories/MonologFactory.php">
-    <InvalidArgument occurrences="14">
+    <InvalidArgument occurrences="13">
       <code>$config-&gt;get('attachment')</code>
       <code>$config-&gt;get('channel')</code>
       <code>$config-&gt;get('emoji')</code>
@@ -64,7 +64,6 @@
       <code>$config-&gt;get('level')</code>
       <code>$config-&gt;get('level')</code>
       <code>$config-&gt;get('level')</code>
-      <code>$config-&gt;get('path') ? $config-&gt;get('path') : 'log/site.logs'</code>
       <code>$config-&gt;get('subject')</code>
       <code>$config-&gt;get('token')</code>
       <code>$config-&gt;get('username')</code>
@@ -78,7 +77,6 @@
     <PossiblyInvalidCast occurrences="5">
       <code>$config-&gt;get('channel')</code>
       <code>$config-&gt;get('from')</code>
-      <code>$config-&gt;get('path') ? $config-&gt;get('path') : 'log/site.logs'</code>
       <code>$config-&gt;get('subject')</code>
       <code>$config-&gt;get('token')</code>
     </PossiblyInvalidCast>
