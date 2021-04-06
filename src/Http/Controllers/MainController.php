@@ -47,6 +47,12 @@ final class MainController
         $this->eventManager = $eventManager;
     }
 
+    /**
+     * GET request to content page
+     *
+     * @param ServerRequestInterface $request
+     * @param array{name: ?string} $args
+     */
     public function index(ServerRequestInterface $request, array $args): ResponseInterface
     {
         $name = isset($args['name']) ? $args['name'] : 'index';
@@ -63,6 +69,12 @@ final class MainController
         return $this->view->render($response, $layout, $data);
     }
 
+    /**
+     * POST request to content page
+     *
+     * @param ServerRequestInterface $request
+     * @param array{name: ?string} $args
+     */
     public function submit(ServerRequestInterface $request, array $args): ResponseInterface
     {
         $name = isset($args['name']) ? $args['name'] : 'index';

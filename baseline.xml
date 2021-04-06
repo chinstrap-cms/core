@@ -128,14 +128,6 @@
     </MixedReturnStatement>
   </file>
   <file src="src/Http/Controllers/MainController.php">
-    <MixedArgument occurrences="2">
-      <code>$name</code>
-      <code>$name</code>
-    </MixedArgument>
-    <MixedAssignment occurrences="2">
-      <code>$name</code>
-      <code>$name</code>
-    </MixedAssignment>
     <MixedOperand occurrences="2">
       <code>$data['layout']</code>
       <code>$data['layout']</code>
