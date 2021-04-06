@@ -22,6 +22,7 @@ final class MonologFactory implements LoggerFactory
     public function make(Config $config): LoggerInterface
     {
         $log = new Logger('app');
+        /** @var Config $configItem **/
         foreach ($config as $configItem) {
             $log->pushHandler($this->createHandler($configItem));
         }

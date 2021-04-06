@@ -72,12 +72,6 @@
     <InvalidScalarArgument occurrences="1">
       <code>$config-&gt;get('to')</code>
     </InvalidScalarArgument>
-    <MixedArgument occurrences="1">
-      <code>$configItem</code>
-    </MixedArgument>
-    <MixedAssignment occurrences="1">
-      <code>$configItem</code>
-    </MixedAssignment>
     <MixedMethodCall occurrences="1">
       <code>__toString</code>
     </MixedMethodCall>
