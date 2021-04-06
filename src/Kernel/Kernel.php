@@ -10,6 +10,7 @@ use Chinstrap\Core\Exceptions\Plugins\PluginNotFound;
 use Chinstrap\Core\Exceptions\Plugins\PluginNotValid;
 use Laminas\EventManager\EventManagerInterface;
 use Psr\Container\ContainerInterface;
+use PublishingKit\Config\Config;
 
 /**
  * Application instance
@@ -45,7 +46,7 @@ final class Kernel implements KernelInterface
 
     private function setupPlugins(): void
     {
-        $config = $this->container->get('PublishingKit\Config\Config');
+        $config = $this->container->get(Config::class);
         if (!$plugins = $config->get('plugins')) {
             return;
         }
