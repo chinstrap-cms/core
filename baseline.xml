@@ -35,20 +35,13 @@
     </PropertyNotSetInConstructor>
   </file>
   <file src="src/Factories/FlysystemFactory.php">
-    <MixedArgument occurrences="3">
+    <MixedArgument occurrences="2">
       <code>$config['key']</code>
-      <code>$config['name']</code>
       <code>$config['token']</code>
     </MixedArgument>
     <MixedOperand occurrences="1">
       <code>$config['path']</code>
     </MixedOperand>
-    <UndefinedConstant occurrences="1">
-      <code>ROOT_DIR</code>
-    </UndefinedConstant>
-    <UnusedParam occurrences="1">
-      <code>$config</code>
-    </UnusedParam>
   </file>
   <file src="src/Factories/Forms/LaminasFormFactory.php">
     <PossiblyInvalidMethodCall occurrences="1">

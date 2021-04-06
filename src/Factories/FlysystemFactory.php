@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Chinstrap\Core\Factories;
 
 use Aws\S3\S3Client;
+use Chinstrap\Core\Exceptions\Configuration\RootDirNotDefined;
 use Chinstrap\Core\Exceptions\Factories\BadFlysystemConfigurationException;
 use League\Flysystem\Adapter\Ftp as FTPAdapter;
 use League\Flysystem\Adapter\Local;
@@ -39,7 +40,7 @@ final class FlysystemFactory
         }
         switch ($config['driver']) {
             case 'memory':
-                $adapter = $this->createMemoryAdapter($config);
+                $adapter = $this->createMemoryAdapter();
                 break;
             case 'dropbox':
                 $adapter = $this->createDropboxAdapter($config);
@@ -69,13 +70,16 @@ final class FlysystemFactory
         );
     }
 
-    private function createMemoryAdapter(array $config): MemoryAdapter
+    private function createMemoryAdapter(): MemoryAdapter
     {
         return new MemoryAdapter();
     }
 
     private function createLocalAdapter(array $config): Local
     {
+        if (!defined('ROOT_DIR')) {
+            throw new RootDirNotDefined('Root directory not defined');
+        }
         if (!isset($config['path'])) {
             throw new BadFlysystemConfigurationException('Path not set for local driver');
         }
@@ -87,6 +91,7 @@ final class FlysystemFactory
         if (!isset($config['token'])) {
             throw new BadFlysystemConfigurationException('Token not set for Dropbox driver');
         }
+        /** @var array{token: string} $config **/
         $client = new Client($config['token']);
         return new DropboxAdapter($client);
     }
@@ -102,6 +107,7 @@ final class FlysystemFactory
         if (!isset($config['key'])) {
             throw new BadFlysystemConfigurationException('Account key not set for Azure driver');
         }
+        /** @var array{name: string, key: string, container: string} $config **/
         $endpoint = sprintf(
             'DefaultEndpointsProtocol=https;AccountName=%s;AccountKey=%s',
             $config['name'],
