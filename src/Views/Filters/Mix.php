@@ -10,6 +10,9 @@ final class Mix
 {
     public function __invoke(string $path): string
     {
+        if (!defined('PUBLIC_DIR')) {
+            throw new Exception('Public dir not defined');
+        }
         $manifest = json_decode(rtrim(file_get_contents(PUBLIC_DIR . DIRECTORY_SEPARATOR . 'mix-manifest.json')), true);
         if (! array_key_exists("/" . $path, $manifest)) {
             throw new Exception(
