@@ -252,44 +252,6 @@
       <code>$updatedAt</code>
     </PropertyNotSetInConstructor>
   </file>
-  <file src="src/Objects/Navigation/Container.php">
-    <ConstructorSignatureMismatch occurrences="1">
-      <code>$items</code>
-    </ConstructorSignatureMismatch>
-    <MixedArgument occurrences="1">
-      <code>$item</code>
-    </MixedArgument>
-    <MixedAssignment occurrences="3">
-      <code>$data[]</code>
-      <code>$item</code>
-      <code>$item</code>
-    </MixedAssignment>
-    <MixedMethodCall occurrences="1">
-      <code>toArray</code>
-    </MixedMethodCall>
-    <MoreSpecificImplementedParamType occurrences="1">
-      <code>$items</code>
-    </MoreSpecificImplementedParamType>
-  </file>
-  <file src="src/Objects/Navigation/Page.php">
-    <InvalidArgument occurrences="1">
-      <code>$this</code>
-    </InvalidArgument>
-    <MixedArgument occurrences="4">
-      <code>$item['label']</code>
-      <code>$item['pages']</code>
-      <code>$item['uri']</code>
-      <code>$page</code>
-    </MixedArgument>
-    <MixedAssignment occurrences="3">
-      <code>$data['pages'][]</code>
-      <code>$page</code>
-      <code>$page</code>
-    </MixedAssignment>
-    <MixedMethodCall occurrences="1">
-      <code>toArray</code>
-    </MixedMethodCall>
-  </file>
   <file src="src/Sources/Decorators/Psr6CacheDecorator.php">
     <MixedInferredReturnType occurrences="1">
       <code>?Document</code>
