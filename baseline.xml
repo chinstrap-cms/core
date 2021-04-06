@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="4.7.0@d4377c0baf3ffbf0b1ec6998e8d1be2a40971005">
+  <file src="src/Console/Commands/FlushCache.php">
+    <UndefinedInterfaceMethod occurrences="1">
+      <code>purge</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="src/Contracts/Factories/FormFactory.php">
+    <MissingReturnType occurrences="1">
+      <code>make</code>
+    </MissingReturnType>
+  </file>
+  <file src="src/Events/FormSubmitted.php">
+    <PropertyNotSetInConstructor occurrences="2">
+      <code>FormSubmitted</code>
+      <code>FormSubmitted</code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="src/Events/RegisterDynamicRoutes.php">
+    <PropertyNotSetInConstructor occurrences="2">
+      <code>RegisterDynamicRoutes</code>
+      <code>RegisterDynamicRoutes</code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="src/Events/RegisterStaticRoutes.php">
+    <PropertyNotSetInConstructor occurrences="2">
+      <code>RegisterStaticRoutes</code>
+      <code>RegisterStaticRoutes</code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="src/Events/RegisterViewHelpers.php">
+    <PropertyNotSetInConstructor occurrences="2">
+      <code>RegisterViewHelpers</code>
+      <code>RegisterViewHelpers</code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="src/Factories/FlysystemFactory.php">
+    <MixedArgument occurrences="3">
+      <code>$config['key']</code>
+      <code>$config['name']</code>
+      <code>$config['token']</code>
+    </MixedArgument>
+    <MixedOperand occurrences="1">
+      <code>$config['path']</code>
+    </MixedOperand>
+    <UndefinedConstant occurrences="1">
+      <code>ROOT_DIR</code>
+    </UndefinedConstant>
+    <UnusedParam occurrences="1">
+      <code>$config</code>
+    </UnusedParam>
+  </file>
+  <file src="src/Factories/Forms/LaminasFormFactory.php">
+    <PossiblyInvalidMethodCall occurrences="1">
+      <code>toArray</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyNullReference occurrences="2">
+      <code>get</code>
+      <code>toArray</code>
+    </PossiblyNullReference>
+  </file>
+  <file src="src/Factories/MonologFactory.php">
+    <InvalidArgument occurrences="14">
+      <code>$config-&gt;get('attachment')</code>
+      <code>$config-&gt;get('channel')</code>
+      <code>$config-&gt;get('emoji')</code>
+      <code>$config-&gt;get('from')</code>
+      <code>$config-&gt;get('level')</code>
+      <code>$config-&gt;get('level')</code>
+      <code>$config-&gt;get('level')</code>
+      <code>$config-&gt;get('level')</code>
+      <code>$config-&gt;get('level')</code>
+      <code>$config-&gt;get('level')</code>
+      <code>$config-&gt;get('path') ? $config-&gt;get('path') : 'log/site.logs'</code>
+      <code>$config-&gt;get('subject')</code>
+      <code>$config-&gt;get('token')</code>
+      <code>$config-&gt;get('username')</code>
+    </InvalidArgument>
+    <InvalidScalarArgument occurrences="1">
+      <code>$config-&gt;get('to')</code>
+    </InvalidScalarArgument>
+    <MixedArgument occurrences="1">
+      <code>$configItem</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="1">
+      <code>$configItem</code>
+    </MixedAssignment>
+    <MixedMethodCall occurrences="1">
+      <code>__toString</code>
+    </MixedMethodCall>
+    <PossiblyInvalidCast occurrences="5">
+      <code>$config-&gt;get('channel')</code>
+      <code>$config-&gt;get('from')</code>
+      <code>$config-&gt;get('path') ? $config-&gt;get('path') : 'log/site.logs'</code>
+      <code>$config-&gt;get('subject')</code>
+      <code>$config-&gt;get('token')</code>
+    </PossiblyInvalidCast>
+    <UndefinedConstant occurrences="1">
+      <code>ROOT_DIR</code>
+    </UndefinedConstant>
+    <UndefinedInterfaceMethod occurrences="1">
+      <code>path</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="src/Generators/XmlStringSitemap.php">
+    <MixedAssignment occurrences="1">
+      <code>$document</code>
+    </MixedAssignment>
+    <MixedMethodCall occurrences="1">
+      <code>getUrl</code>
+    </MixedMethodCall>
+    <MixedOperand occurrences="1">
+      <code>$document-&gt;getUrl()</code>
+    </MixedOperand>
+    <RawObjectIteration occurrences="1">
+      <code>$documents</code>
+    </RawObjectIteration>
+  </file>
+  <file src="src/Http/Controllers/ImageController.php">
+    <MixedArgument occurrences="1">
+      <code>$args['name']</code>
+    </MixedArgument>
+    <MixedInferredReturnType occurrences="1">
+      <code>ResponseInterface</code>
+    </MixedInferredReturnType>
+    <MixedReturnStatement occurrences="1">
+      <code>$this-&gt;glide-&gt;getImageResponse($args['name'], $request-&gt;getQueryParams())</code>
+    </MixedReturnStatement>
+  </file>
+  <file src="src/Http/Controllers/MainController.php">
+    <MixedArgument occurrences="2">
+      <code>$name</code>
+      <code>$name</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="2">
+      <code>$name</code>
+      <code>$name</code>
+    </MixedAssignment>
+    <MixedOperand occurrences="2">
+      <code>$data['layout']</code>
+      <code>$data['layout']</code>
+    </MixedOperand>
+  </file>
+  <file src="src/Http/Middleware/ClockworkMiddleware.php">
+    <MixedInferredReturnType occurrences="1">
+      <code>ResponseInterface</code>
+    </MixedInferredReturnType>
+    <MixedMethodCall occurrences="1">
+      <code>requestProcessed</code>
+    </MixedMethodCall>
+    <MixedReturnStatement occurrences="1">
+      <code>$this-&gt;clockwork-&gt;usePsrMessage($request, $response)-&gt;requestProcessed()</code>
+    </MixedReturnStatement>
+  </file>
+  <file src="src/Http/Middleware/MaintenanceModeMiddleware.php">
+    <MixedArgument occurrences="1">
+      <code>$env['MAINTENANCE']</code>
+    </MixedArgument>
+  </file>
+  <file src="src/Http/Middleware/WhoopsMiddleware.php">
+    <UndefinedInterfaceMethod occurrences="2">
+      <code>prependHandler</code>
+      <code>prependHandler</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="src/Kernel/CachingRequestHandlerDecorator.php">
+    <ArgumentTypeCoercion occurrences="1"/>
+  </file>
+  <file src="src/Kernel/ContainerFactory.php">
+    <DeprecatedClass occurrences="2">
+      <code>MountManager</code>
+    </DeprecatedClass>
+    <InvalidArgument occurrences="1">
+      <code>$strategy</code>
+    </InvalidArgument>
+    <InvalidScalarArgument occurrences="3">
+      <code>$config-&gt;get('key')</code>
+      <code>$config-&gt;get('locale')</code>
+      <code>$config-&gt;get('source')</code>
+    </InvalidScalarArgument>
+    <LessSpecificReturnStatement occurrences="2">
+      <code>$factory-&gt;make($config-&gt;cache-&gt;toArray())</code>
+      <code>Config::fromFiles(glob(ROOT_DIR . 'config/*.*'))</code>
+    </LessSpecificReturnStatement>
+    <MissingClosureParamType occurrences="1">
+      <code>$stream</code>
+    </MissingClosureParamType>
+    <MixedArgument occurrences="7">
+      <code>$config-&gt;cache-&gt;toArray()</code>
+      <code>$config-&gt;filesystem-&gt;assets-&gt;toArray()</code>
+      <code>$config-&gt;filesystem-&gt;cache-&gt;toArray()</code>
+      <code>$config-&gt;filesystem-&gt;content-&gt;toArray()</code>
+      <code>$config-&gt;filesystem-&gt;media-&gt;toArray()</code>
+      <code>$container-&gt;get('Twig\Loader\FilesystemLoader')</code>
+      <code>$stream</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="3">
+      <code>$cache</code>
+      <code>$fs</code>
+      <code>$source</code>
+    </MixedAssignment>
+    <MixedInferredReturnType occurrences="2">
+      <code>Clockwork</code>
+      <code>Source</code>
+    </MixedInferredReturnType>
+    <MixedMethodCall occurrences="7">
+      <code>getFilesystem</code>
+      <code>getFilesystem</code>
+      <code>toArray</code>
+      <code>toArray</code>
+      <code>toArray</code>
+      <code>toArray</code>
+      <code>toArray</code>
+    </MixedMethodCall>
+    <MixedPropertyFetch occurrences="4">
+      <code>$config-&gt;filesystem-&gt;assets</code>
+      <code>$config-&gt;filesystem-&gt;cache</code>
+      <code>$config-&gt;filesystem-&gt;content</code>
+      <code>$config-&gt;filesystem-&gt;media</code>
+    </MixedPropertyFetch>
+    <MixedReturnStatement occurrences="2">
+      <code>$container-&gt;get($config-&gt;get('source'))</code>
+      <code>Clockwork::init()</code>
+    </MixedReturnStatement>
+    <MoreSpecificReturnType occurrences="2">
+      <code>Config</code>
+      <code>Pool</code>
+    </MoreSpecificReturnType>
+    <PossiblyInvalidArgument occurrences="1">
+      <code>$config-&gt;get('loggers')</code>
+    </PossiblyInvalidArgument>
+    <PossiblyInvalidCast occurrences="3">
+      <code>$config-&gt;get('key')</code>
+      <code>$config-&gt;get('locale')</code>
+      <code>$config-&gt;get('source')</code>
+    </PossiblyInvalidCast>
+    <UndefinedClass occurrences="1">
+      <code>Faker\Generator</code>
+    </UndefinedClass>
+    <UndefinedConstant occurrences="3">
+      <code>ROOT_DIR</code>
+      <code>ROOT_DIR</code>
+      <code>ROOT_DIR</code>
+    </UndefinedConstant>
+    <UnnecessaryVarAnnotation occurrences="2">
+      <code>Config</code>
+      <code>FlysystemFactory</code>
+    </UnnecessaryVarAnnotation>
+    <UnusedClosureParam occurrences="17">
+      <code>$container</code>
+      <code>$container</code>
+      <code>$container</code>
+      <code>$requestedName</code>
+      <code>$requestedName</code>
+      <code>$requestedName</code>
+      <code>$requestedName</code>
+      <code>$requestedName</code>
+      <code>$requestedName</code>
+      <code>$requestedName</code>
+      <code>$requestedName</code>
+      <code>$requestedName</code>
+      <code>$requestedName</code>
+      <code>$requestedName</code>
+      <code>$requestedName</code>
+      <code>$requestedName</code>
+      <code>$requestedName</code>
+    </UnusedClosureParam>
+  </file>
+  <file src="src/Kernel/Kernel.php">
+    <MixedAssignment occurrences="1">
+      <code>$plugin</code>
+    </MixedAssignment>
+    <PossiblyInvalidIterator occurrences="1">
+      <code>$plugins</code>
+    </PossiblyInvalidIterator>
+  </file>
+  <file src="src/Objects/MarkdownDocument.php">
+    <MixedInferredReturnType occurrences="1">
+      <code>string</code>
+    </MixedInferredReturnType>
+    <MixedReturnStatement occurrences="1">
+      <code>$this-&gt;getField($name)</code>
+    </MixedReturnStatement>
+    <PropertyNotSetInConstructor occurrences="1">
+      <code>$updatedAt</code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="src/Objects/Navigation/Container.php">
+    <ConstructorSignatureMismatch occurrences="1">
+      <code>$items</code>
+    </ConstructorSignatureMismatch>
+    <MixedArgument occurrences="1">
+      <code>$item</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="3">
+      <code>$data[]</code>
+      <code>$item</code>
+      <code>$item</code>
+    </MixedAssignment>
+    <MixedMethodCall occurrences="1">
+      <code>toArray</code>
+    </MixedMethodCall>
+    <MoreSpecificImplementedParamType occurrences="1">
+      <code>$items</code>
+    </MoreSpecificImplementedParamType>
+  </file>
+  <file src="src/Objects/Navigation/Page.php">
+    <InvalidArgument occurrences="1">
+      <code>$this</code>
+    </InvalidArgument>
+    <MixedArgument occurrences="4">
+      <code>$item['label']</code>
+      <code>$item['pages']</code>
+      <code>$item['uri']</code>
+      <code>$page</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="3">
+      <code>$data['pages'][]</code>
+      <code>$page</code>
+      <code>$page</code>
+    </MixedAssignment>
+    <MixedMethodCall occurrences="1">
+      <code>toArray</code>
+    </MixedMethodCall>
+  </file>
+  <file src="src/Sources/Decorators/Psr6CacheDecorator.php">
+    <MixedInferredReturnType occurrences="1">
+      <code>?Document</code>
+    </MixedInferredReturnType>
+    <MixedReturnStatement occurrences="1">
+      <code>$item-&gt;get()</code>
+    </MixedReturnStatement>
+  </file>
+  <file src="src/Sources/MarkdownFiles.php">
+    <MixedArgument occurrences="3">
+      <code>$field</code>
+      <code>$file['path']</code>
+      <code>$file['path']</code>
+    </MixedArgument>
+    <MixedArrayAccess occurrences="4">
+      <code>$file['path']</code>
+      <code>$file['path']</code>
+      <code>$file['path']</code>
+      <code>$file['type']</code>
+    </MixedArrayAccess>
+    <MixedAssignment occurrences="3">
+      <code>$field</code>
+      <code>$file</code>
+      <code>$value</code>
+    </MixedAssignment>
+    <MixedOperand occurrences="1">
+      <code>$file['path']</code>
+    </MixedOperand>
+    <PossiblyFalseArgument occurrences="1">
+      <code>$this-&gt;fs-&gt;getTimestamp("content://" . $path)</code>
+    </PossiblyFalseArgument>
+  </file>
+  <file src="src/Views/Filters/Mix.php">
+    <MixedArgument occurrences="1">
+      <code>$manifest</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="1">
+      <code>$manifest</code>
+    </MixedAssignment>
+    <MixedInferredReturnType occurrences="1">
+      <code>string</code>
+    </MixedInferredReturnType>
+    <MixedReturnStatement occurrences="1">
+      <code>$manifest["/" . $path]</code>
+    </MixedReturnStatement>
+    <PossiblyFalseOperand occurrences="1">
+      <code>strpos($text, $separator)</code>
+    </PossiblyFalseOperand>
+  </file>
+  <file src="src/Views/Functions/Form.php">
+    <MixedArgument occurrences="2">
+      <code>$form</code>
+      <code>$pluginClass</code>
+    </MixedArgument>
+    <MixedArgumentTypeCoercion occurrences="1">
+      <code>$pluginName</code>
+    </MixedArgumentTypeCoercion>
+    <MixedAssignment occurrences="2">
+      <code>$form</code>
+      <code>$pluginClass</code>
+    </MixedAssignment>
+    <PossiblyInvalidPropertyAssignmentValue occurrences="1">
+      <code>$config-&gt;get('forms')</code>
+    </PossiblyInvalidPropertyAssignmentValue>
+    <RedundantCondition occurrences="1">
+      <code>$this-&gt;config</code>
+    </RedundantCondition>
+    <RedundantConditionGivenDocblockType occurrences="1">
+      <code>$this-&gt;config</code>
+    </RedundantConditionGivenDocblockType>
+    <TooManyArguments occurrences="1">
+      <code>make</code>
+    </TooManyArguments>
+  </file>
+</files>
