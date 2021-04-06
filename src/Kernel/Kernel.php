@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Chinstrap\Core\Kernel;
 
 use Chinstrap\Core\Contracts\Kernel\KernelInterface;
+use Chinstrap\Core\Contracts\Plugin;
 use Chinstrap\Core\Events\RegisterViewHelpers;
 use Chinstrap\Core\Exceptions\Plugins\PluginNotFound;
 use Chinstrap\Core\Exceptions\Plugins\PluginNotValid;
@@ -50,14 +51,14 @@ final class Kernel implements KernelInterface
         if (!$plugins = $config->get('plugins')) {
             return;
         }
-        /** @var class-string<\Chinstrap\Core\Contracts\Plugin> $name **/
+        /** @var class-string<Plugin> $name **/
         foreach ($plugins as $name) {
             if (!$plugin = $this->container->get($name)) {
                 throw new PluginNotFound('Plugin could not be resolved by the container');
             }
-            /** @var \Chinstrap\Core\Contracts\Plugin $plugin **/
-            if (!in_array('Chinstrap\Core\Contracts\Plugin', array_keys(class_implements($name)))) {
-                throw new PluginNotValid('Plugin does not implement Chinstrap\Core\Contracts\Plugin');
+            /** @var Plugin $plugin **/
+            if (!in_array(Plugin::class, array_keys(class_implements($name)))) {
+                throw new PluginNotValid('Plugin does not implement ' . Plugin::class);
             }
             $plugin->register();
         }
