@@ -262,9 +262,6 @@
     <MixedAssignment occurrences="1">
       <code>$plugin</code>
     </MixedAssignment>
-    <PossiblyInvalidIterator occurrences="1">
-      <code>$plugins</code>
-    </PossiblyInvalidIterator>
   </file>
   <file src="src/Objects/MarkdownDocument.php">
     <MixedInferredReturnType occurrences="1">

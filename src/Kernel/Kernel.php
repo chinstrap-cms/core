@@ -51,7 +51,7 @@ final class Kernel implements KernelInterface
         if (!$plugins = $config->get('plugins')) {
             return;
         }
-        /** @var class-string<Plugin> $name **/
+        /** @var array<class-string<Plugin>> $plugins **/
         foreach ($plugins as $name) {
             if (!$plugin = $this->container->get($name)) {
                 throw new PluginNotFound('Plugin could not be resolved by the container');
