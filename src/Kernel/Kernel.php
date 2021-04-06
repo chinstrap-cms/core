@@ -50,10 +50,12 @@ final class Kernel implements KernelInterface
         if (!$plugins = $config->get('plugins')) {
             return;
         }
+        /** @var class-string<\Chinstrap\Core\Contracts\Plugin> $name **/
         foreach ($plugins as $name) {
             if (!$plugin = $this->container->get($name)) {
                 throw new PluginNotFound('Plugin could not be resolved by the container');
             }
+            /** @var \Chinstrap\Core\Contracts\Plugin $plugin **/
             if (!in_array('Chinstrap\Core\Contracts\Plugin', array_keys(class_implements($name)))) {
                 throw new PluginNotValid('Plugin does not implement Chinstrap\Core\Contracts\Plugin');
             }
