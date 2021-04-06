@@ -20,6 +20,12 @@ final class ImageController
         $this->glide = $glide;
     }
 
+    /**
+     * GET request to content page
+     *
+     * @param ServerRequestInterface $request
+     * @param array{name: string} $args
+     */
     public function get(ServerRequestInterface $request, array $args): ResponseInterface
     {
         return $this->glide->getImageResponse($args['name'], $request->getQueryParams());

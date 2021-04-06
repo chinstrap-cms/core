@@ -110,9 +110,6 @@
     </RawObjectIteration>
   </file>
   <file src="src/Http/Controllers/ImageController.php">
-    <MixedArgument occurrences="1">
-      <code>$args['name']</code>
-    </MixedArgument>
     <MixedInferredReturnType occurrences="1">
       <code>ResponseInterface</code>
     </MixedInferredReturnType>
