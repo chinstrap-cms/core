@@ -10,6 +10,7 @@ use Chinstrap\Core\Events\RegisterViewHelpers;
 use Chinstrap\Core\Exceptions\Plugins\PluginNotFound;
 use Chinstrap\Core\Exceptions\Plugins\PluginNotValid;
 use Laminas\EventManager\EventManagerInterface;
+use Laminas\ServiceManager\Exception\ServiceNotFoundException;
 use Psr\Container\ContainerInterface;
 use PublishingKit\Config\Config;
 
@@ -53,10 +54,12 @@ final class Kernel implements KernelInterface
         }
         /** @var array<class-string<Plugin>> $plugins **/
         foreach ($plugins as $name) {
-            if (!$plugin = $this->container->get($name)) {
+            try {
+                /** @var Plugin $plugin **/
+                $plugin = $this->container->get($name);
+            } catch (ServiceNotFoundException $e) {
                 throw new PluginNotFound('Plugin could not be resolved by the container');
             }
-            /** @var Plugin $plugin **/
             if (!in_array(Plugin::class, array_keys(class_implements($name)))) {
                 throw new PluginNotValid('Plugin does not implement ' . Plugin::class);
             }

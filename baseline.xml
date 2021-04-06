@@ -258,11 +258,6 @@
       <code>$requestedName</code>
     </UnusedClosureParam>
   </file>
-  <file src="src/Kernel/Kernel.php">
-    <MixedAssignment occurrences="1">
-      <code>$plugin</code>
-    </MixedAssignment>
-  </file>
   <file src="src/Objects/MarkdownDocument.php">
     <MixedInferredReturnType occurrences="1">
       <code>string</code>

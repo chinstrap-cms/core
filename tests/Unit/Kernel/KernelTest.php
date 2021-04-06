@@ -6,6 +6,7 @@ namespace Chinstrap\Core\Tests\Unit\Kernel;
 
 use Chinstrap\Core\Kernel\Kernel;
 use Chinstrap\Core\Tests\TestCase;
+use Laminas\ServiceManager\Exception\ServiceNotFoundException;
 use Mockery as m;
 use PublishingKit\Config\Config;
 
@@ -35,7 +36,7 @@ final class KernelTest extends TestCase
                   ->andReturn($emitter);
         $container->shouldReceive('get')->with('My\Nonexistent\Plugin')
             ->once()
-            ->andReturn(null);
+            ->andThrow(ServiceNotFoundException::class);
         $config = new Config([
                               'plugins' => ['My\Nonexistent\Plugin'],
                              ]);
