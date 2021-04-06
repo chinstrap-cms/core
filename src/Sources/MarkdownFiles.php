@@ -35,6 +35,7 @@ final class MarkdownFiles implements Source
     public function all(): Collectable
     {
         return LazyCollection::make(function () {
+            /** @var array<array{type: string, path: string}> $files **/
             $files = $this->fs->listContents('content://', true);
             foreach ($files as $file) {
                 if ($file['type'] == 'dir') {

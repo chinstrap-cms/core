@@ -302,25 +302,13 @@
     </MixedReturnStatement>
   </file>
   <file src="src/Sources/MarkdownFiles.php">
-    <MixedArgument occurrences="3">
+    <MixedArgument occurrences="1">
       <code>$field</code>
-      <code>$file['path']</code>
-      <code>$file['path']</code>
     </MixedArgument>
-    <MixedArrayAccess occurrences="4">
-      <code>$file['path']</code>
-      <code>$file['path']</code>
-      <code>$file['path']</code>
-      <code>$file['type']</code>
-    </MixedArrayAccess>
-    <MixedAssignment occurrences="3">
+    <MixedAssignment occurrences="2">
       <code>$field</code>
-      <code>$file</code>
       <code>$value</code>
     </MixedAssignment>
-    <MixedOperand occurrences="1">
-      <code>$file['path']</code>
-    </MixedOperand>
     <PossiblyFalseArgument occurrences="1">
       <code>$this-&gt;fs-&gt;getTimestamp("content://" . $path)</code>
     </PossiblyFalseArgument>
