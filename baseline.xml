@@ -219,19 +219,12 @@
       <code>$config-&gt;get('locale')</code>
       <code>$config-&gt;get('source')</code>
     </PossiblyInvalidCast>
-    <UndefinedClass occurrences="1">
-      <code>Faker\Generator</code>
-    </UndefinedClass>
     <UndefinedConstant occurrences="3">
       <code>ROOT_DIR</code>
       <code>ROOT_DIR</code>
       <code>ROOT_DIR</code>
     </UndefinedConstant>
-    <UnnecessaryVarAnnotation occurrences="2">
-      <code>Config</code>
-      <code>FlysystemFactory</code>
-    </UnnecessaryVarAnnotation>
-    <UnusedClosureParam occurrences="17">
+    <UnusedClosureParam occurrences="4">
       <code>$container</code>
       <code>$container</code>
       <code>$container</code>

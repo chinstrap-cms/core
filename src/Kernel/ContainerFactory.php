@@ -61,7 +61,7 @@ final class ContainerFactory
             ],
             'lazy_services' => [
                 'classmap' => [
-                    \Faker\Generator::class => Faker\Generator::class,
+                    \Faker\Generator::class => \Faker\Generator::class,
                 ],
             ],
             'aliases' => [
@@ -89,26 +89,22 @@ final class ContainerFactory
                     );
                 },
                 \Faker\Generator::class => function (
-                    ContainerInterface $container,
-                    string $requestedName
+                    ContainerInterface $container
 ): \Faker\Generator {
                     $config = $container->get(Config::class);
                     return \Faker\Factory::create($config->get('locale'));
                 },
-                Clockwork::class => function (ContainerInterface $container, string $requestedName): Clockwork {
+                Clockwork::class => function (ContainerInterface $container): Clockwork {
                     return Clockwork::init();
                 },
-                Config::class => function (ContainerInterface $container, string $requestedName): Config {
+                Config::class => function (ContainerInterface $container): Config {
                     return Config::fromFiles(glob(ROOT_DIR . 'config/*.*'));
                 },
                 FilesystemInterface::class => function (
-                    ContainerInterface $container,
-                    string $requestedName
+                    ContainerInterface $container
 ): MountManager {
-                    /** @var FlysystemFactory **/
                     $factory = $container->get(FlysystemFactory::class);
-                    /** @var Config **/
-                    $config = $container->get('PublishingKit\Config\Config');
+                    $config = $container->get(Config::class);
 
                     // Decorate the adapter
                     $contentFilesystem = $factory->make($config->filesystem->content->toArray());
@@ -123,14 +119,12 @@ final class ContainerFactory
                         'cache' => $cacheFilesystem,
                     ]);
                 },
-                Source::class => function (ContainerInterface $container, string $requestedName): Source {
-                    /** @var Config **/
+                Source::class => function (ContainerInterface $container): Source {
                     $config = $container->get(Config::class);
                     return $container->get($config->get('source'));
                 },
                 LoggerInterface::class => function (
-                    ContainerInterface $container,
-                    string $requestedName
+                    ContainerInterface $container
 ): LoggerInterface {
                     /** @var Config **/
                     $config = $container->get('PublishingKit\Config\Config');
@@ -138,27 +132,25 @@ final class ContainerFactory
                     return $factory->make($config->get('loggers'));
                 },
                 FilesystemLoader::class => function (
-                    ContainerInterface $container,
-                    string $requestedName
+                    ContainerInterface $container
 ): FilesystemLoader {
                     return new FilesystemLoader(ROOT_DIR . 'resources' . DIRECTORY_SEPARATOR . 'views');
                 },
-                Environment::class => function (ContainerInterface $container, string $requestedName): Environment {
+                Environment::class => function (ContainerInterface $container): Environment {
                     $config = [];
                     if ($_ENV['APP_ENV'] !== 'development') {
                         $config['cache'] = ROOT_DIR . '/cache/views';
                     }
                     return new Environment($container->get('Twig\Loader\FilesystemLoader'), $config);
                 },
-                Router::class => function (ContainerInterface $container, string $requestedName): Router {
+                Router::class => function (ContainerInterface $container): Router {
                     $strategy = (new ApplicationStrategy())->setContainer($container);
                     $router = new Router();
                     $router->setStrategy($strategy);
                     return $router;
                 },
                 EventManagerInterface::class => function (
-                    ContainerInterface $container,
-                    string $requestedName
+                    ContainerInterface $container
 ): EventManagerInterface {
                     /** @var EventManagerInterface **/
                     $manager = $container->get(EventManager::class);
@@ -172,7 +164,7 @@ final class ContainerFactory
                     );
                     return $manager;
                 },
-                Server::class => function (ContainerInterface $container, string $requestedName) {
+                Server::class => function (ContainerInterface $container) {
                     $fs = $container->get('League\Flysystem\FilesystemInterface');
                     $source = $fs->getFilesystem('media');
                     $cache = $fs->getFilesystem('cache');
@@ -184,10 +176,10 @@ final class ContainerFactory
                         }),
                     ]);
                 },
-                CacheContract::class => function (ContainerInterface $container, string $requestedName): CacheContract {
+                CacheContract::class => function (ContainerInterface $container): CacheContract {
                     return new Psr6Cache($container->get(CacheItemPoolInterface::class));
                 },
-                Pool::class => function (ContainerInterface $container, string $requestedName): Pool {
+                Pool::class => function (ContainerInterface $container): Pool {
                     $factory = $container->get(CacheFactory::class);
                     $config = $container->get(Config::class);
                     return $factory->make($config->cache->toArray());
