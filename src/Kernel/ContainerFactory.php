@@ -79,8 +79,7 @@ final class ContainerFactory
             ],
             'factories' => [
                 SessionMiddleware::class => function (
-                    ContainerInterface $container,
-                    string $requestedName
+                    ContainerInterface $container
                 ): SessionMiddleware {
                     $config = $container->get(Config::class);
                     return SessionMiddleware::fromSymmetricKeyDefaults(
@@ -94,10 +93,10 @@ final class ContainerFactory
                     $config = $container->get(Config::class);
                     return \Faker\Factory::create($config->get('locale'));
                 },
-                Clockwork::class => function (ContainerInterface $container): Clockwork {
+                Clockwork::class => function (): Clockwork {
                     return Clockwork::init();
                 },
-                Config::class => function (ContainerInterface $container): Config {
+                Config::class => function (): Config {
                     return Config::fromFiles(glob(ROOT_DIR . 'config/*.*'));
                 },
                 FilesystemInterface::class => function (
