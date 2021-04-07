@@ -19,7 +19,7 @@
     "require": {
         "php": "~7.2",
         "filp/whoops": "^2.7",
-        "itsgoingd/clockwork": "^4.1",
+        "itsgoingd/clockwork": "^5.0",
         "laminas/laminas-diactoros": "^2.3",
         "laminas/laminas-escaper": "^2.6",
         "laminas/laminas-eventmanager": "^3.3",
