@@ -230,14 +230,6 @@
       <code>$updatedAt</code>
     </PropertyNotSetInConstructor>
   </file>
-  <file src="src/Sources/Decorators/Psr6CacheDecorator.php">
-    <MixedInferredReturnType occurrences="1">
-      <code>?Document</code>
-    </MixedInferredReturnType>
-    <MixedReturnStatement occurrences="1">
-      <code>$item-&gt;get()</code>
-    </MixedReturnStatement>
-  </file>
   <file src="src/Sources/MarkdownFiles.php">
     <MixedArgument occurrences="1">
       <code>$field</code>
