@@ -62,9 +62,6 @@
     <InvalidScalarArgument occurrences="1">
       <code>$config-&gt;get('to')</code>
     </InvalidScalarArgument>
-    <MixedMethodCall occurrences="1">
-      <code>__toString</code>
-    </MixedMethodCall>
     <PossiblyInvalidCast occurrences="5">
       <code>$config-&gt;get('channel')</code>
       <code>$config-&gt;get('from')</code>
@@ -74,9 +71,6 @@
     <UndefinedConstant occurrences="1">
       <code>ROOT_DIR</code>
     </UndefinedConstant>
-    <UndefinedInterfaceMethod occurrences="1">
-      <code>path</code>
-    </UndefinedInterfaceMethod>
   </file>
   <file src="src/Generators/XmlStringSitemap.php">
     <MixedAssignment occurrences="1">
