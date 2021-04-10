@@ -13,6 +13,7 @@ final class Mix
         if (!defined('PUBLIC_DIR')) {
             throw new Exception('Public dir not defined');
         }
+        /** @var array $manifest **/
         $manifest = json_decode(rtrim(file_get_contents(PUBLIC_DIR . DIRECTORY_SEPARATOR . 'mix-manifest.json')), true);
         if (! array_key_exists("/" . $path, $manifest)) {
             throw new Exception(
@@ -32,7 +33,7 @@ final class Mix
 
             return "//localhost:8080{$path}";
         }
-        return $manifest["/" . $path];
+        return (string)$manifest["/" . $path];
     }
 
     private function startsWith(string $text, string $start): bool

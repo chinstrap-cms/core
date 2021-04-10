@@ -251,18 +251,6 @@
     </PossiblyFalseArgument>
   </file>
   <file src="src/Views/Filters/Mix.php">
-    <MixedArgument occurrences="1">
-      <code>$manifest</code>
-    </MixedArgument>
-    <MixedAssignment occurrences="1">
-      <code>$manifest</code>
-    </MixedAssignment>
-    <MixedInferredReturnType occurrences="1">
-      <code>string</code>
-    </MixedInferredReturnType>
-    <MixedReturnStatement occurrences="1">
-      <code>$manifest["/" . $path]</code>
-    </MixedReturnStatement>
     <PossiblyFalseOperand occurrences="1">
       <code>strpos($text, $separator)</code>
     </PossiblyFalseOperand>
