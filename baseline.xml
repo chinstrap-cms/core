@@ -34,15 +34,6 @@
       <code>RegisterViewHelpers</code>
     </PropertyNotSetInConstructor>
   </file>
-  <file src="src/Factories/FlysystemFactory.php">
-    <MixedArgument occurrences="2">
-      <code>$config['key']</code>
-      <code>$config['token']</code>
-    </MixedArgument>
-    <MixedOperand occurrences="1">
-      <code>$config['path']</code>
-    </MixedOperand>
-  </file>
   <file src="src/Factories/Forms/LaminasFormFactory.php">
     <PossiblyInvalidMethodCall occurrences="1">
       <code>toArray</code>

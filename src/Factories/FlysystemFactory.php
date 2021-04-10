@@ -80,7 +80,7 @@ final class FlysystemFactory
         if (!defined('ROOT_DIR')) {
             throw new RootDirNotDefined('Root directory not defined');
         }
-        if (!isset($config['path'])) {
+        if (!isset($config['path']) || !is_string($config['path'])) {
             throw new BadFlysystemConfigurationException('Path not set for local driver');
         }
         return new Local(ROOT_DIR . '/' . $config['path']);
@@ -88,26 +88,24 @@ final class FlysystemFactory
 
     private function createDropboxAdapter(array $config): DropboxAdapter
     {
-        if (!isset($config['token'])) {
+        if (!isset($config['token']) || !is_string($config['token'])) {
             throw new BadFlysystemConfigurationException('Token not set for Dropbox driver');
         }
-        /** @var array{token: string} $config **/
         $client = new Client($config['token']);
         return new DropboxAdapter($client);
     }
 
     private function createAzureAdapter(array $config): AzureBlobStorageAdapter
     {
-        if (!isset($config['container'])) {
+        if (!isset($config['container']) || !is_string($config['container'])) {
             throw new BadFlysystemConfigurationException('Container not set for Azure driver');
         }
-        if (!isset($config['name'])) {
+        if (!isset($config['name']) || !is_string($config['name'])) {
             throw new BadFlysystemConfigurationException('Account name not set for Azure driver');
         }
-        if (!isset($config['key'])) {
+        if (!isset($config['key']) || !is_string($config['key'])) {
             throw new BadFlysystemConfigurationException('Account key not set for Azure driver');
         }
-        /** @var array{name: string, key: string, container: string} $config **/
         $endpoint = sprintf(
             'DefaultEndpointsProtocol=https;AccountName=%s;AccountKey=%s',
             $config['name'],
