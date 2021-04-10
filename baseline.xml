@@ -82,9 +82,6 @@
     <MixedOperand occurrences="1">
       <code>$document-&gt;getUrl()</code>
     </MixedOperand>
-    <RawObjectIteration occurrences="1">
-      <code>$documents</code>
-    </RawObjectIteration>
   </file>
   <file src="src/Http/Controllers/ImageController.php">
     <MixedInferredReturnType occurrences="1">
