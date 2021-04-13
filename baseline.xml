@@ -59,9 +59,6 @@
       <code>$config-&gt;get('token')</code>
       <code>$config-&gt;get('username')</code>
     </InvalidArgument>
-    <InvalidScalarArgument occurrences="1">
-      <code>$config-&gt;get('to')</code>
-    </InvalidScalarArgument>
     <PossiblyInvalidCast occurrences="5">
       <code>$config-&gt;get('channel')</code>
       <code>$config-&gt;get('from')</code>
@@ -129,11 +126,6 @@
     <InvalidArgument occurrences="1">
       <code>$strategy</code>
     </InvalidArgument>
-    <InvalidScalarArgument occurrences="3">
-      <code>$config-&gt;get('key')</code>
-      <code>$config-&gt;get('locale')</code>
-      <code>$config-&gt;get('source')</code>
-    </InvalidScalarArgument>
     <LessSpecificReturnStatement occurrences="2">
       <code>$factory-&gt;make($config-&gt;cache-&gt;toArray())</code>
       <code>Config::fromFiles(glob(ROOT_DIR . 'config/*.*'))</code>
@@ -182,9 +174,6 @@
       <code>Config</code>
       <code>Pool</code>
     </MoreSpecificReturnType>
-    <PossiblyInvalidArgument occurrences="1">
-      <code>$config-&gt;get('loggers')</code>
-    </PossiblyInvalidArgument>
     <PossiblyInvalidCast occurrences="3">
       <code>$config-&gt;get('key')</code>
       <code>$config-&gt;get('locale')</code>
@@ -244,12 +233,6 @@
     <PossiblyInvalidPropertyAssignmentValue occurrences="1">
       <code>$config-&gt;get('forms')</code>
     </PossiblyInvalidPropertyAssignmentValue>
-    <RedundantCondition occurrences="1">
-      <code>$this-&gt;config</code>
-    </RedundantCondition>
-    <RedundantConditionGivenDocblockType occurrences="1">
-      <code>$this-&gt;config</code>
-    </RedundantConditionGivenDocblockType>
     <TooManyArguments occurrences="1">
       <code>make</code>
     </TooManyArguments>
