@@ -19,6 +19,21 @@ use PublishingKit\Utilities\Str;
 
 final class MonologFactory implements LoggerFactory
 {
+    /**
+     * @psalm-param Config<{
+     * level: string,
+     * logger: string,
+     * from?: string,
+     * to?: string,
+     * subject?: string,
+     * token?: string,
+     * channel?: string,
+     * username?: string,
+     * attachment?: string,
+     * emoji?: string,
+     * path?: string
+     * }> $config
+     */
     public function make(Config $config): LoggerInterface
     {
         $log = new Logger('app');
@@ -28,10 +43,10 @@ final class MonologFactory implements LoggerFactory
         }
         if (!count($config)) {
             $configItem = new Config([
-                                      'logger' => 'stream',
-                                      'path' => 'logs/site.log',
-                                      'level' => 'warning',
-                                     ]);
+                'logger' => 'stream',
+                'path' => 'logs/site.log',
+                'level' => 'warning',
+            ]);
             $log->pushHandler($this->createHandler($configItem));
         }
         return $log;
