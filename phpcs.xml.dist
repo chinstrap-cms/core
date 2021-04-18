@@ -15,6 +15,7 @@
 	<rule ref="AbstractOrFinalClassesOnly"/>
 	<rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
     <rule ref="PSR12" />
+    <rule ref="SlevomatCodingStandard.Classes.ClassStructure"/>
     <rule ref="SlevomatCodingStandard.Classes.ForbiddenPublicProperty"/>
     <rule ref="SlevomatCodingStandard.Commenting.EmptyComment"/>
     <rule ref="SlevomatCodingStandard.Exceptions.ReferenceThrowableOnly"/>

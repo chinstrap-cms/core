@@ -21,13 +21,13 @@ final class EmailAddress
         $this->email = $email;
     }
 
-    public function __toString(): string
-    {
-        return $this->email;
-    }
-
     public function equals(EmailAddress $email): bool
     {
         return ($this->email === $email->__toString());
+    }
+
+    public function __toString(): string
+    {
+        return $this->email;
     }
 }

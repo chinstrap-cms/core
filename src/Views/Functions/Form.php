@@ -40,15 +40,6 @@ final class Form
         $this->helper = $helper;
     }
 
-    public function __invoke(string $name): Markup
-    {
-        if (!isset($this->config[$name])) {
-            throw new FormNotFound('The specified form is not registered');
-        }
-        $form = $this->factory->make($this->config[$name]);
-        return new Markup($this->helper->__invoke($form), 'UTF-8');
-    }
-
     private function getInvokables(): array
     {
         return [
@@ -62,5 +53,14 @@ final class Form
                 'formemail' => 'Laminas\Form\View\Helper\FormEmail',
                 'formsubmit' => 'Laminas\Form\View\Helper\FormSubmit',
                ];
+    }
+
+    public function __invoke(string $name): Markup
+    {
+        if (!isset($this->config[$name])) {
+            throw new FormNotFound('The specified form is not registered');
+        }
+        $form = $this->factory->make($this->config[$name]);
+        return new Markup($this->helper->__invoke($form), 'UTF-8');
     }
 }

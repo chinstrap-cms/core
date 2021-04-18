@@ -8,6 +8,17 @@ use Exception;
 
 final class Mix
 {
+    private function startsWith(string $text, string $start): bool
+    {
+          $len = strlen($start);
+          return (substr($text, 0, $len) === $start);
+    }
+
+    private function after(string $text, string $separator): string
+    {
+        return substr($text, strpos($text, $separator) + 1);
+    }
+
     public function __invoke(string $path): string
     {
         if (!defined('PUBLIC_DIR')) {
@@ -34,16 +45,5 @@ final class Mix
             return "//localhost:8080{$path}";
         }
         return (string)$manifest["/" . $path];
-    }
-
-    private function startsWith(string $text, string $start): bool
-    {
-          $len = strlen($start);
-          return (substr($text, 0, $len) === $start);
-    }
-
-    private function after(string $text, string $separator): string
-    {
-        return substr($text, strpos($text, $separator) + 1);
     }
 }

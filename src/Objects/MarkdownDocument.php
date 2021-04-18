@@ -85,34 +85,6 @@ final class MarkdownDocument implements Document, JsonSerializable
         return $this;
     }
 
-    public function __toString(): string
-    {
-        return $this->content;
-    }
-
-    public function __get(string $name): string
-    {
-        if ($name === 'content') {
-            return $this->getContent();
-        }
-        if ($name === 'path') {
-            return $this->getPath();
-        }
-        return $this->getField($name);
-    }
-
-    public function __set(string $name, string $value): Document
-    {
-        if ($name === 'content') {
-            $this->setContent($value);
-        } elseif ($name === 'path') {
-            $this->setPath($value);
-        } else {
-            $this->setField($name, $value);
-        }
-        return $this;
-    }
-
     public function getFields(): array
     {
         return $this->data;
@@ -143,5 +115,33 @@ final class MarkdownDocument implements Document, JsonSerializable
     private function stripExtension(string $path): string
     {
         return preg_replace('/.(markdown|md)$/', '', $path);
+    }
+
+    public function __toString(): string
+    {
+        return $this->content;
+    }
+
+    public function __get(string $name): string
+    {
+        if ($name === 'content') {
+            return $this->getContent();
+        }
+        if ($name === 'path') {
+            return $this->getPath();
+        }
+        return $this->getField($name);
+    }
+
+    public function __set(string $name, string $value): Document
+    {
+        if ($name === 'content') {
+            $this->setContent($value);
+        } elseif ($name === 'path') {
+            $this->setPath($value);
+        } else {
+            $this->setField($name, $value);
+        }
+        return $this;
     }
 }

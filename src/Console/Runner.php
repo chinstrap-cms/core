@@ -20,6 +20,14 @@ final class Runner
         $this->container = $container;
     }
 
+    private function returnError(\Throwable $err): void
+    {
+        $msg = "Unable to run - " . $err->getMessage();
+        $msg .= "\n" . $err->__toString();
+        $msg .= "\n";
+        echo $msg;
+    }
+
     public function __invoke(): void
     {
         try {
@@ -38,13 +46,5 @@ final class Runner
         } catch (\Throwable $err) {
             $this->returnError($err);
         }
-    }
-
-    private function returnError(\Throwable $err): void
-    {
-        $msg = "Unable to run - " . $err->getMessage();
-        $msg .= "\n" . $err->__toString();
-        $msg .= "\n";
-        echo $msg;
     }
 }
