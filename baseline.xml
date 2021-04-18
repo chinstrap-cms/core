@@ -65,9 +65,6 @@
       <code>$config-&gt;get('subject')</code>
       <code>$config-&gt;get('token')</code>
     </PossiblyInvalidCast>
-    <UndefinedConstant occurrences="1">
-      <code>ROOT_DIR</code>
-    </UndefinedConstant>
   </file>
   <file src="src/Generators/XmlStringSitemap.php">
     <MixedAssignment occurrences="1">

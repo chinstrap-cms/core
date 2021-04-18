@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Chinstrap\Core\Factories;
 
 use Chinstrap\Core\Contracts\Factories\LoggerFactory;
+use Chinstrap\Core\Exceptions\Configuration\RootDirNotDefined;
 use Monolog\Handler\BrowserConsoleHandler;
 use Monolog\Handler\ChromePHPHandler;
 use Monolog\Handler\FirePHPHandler;
@@ -73,6 +74,9 @@ final class MonologFactory implements LoggerFactory
     private function createStreamHandler(Config $config): StreamHandler
     {
         $path = Str::make($config->get('path') ? (string)$config->get('path') : 'log/site.logs');
+        if (!defined('ROOT_DIR')) {
+            throw new RootDirNotDefined();
+        }
         return new StreamHandler(ROOT_DIR . $path->path()->__toString(), $this->getLevel($config->get('level')));
     }
 
