@@ -2,52 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Chinstrap\Core\Tests\Unit\Http\Controllers;
+namespace Chinstrap\Core\Tests\Unit\Http\Handlers;
 
-use Chinstrap\Core\Http\Controllers\MainController;
+use Chinstrap\Core\Http\Handlers\SubmissionHandler;
 use Chinstrap\Core\Objects\MarkdownDocument;
 use Chinstrap\Core\Tests\TestCase;
-use DateTime;
 use Laminas\EventManager\EventManagerInterface;
 use Mockery as m;
 
-final class MainControllerTest extends TestCase
+final class SubmissionHandlerTest extends TestCase
 {
-    public function testGetResponse(): void
-    {
-        $emitter = m::mock(EventManagerInterface::class);
-        $response = m::mock('Psr\Http\Message\ResponseInterface');
-        $timestamp = (new DateTime())->setTimestamp(1568840820);
-        $response->shouldReceive('withAddedHeader')
-            ->with('Last-Modified', $timestamp->format('D, d M Y H:i:s') . ' GMT')
-            ->once()
-            ->andReturn($response);
-        $doc = (new MarkdownDocument())
-            ->setField('title', 'Foo')
-            ->setPath('foo.md')
-            ->setContent('foo')
-            ->setUpdatedAt($timestamp);
-        $source = m::mock('Chinstrap\Core\Contracts\Sources\Source');
-        $source->shouldReceive('find')->once()->andReturn($doc);
-        $view = m::mock('Chinstrap\Core\Contracts\Views\Renderer');
-        $view->shouldReceive('render')->with(
-            $response,
-            'default.html',
-            [
-             'title' => 'Foo',
-             'content' => 'foo',
-            ]
-        )->once();
-        $request = m::mock('Psr\Http\Message\ServerRequestInterface');
-        $controller = new MainController(
-            $response,
-            $source,
-            $view,
-            $emitter
-        );
-        $controller->index($request, ['name' => 'foo']);
-    }
-
     public function testPostResponse(): void
     {
         $emitter = m::mock(EventManagerInterface::class);
@@ -71,13 +35,13 @@ final class MainControllerTest extends TestCase
             ]
         )->once();
         $request = m::mock('Psr\Http\Message\ServerRequestInterface');
-        $controller = new MainController(
+        $handler = new SubmissionHandler(
             $response,
             $source,
             $view,
             $emitter
         );
-        $controller->submit($request, ['name' => 'foo']);
+        $handler($request, ['name' => 'foo']);
     }
 
     public function testPostResponseToUnregisteredForm(): void
@@ -92,32 +56,14 @@ final class MainControllerTest extends TestCase
         $source->shouldReceive('find')->once()->andReturn($doc);
         $view = m::mock('Chinstrap\Core\Contracts\Views\Renderer');
         $request = m::mock('Psr\Http\Message\ServerRequestInterface');
-        $controller = new MainController(
+        $handler = new SubmissionHandler(
             $response,
             $source,
             $view,
             $emitter
         );
-        $response = $controller->submit($request, ['name' => 'foo']);
+        $response = $handler($request, ['name' => 'foo']);
         $this->assertEquals(405, $response->getStatusCode());
-    }
-
-    public function test404(): void
-    {
-        $this->expectException('League\Route\Http\Exception\NotFoundException');
-        $emitter = m::mock(EventManagerInterface::class);
-        $response = m::mock('Psr\Http\Message\ResponseInterface');
-        $source = m::mock('Chinstrap\Core\Contracts\Sources\Source');
-        $source->shouldReceive('find')->once()->andReturn(null);
-        $view = m::mock('Chinstrap\Core\Contracts\Views\Renderer');
-        $request = m::mock('Psr\Http\Message\ServerRequestInterface');
-        $controller = new MainController(
-            $response,
-            $source,
-            $view,
-            $emitter
-        );
-        $controller->index($request, ['name' => 'foo']);
     }
 
     public function test404Submit(): void
@@ -129,12 +75,12 @@ final class MainControllerTest extends TestCase
         $source->shouldReceive('find')->once()->andReturn(null);
         $view = m::mock('Chinstrap\Core\Contracts\Views\Renderer');
         $request = m::mock('Psr\Http\Message\ServerRequestInterface');
-        $controller = new MainController(
+        $handler = new SubmissionHandler(
             $response,
             $source,
             $view,
             $emitter
         );
-        $controller->submit($request, ['name' => 'foo']);
+        $handler($request, ['name' => 'foo']);
     }
 }

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Chinstrap\Core\Tests\Unit\Http\Controllers;
+namespace Chinstrap\Core\Tests\Unit\Http\Handlers;
 
-use Chinstrap\Core\Http\Controllers\ImageController;
+use Chinstrap\Core\Http\Handlers\ImageHandler;
 use Chinstrap\Core\Tests\TestCase;
 use Mockery as m;
 
-final class ImageControllerTest extends TestCase
+final class ImageHandlerTest extends TestCase
 {
     public function setUp(): void
     {
@@ -36,8 +36,8 @@ final class ImageControllerTest extends TestCase
               ->once()
               ->with('foo', [])
               ->andReturn($imgResponse);
-        $controller = new ImageController($glide);
-        $response = $controller->get($request, ['name' => 'foo']);
+        $handler = new ImageHandler($glide);
+        $response = $handler($request, ['name' => 'foo']);
         $this->assertSame($imgResponse, $response);
     }
 }

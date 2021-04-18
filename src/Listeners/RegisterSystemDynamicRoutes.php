@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Listeners;
 
+use Chinstrap\Core\Http\Handlers\ClockworkHandler;
+use Chinstrap\Core\Http\Handlers\ImageHandler;
+use Chinstrap\Core\Http\Handlers\PageHandler;
+use Chinstrap\Core\Http\Handlers\SubmissionHandler;
 use Chinstrap\Core\Http\Middleware\ClockworkMiddleware;
 use Chinstrap\Core\Http\Middleware\ETagMiddleware;
 use Chinstrap\Core\Http\Middleware\HttpCacheMiddleware;
@@ -49,16 +53,16 @@ final class RegisterSystemDynamicRoutes extends BaseListener
         if ($_ENV['APP_ENV'] == 'development') {
             $this->router->get(
                 '/__clockwork/{request:.+}',
-                'Chinstrap\Core\Http\Controllers\ClockworkController::process'
+                ClockworkHandler::class
             );
         }
-        $this->router->get('/images/[{name}]', 'Chinstrap\Core\Http\Controllers\ImageController::get')
+        $this->router->get('/images/[{name}]', ImageHandler::class)
             ->middleware($this->clockworkMiddleware);
-        $this->router->get('/[{name:[a-zA-Z0-9\-\/]+}]', 'Chinstrap\Core\Http\Controllers\MainController::index')
+        $this->router->get('/[{name:[a-zA-Z0-9\-\/]+}]', PageHandler::class)
                ->middleware($this->clockworkMiddleware)
                ->middleware($this->cacheMiddleware)
                ->middleware($this->etagMiddleware);
-        $this->router->post('/[{name:[a-zA-Z0-9\-\/]+}]', 'Chinstrap\Core\Http\Controllers\MainController::submit')
+        $this->router->post('/[{name:[a-zA-Z0-9\-\/]+}]', SubmissionHandler::class)
             ->middleware($this->clockworkMiddleware);
     }
 }

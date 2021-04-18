@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Chinstrap\Core\Http\Controllers;
+namespace Chinstrap\Core\Http\Handlers;
 
 use Clockwork\Support\Vanilla\Clockwork;
 use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ServerRequestInterface;
 
-final class ClockworkController
+final class ClockworkHandler
 {
     /**
      * @var Clockwork
@@ -20,7 +20,7 @@ final class ClockworkController
         $this->clockwork = $clockwork;
     }
 
-    public function process(ServerRequestInterface $request, array $requestName): JsonResponse
+    public function __invoke(ServerRequestInterface $request, array $requestName): JsonResponse
     {
         return new JsonResponse($this->clockwork->getMetadata($requestName['request']));
     }

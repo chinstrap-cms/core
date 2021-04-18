@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Chinstrap\Core\Http\Controllers;
+namespace Chinstrap\Core\Http\Handlers;
 
 use League\Glide\Server;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-final class ImageController
+final class ImageHandler
 {
     /**
      * @var Server
@@ -26,7 +26,7 @@ final class ImageController
      * @param ServerRequestInterface $request
      * @param array{name: string} $args
      */
-    public function get(ServerRequestInterface $request, array $args): ResponseInterface
+    public function __invoke(ServerRequestInterface $request, array $args): ResponseInterface
     {
         return $this->glide->getImageResponse($args['name'], $request->getQueryParams());
     }

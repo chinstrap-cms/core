@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Chinstrap\Core\Tests\Unit\Http\Controllers;
+namespace Chinstrap\Core\Tests\Unit\Http\Handlers;
 
-use Chinstrap\Core\Http\Controllers\ClockworkController;
+use Chinstrap\Core\Http\Handlers\ClockworkHandler;
 use Chinstrap\Core\Tests\TestCase;
 use Mockery as m;
 
-final class ClockworkControllerTest extends TestCase
+final class ClockworkHandlerTest extends TestCase
 {
     public function setUp(): void
     {
@@ -24,16 +24,16 @@ final class ClockworkControllerTest extends TestCase
         parent::tearDown();
     }
 
-    public function testGetResponse()
+    public function testGetResponse(): void
     {
         $clockwork = m::mock('Clockwork\Support\Vanilla\Clockwork')->makePartial();
         $clockwork->shouldReceive('getMetadata')
             ->with('foo')
             ->once()
             ->andReturn(['bar' => 'baz']);
-        $controller = new ClockworkController($clockwork);
+        $handler = new ClockworkHandler($clockwork);
         $request = m::mock('Psr\Http\Message\ServerRequestInterface');
-        $response = $controller->process($request, ['request' => 'foo']);
+        $response = $handler($request, ['request' => 'foo']);
         $this->assertEquals(json_encode(['bar' => 'baz']), $response->getBody()->getContents());
     }
 }

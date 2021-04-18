@@ -2,18 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Chinstrap\Core\Http\Controllers;
+namespace Chinstrap\Core\Http\Handlers;
 
 use Chinstrap\Core\Contracts\Sources\Source;
 use Chinstrap\Core\Contracts\Views\Renderer;
-use Chinstrap\Core\Events\FormSubmitted;
-use Laminas\Diactoros\Response\EmptyResponse;
 use Laminas\EventManager\EventManagerInterface;
 use League\Route\Http\Exception\NotFoundException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-final class MainController
+final class PageHandler
 {
     /**
      * @var ResponseInterface
@@ -53,7 +51,7 @@ final class MainController
      * @param ServerRequestInterface $request
      * @param array{name: ?string} $args
      */
-    public function index(ServerRequestInterface $request, array $args): ResponseInterface
+    public function __invoke(ServerRequestInterface $request, array $args): ResponseInterface
     {
         $name = isset($args['name']) ? $args['name'] : 'index';
         if (!$document = $this->source->find($name)) {
@@ -67,27 +65,5 @@ final class MainController
             $document->getUpdatedAt()->format('D, d M Y H:i:s') . ' GMT'
         );
         return $this->view->render($response, $layout, $data);
-    }
-
-    /**
-     * POST request to content page
-     *
-     * @param ServerRequestInterface $request
-     * @param array{name: ?string} $args
-     */
-    public function submit(ServerRequestInterface $request, array $args): ResponseInterface
-    {
-        $name = isset($args['name']) ? $args['name'] : 'index';
-        if (!$document = $this->source->find($name)) {
-            throw new NotFoundException('Page not found');
-        }
-        $data = $document->getFields();
-        if (!isset($data['forms'])) {
-            return new EmptyResponse(405);
-        }
-        $data['content'] = $document->getContent();
-        $layout = isset($data['layout']) ? $data['layout'] . '.html' : 'default.html';
-        $this->eventManager->trigger(FormSubmitted::class);
-        return $this->view->render($this->response, $layout, $data);
     }
 }
