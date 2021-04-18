@@ -119,8 +119,9 @@ final class ContainerFactory
                     ]);
                 },
                 Source::class => function (ContainerInterface $container): Source {
-                    $config = $container->get(Config::class);
-                    return $container->get($config->get('source'));
+                    $config = $container->get(Config::class)->get('source');
+                    /** @var class-string<Source> $config **/
+                    return $container->get($config);
                 },
                 LoggerInterface::class => function (
                     ContainerInterface $container
