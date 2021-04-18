@@ -13,9 +13,11 @@ final class ClockworkHandlerTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        if (defined('E_STRICT')) {
-            error_reporting('E_ALL | E_STRICT');
+        if (!defined('E_STRICT')) {
+            return;
         }
+
+        error_reporting('E_ALL | E_STRICT');
     }
 
     public function tearDown(): void

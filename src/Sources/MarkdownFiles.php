@@ -44,9 +44,11 @@ final class MarkdownFiles implements Source
                 if (!preg_match('/.(markdown|md)$/', $file['path'])) {
                     continue;
                 }
-                if ($content = $this->fs->read('content://' . $file['path'])) {
-                    yield $this->fromMarkdown($this->parser->parse($content), $file['path']);
+                if (!$content = $this->fs->read('content://' . $file['path'])) {
+                    continue;
                 }
+
+                yield $this->fromMarkdown($this->parser->parse($content), $file['path']);
             }
         });
     }
