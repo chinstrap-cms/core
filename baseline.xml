@@ -80,20 +80,6 @@
       <code>$document-&gt;getUrl()</code>
     </MixedOperand>
   </file>
-  <file src="src/Http/Controllers/ImageController.php">
-    <MixedInferredReturnType occurrences="1">
-      <code>ResponseInterface</code>
-    </MixedInferredReturnType>
-    <MixedReturnStatement occurrences="1">
-      <code>$this-&gt;glide-&gt;getImageResponse($args['name'], $request-&gt;getQueryParams())</code>
-    </MixedReturnStatement>
-  </file>
-  <file src="src/Http/Controllers/MainController.php">
-    <MixedOperand occurrences="2">
-      <code>$data['layout']</code>
-      <code>$data['layout']</code>
-    </MixedOperand>
-  </file>
   <file src="src/Http/Middleware/ClockworkMiddleware.php">
     <MixedInferredReturnType occurrences="1">
       <code>ResponseInterface</code>

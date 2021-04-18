@@ -6,7 +6,6 @@ namespace Chinstrap\Core\Http\Handlers;
 
 use Chinstrap\Core\Contracts\Sources\Source;
 use Chinstrap\Core\Contracts\Views\Renderer;
-use Laminas\EventManager\EventManagerInterface;
 use League\Route\Http\Exception\NotFoundException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -28,21 +27,14 @@ final class PageHandler
      */
     protected $view;
 
-    /**
-     * @var EventManagerInterface
-     */
-    protected $eventManager;
-
     public function __construct(
         ResponseInterface $response,
         Source $source,
-        Renderer $view,
-        EventManagerInterface $eventManager
+        Renderer $view
     ) {
         $this->response = $response;
         $this->source = $source;
         $this->view = $view;
-        $this->eventManager = $eventManager;
     }
 
     /**
