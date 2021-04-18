@@ -9,7 +9,7 @@ use Chinstrap\Core\Tests\TestCase;
 
 final class MarkdownDocumentTest extends TestCase
 {
-    public function testCreate()
+    public function testCreate(): void
     {
         $doc = new MarkdownDocument();
         $doc->setContent('This is my content');
@@ -22,14 +22,14 @@ final class MarkdownDocumentTest extends TestCase
         $this->assertEquals('foo', $doc->getPath());
     }
 
-    public function testTostring()
+    public function testTostring(): void
     {
         $doc = new MarkdownDocument();
         $doc->setContent('This is my content');
         $this->assertEquals('This is my content', $doc->__toString());
     }
 
-    public function testSet()
+    public function testSet(): void
     {
         $doc = new MarkdownDocument();
         $doc->content = 'This is my content';
@@ -42,7 +42,7 @@ final class MarkdownDocumentTest extends TestCase
         $this->assertEquals('foo', $doc->getPath());
     }
 
-    public function testGet()
+    public function testGet(): void
     {
         $doc = new MarkdownDocument();
         $doc->setContent('This is my content');
@@ -55,7 +55,7 @@ final class MarkdownDocumentTest extends TestCase
         $this->assertEquals('foo', $doc->path);
     }
 
-    public function testGetFields()
+    public function testGetFields(): void
     {
         $doc = new MarkdownDocument();
         $doc->setContent('This is my content');
@@ -68,7 +68,7 @@ final class MarkdownDocumentTest extends TestCase
                             ], $doc->getFields());
     }
 
-    public function testJsonSerialize()
+    public function testJsonSerialize(): void
     {
         $doc = new MarkdownDocument();
         $doc->setContent('This is my content');

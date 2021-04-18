@@ -67,7 +67,7 @@ final class FormTest extends TestCase
         $form->__invoke('contact');
     }
 
-    public function testException()
+    public function testException(): void
     {
         $this->expectException('Chinstrap\Core\Exceptions\Forms\FormNotFound');
         $config = m::mock('PublishingKit\Config\Config');

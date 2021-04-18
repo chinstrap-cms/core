@@ -10,7 +10,7 @@ use Mockery as m;
 
 final class ETagTest extends TestCase
 {
-    public function testNotGet()
+    public function testNotGet(): void
     {
         $request = m::mock('Psr\Http\Message\ServerRequestInterface');
         $request->shouldReceive('getMethod')->andReturn('POST');
@@ -23,7 +23,7 @@ final class ETagTest extends TestCase
         $this->assertEquals($received, $response);
     }
 
-    public function testGet()
+    public function testGet(): void
     {
         $request = m::mock('Psr\Http\Message\ServerRequestInterface');
         $request->shouldReceive('getMethod')->andReturn('GET');
@@ -39,7 +39,7 @@ final class ETagTest extends TestCase
         $received = $middleware->process($request, $handler);
     }
 
-    public function testInactiveInDevelopment()
+    public function testInactiveInDevelopment(): void
     {
         $request = m::mock('Psr\Http\Message\ServerRequestInterface');
         $request->shouldReceive('getMethod')->andReturn('POST');
@@ -52,7 +52,7 @@ final class ETagTest extends TestCase
         $this->assertEquals($received, $response);
     }
 
-    public function testGetWithoutExistingEtag()
+    public function testGetWithoutExistingEtag(): void
     {
         $request = m::mock('Psr\Http\Message\ServerRequestInterface');
         $request->shouldReceive('getMethod')->andReturn('GET');

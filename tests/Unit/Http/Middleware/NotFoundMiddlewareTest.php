@@ -11,7 +11,7 @@ use Psr\Http\Message\ResponseInterface;
 
 final class NotFoundMiddlewareTest extends TestCase
 {
-    public function testRun()
+    public function testRun(): void
     {
         $request = m::mock('Psr\Http\Message\ServerRequestInterface');
         $response = m::mock('Psr\Http\Message\ResponseInterface');

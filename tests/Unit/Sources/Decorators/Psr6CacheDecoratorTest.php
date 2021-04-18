@@ -12,7 +12,7 @@ use PublishingKit\Utilities\Collections\Collection;
 
 final class Psr6CacheDecoratorTest extends TestCase
 {
-    public function testAll()
+    public function testAll(): void
     {
         $result = Collection::make([]);
         $cache = m::mock('Psr\Cache\CacheItemPoolInterface');
@@ -22,7 +22,7 @@ final class Psr6CacheDecoratorTest extends TestCase
         $decorator->all();
     }
 
-    public function testFindHit()
+    public function testFindHit(): void
     {
         $result = new MarkdownDocument();
         $cache = m::mock('Psr\Cache\CacheItemPoolInterface');
@@ -34,7 +34,7 @@ final class Psr6CacheDecoratorTest extends TestCase
         $decorator->find('foo');
     }
 
-    public function testFindMiss()
+    public function testFindMiss(): void
     {
         $result = new MarkdownDocument();
         $item = m::mock('Psr\Cache\CacheItemInterface');

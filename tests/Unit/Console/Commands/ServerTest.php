@@ -11,7 +11,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 
 final class ServerTest extends TestCase
 {
-    public function testExecute()
+    public function testExecute(): void
     {
         $passthru = PHPMockery::mock('Chinstrap\Core\Console\Commands', "passthru");
         $cmd = new Server();

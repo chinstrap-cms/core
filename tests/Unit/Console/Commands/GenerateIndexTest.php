@@ -12,7 +12,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 
 final class GenerateIndexTest extends TestCase
 {
-    public function testExecute()
+    public function testExecute(): void
     {
         $response = Collection::make([['foo']]);
         $source = m::mock('Chinstrap\Core\Contracts\Sources\Source');

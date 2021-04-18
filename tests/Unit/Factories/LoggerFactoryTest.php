@@ -13,7 +13,7 @@ final class LoggerFactoryTest extends TestCase
     /**
      * @dataProvider levelProvider
      */
-    public function testCreateStreamHandler($level)
+    public function testCreateStreamHandler($level): void
     {
         $factory = new MonologFactory();
         $config = new Config([
@@ -30,7 +30,7 @@ final class LoggerFactoryTest extends TestCase
         $this->assertInstanceOf('Monolog\Handler\StreamHandler', $handlers[0]);
     }
 
-    public function testCreateDefaultHandler()
+    public function testCreateDefaultHandler(): void
     {
         $factory = new MonologFactory();
         $config = new Config([]);
@@ -41,7 +41,7 @@ final class LoggerFactoryTest extends TestCase
         $this->assertInstanceOf('Monolog\Handler\StreamHandler', $handlers[0]);
     }
 
-    public function testCreateFirePHPHandler()
+    public function testCreateFirePHPHandler(): void
     {
         $factory = new MonologFactory();
         $config = new Config([
@@ -54,7 +54,7 @@ final class LoggerFactoryTest extends TestCase
         $this->assertInstanceOf('Monolog\Handler\FirePHPHandler', $handlers[0]);
     }
 
-    public function testCreateBrowserConsoleHandler()
+    public function testCreateBrowserConsoleHandler(): void
     {
         $factory = new MonologFactory();
         $config = new Config([
@@ -67,7 +67,7 @@ final class LoggerFactoryTest extends TestCase
         $this->assertInstanceOf('Monolog\Handler\BrowserConsoleHandler', $handlers[0]);
     }
 
-    public function testCreateChromePHPHandler()
+    public function testCreateChromePHPHandler(): void
     {
         $factory = new MonologFactory();
         $config = new Config([
@@ -80,7 +80,7 @@ final class LoggerFactoryTest extends TestCase
         $this->assertInstanceOf('Monolog\Handler\ChromePHPHandler', $handlers[0]);
     }
 
-    public function testCreateNativeMailerHandler()
+    public function testCreateNativeMailerHandler(): void
     {
         $factory = new MonologFactory();
         $config = new Config([
@@ -98,7 +98,7 @@ final class LoggerFactoryTest extends TestCase
         $this->assertInstanceOf('Monolog\Handler\NativeMailerHandler', $handlers[0]);
     }
 
-    public function testCreateSlackHandler()
+    public function testCreateSlackHandler(): void
     {
         $factory = new MonologFactory();
         $config = new Config([

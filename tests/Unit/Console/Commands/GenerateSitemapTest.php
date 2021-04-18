@@ -11,7 +11,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 
 final class GenerateSitemapTest extends TestCase
 {
-    public function testExecute()
+    public function testExecute(): void
     {
         $generator = m::mock('Chinstrap\Core\Contracts\Generators\Sitemap');
         $generator->shouldReceive('__invoke')->once()->andReturn('foo');

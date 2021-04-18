@@ -12,7 +12,7 @@ use PublishingKit\Utilities\Collections\Collection;
 
 final class SitemapTest extends TestCase
 {
-    public function testExecute()
+    public function testExecute(): void
     {
         $expectedResponse = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>

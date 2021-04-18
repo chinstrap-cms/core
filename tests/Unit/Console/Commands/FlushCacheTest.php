@@ -11,7 +11,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 
 final class FlushCacheTest extends TestCase
 {
-    public function testExecute()
+    public function testExecute(): void
     {
         $cache = m::mock('Psr\Cache\CacheItemPoolInterface');
         $cache->shouldReceive('purge')->once();

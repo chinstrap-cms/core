@@ -25,7 +25,7 @@ final class KernelTest extends TestCase
         parent::tearDown();
     }
 
-    public function testPluginNotFound()
+    public function testPluginNotFound(): void
     {
         $this->expectException('Chinstrap\Core\Exceptions\Plugins\PluginNotFound');
         $emitter = m::mock('Laminas\EventManager\EventManagerInterface');
@@ -47,7 +47,7 @@ final class KernelTest extends TestCase
         $app->bootstrap();
     }
 
-    public function testPluginNotValid()
+    public function testPluginNotValid(): void
     {
         $this->expectException('Chinstrap\Core\Exceptions\Plugins\PluginNotValid');
         $emitter = m::mock('Laminas\EventManager\EventManagerInterface');

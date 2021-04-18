@@ -11,7 +11,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 
 final class ShellTest extends TestCase
 {
-    public function testExecute()
+    public function testExecute(): void
     {
         $container = m::mock('Psr\Container\ContainerInterface');
         $shell = m::mock('Psy\Shell');

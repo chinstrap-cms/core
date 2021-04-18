@@ -9,21 +9,21 @@ use Chinstrap\Core\Tests\TestCase;
 
 final class EmailAddressTest extends TestCase
 {
-    public function testCreate()
+    public function testCreate(): void
     {
         $email = "bob@example.com";
         $obj = new EmailAddress($email);
         $this->assertEquals($email, $obj->__toString());
     }
 
-    public function testFailedCreate()
+    public function testFailedCreate(): void
     {
         $this->expectException('Chinstrap\Core\Exceptions\Objects\EmailAddressInvalid');
         $email = "example.com";
         $obj = new EmailAddress($email);
     }
 
-    public function testEquals()
+    public function testEquals(): void
     {
         $obj = new EmailAddress('bob@example.com');
         $this->assertTrue($obj->equals(new EmailAddress('bob@example.com')));

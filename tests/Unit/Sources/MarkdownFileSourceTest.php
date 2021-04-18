@@ -10,7 +10,7 @@ use Mockery as m;
 
 final class MarkdownFileSourceTest extends TestCase
 {
-    public function testAll()
+    public function testAll(): void
     {
         $manager = m::mock('League\Flysystem\MountManager');
         $manager->shouldReceive('listContents')
@@ -51,7 +51,7 @@ final class MarkdownFileSourceTest extends TestCase
         $this->assertEquals('foo.md', $item->path);
     }
 
-    public function testFind()
+    public function testFind(): void
     {
         $manager = m::mock('League\Flysystem\MountManager');
         $manager->shouldReceive('has')->with('content://foo.md')
@@ -79,7 +79,7 @@ final class MarkdownFileSourceTest extends TestCase
         $this->assertEquals('foo.md', $document->path);
     }
 
-    public function testFindEmpty()
+    public function testFindEmpty(): void
     {
         $manager = m::mock('League\Flysystem\MountManager');
         $manager->shouldReceive('has')->with('content://foo.md')
@@ -93,7 +93,7 @@ final class MarkdownFileSourceTest extends TestCase
         $this->assertNull($source->find('foo'));
     }
 
-    public function testFindNull()
+    public function testFindNull(): void
     {
         $manager = m::mock('League\Flysystem\MountManager');
         $manager->shouldReceive('has')->with('content://foo.md')

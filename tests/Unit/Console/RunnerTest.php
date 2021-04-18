@@ -13,7 +13,7 @@ final class RunnerTest extends TestCase
 {
     use SetsPrivateProperties;
 
-    public function testExecute()
+    public function testExecute(): void
     {
         $console = m::mock('Symfony\Component\Console\Kernel');
         $console->shouldReceive('add')->times(5);
@@ -49,7 +49,7 @@ final class RunnerTest extends TestCase
         $runner();
     }
 
-    public function testCatchError()
+    public function testCatchError(): void
     {
         $this->expectOutputRegex('/^Unable to run/');
         $container = m::mock('Psr\Container\ContainerInterface');

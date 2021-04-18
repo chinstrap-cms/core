@@ -11,7 +11,7 @@ use Mockery as m;
 
 final class LaminasFormFactoryTest extends TestCase
 {
-    public function testMake()
+    public function testMake(): void
     {
         $wrappedFactory = new Factory();
         $factory = new LaminasFormFactory($wrappedFactory);

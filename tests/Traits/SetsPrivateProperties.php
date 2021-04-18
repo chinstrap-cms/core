@@ -14,9 +14,8 @@ trait SetsPrivateProperties
      * @param mixed $object
      * @param string $property
      * @param mixed $value
-     * @return void
      */
-    public function setPrivateProperty($object, string $property, $value)
+    public function setPrivateProperty($object, string $property, $value): void
     {
         $reflect = new ReflectionClass($object);
         $prop = $reflect->getProperty($property);
