@@ -92,10 +92,10 @@ final class MarkdownDocument implements Document, JsonSerializable
 
     public function __get(string $name): string
     {
-        if ($name == 'content') {
+        if ($name === 'content') {
             return $this->getContent();
         }
-        if ($name == 'path') {
+        if ($name === 'path') {
             return $this->getPath();
         }
         return $this->getField($name);
@@ -103,9 +103,9 @@ final class MarkdownDocument implements Document, JsonSerializable
 
     public function __set(string $name, string $value): Document
     {
-        if ($name == 'content') {
+        if ($name === 'content') {
             $this->setContent($value);
-        } elseif ($name == 'path') {
+        } elseif ($name === 'path') {
             $this->setPath($value);
         } else {
             $this->setField($name, $value);

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Console;
 
-use Exception;
 use Psr\Container\ContainerInterface;
 use Psy\Shell as Psysh;
 use Symfony\Component\Console\Application;
@@ -36,12 +35,12 @@ final class Runner
             $console->add($this->container->get(\Chinstrap\Core\Console\Commands\GenerateIndex::class));
             $console->add($this->container->get(\Chinstrap\Core\Console\Commands\GenerateSitemap::class));
             $console->run();
-        } catch (Exception $err) {
+        } catch (\Throwable $err) {
             $this->returnError($err);
         }
     }
 
-    private function returnError(Exception $err): void
+    private function returnError(\Throwable $err): void
     {
         $msg = "Unable to run - " . $err->getMessage();
         $msg .= "\n" . $err->__toString();

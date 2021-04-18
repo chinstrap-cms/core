@@ -50,7 +50,7 @@ final class RegisterSystemDynamicRoutes extends BaseListener
 
     public function __invoke(EventInterface $event): void
     {
-        if ($_ENV['APP_ENV'] == 'development') {
+        if ($_ENV['APP_ENV'] === 'development') {
             $this->router->get(
                 '/__clockwork/{request:.+}',
                 ClockworkHandler::class

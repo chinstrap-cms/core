@@ -26,7 +26,7 @@ final class ClockworkMiddleware implements MiddlewareInterface
     {
         $response = $handler->handle($request);
         $env = $request->getServerParams();
-        if ($env['APP_ENV'] == 'development') {
+        if ($env['APP_ENV'] === 'development') {
             return $this->clockwork->usePsrMessage($request, $response)->requestProcessed();
         }
         return $response;

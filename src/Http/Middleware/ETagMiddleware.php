@@ -22,14 +22,14 @@ final class ETagMiddleware implements MiddlewareInterface
         $method = $request->getMethod();
 
         // If this was not a GET or HEAD request, just return
-        if ($method != 'GET' && $method != 'HEAD') {
+        if ($method !== 'GET' && $method !== 'HEAD') {
             return $response;
         }
         $etag = md5($response->getBody()->getContents());
         $requestEtag = str_replace('"', '', $request->getHeader('if-none-match'));
 
         // Check to see if Etag has changed
-        if ($requestEtag && $requestEtag[0] == $etag) {
+        if ($requestEtag && $requestEtag[0] === $etag) {
             $response = new EmptyResponse();
             return $response->withStatus(304);
         }

@@ -27,7 +27,7 @@ final class HttpCacheMiddleware implements MiddlewareInterface
             return $response;
         }
 
-        if ($request->getMethod() != 'GET' || !in_array($response->getStatusCode(), $this->cacheableStatus)) {
+        if ($request->getMethod() !== 'GET' || !in_array($response->getStatusCode(), $this->cacheableStatus)) {
             return $response;
         }
 

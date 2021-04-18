@@ -38,7 +38,7 @@ final class MarkdownFiles implements Source
             /** @var array<array{type: string, path: string}> $files **/
             $files = $this->fs->listContents('content://', true);
             foreach ($files as $file) {
-                if ($file['type'] == 'dir') {
+                if ($file['type'] === 'dir') {
                     continue;
                 }
                 if (!preg_match('/.(markdown|md)$/', $file['path'])) {
