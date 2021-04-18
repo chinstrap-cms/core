@@ -106,10 +106,10 @@ final class ContainerFactory
                     $config = $container->get(Config::class);
 
                     // Decorate the adapter
-                    $contentFilesystem = $factory->make($config->filesystem->content->toArray());
-                    $assetFilesystem = $factory->make($config->filesystem->assets->toArray());
-                    $mediaFilesystem = $factory->make($config->filesystem->media->toArray());
-                    $cacheFilesystem = $factory->make($config->filesystem->cache->toArray());
+                    $contentFilesystem = $factory->make($config->filesystem->content);
+                    $assetFilesystem = $factory->make($config->filesystem->assets);
+                    $mediaFilesystem = $factory->make($config->filesystem->media);
+                    $cacheFilesystem = $factory->make($config->filesystem->cache);
 
                     return new MountManager([
                         'content' => $contentFilesystem,

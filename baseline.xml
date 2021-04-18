@@ -121,10 +121,6 @@
     </MissingClosureParamType>
     <MixedArgument occurrences="7">
       <code>$config-&gt;cache-&gt;toArray()</code>
-      <code>$config-&gt;filesystem-&gt;assets-&gt;toArray()</code>
-      <code>$config-&gt;filesystem-&gt;cache-&gt;toArray()</code>
-      <code>$config-&gt;filesystem-&gt;content-&gt;toArray()</code>
-      <code>$config-&gt;filesystem-&gt;media-&gt;toArray()</code>
       <code>$container-&gt;get('Twig\Loader\FilesystemLoader')</code>
       <code>$stream</code>
     </MixedArgument>
@@ -137,7 +133,7 @@
       <code>Clockwork</code>
       <code>Source</code>
     </MixedInferredReturnType>
-    <MixedMethodCall occurrences="7">
+    <MixedMethodCall occurrences="3">
       <code>getFilesystem</code>
       <code>getFilesystem</code>
       <code>toArray</code>

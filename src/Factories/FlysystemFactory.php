@@ -17,6 +17,7 @@ use League\Flysystem\Filesystem;
 use League\Flysystem\Memory\MemoryAdapter;
 use League\Flysystem\Sftp\SftpAdapter;
 use MicrosoftAzure\Storage\Blob\BlobRestProxy;
+use PublishingKit\Config\Config;
 use Spatie\Dropbox\Client;
 use Spatie\FlysystemDropbox\DropboxAdapter;
 use Stash\Pool;
@@ -33,12 +34,9 @@ final class FlysystemFactory
         $this->pool = $pool;
     }
 
-    public function make(array $config): Filesystem
+    public function make(Config $config): Filesystem
     {
-        if (!isset($config['driver'])) {
-            $config['driver'] = 'local';
-        }
-        switch ($config['driver']) {
+        switch ($config->get('driver')) {
             case 'memory':
                 $adapter = $this->createMemoryAdapter();
                 break;
@@ -75,115 +73,115 @@ final class FlysystemFactory
         return new MemoryAdapter();
     }
 
-    private function createLocalAdapter(array $config): Local
+    private function createLocalAdapter(Config $config): Local
     {
         if (!defined('ROOT_DIR')) {
             throw new RootDirNotDefined('Root directory not defined');
         }
-        if (!isset($config['path']) || !is_string($config['path'])) {
+        if (!$config->has('path') || !is_string($config->get('path'))) {
             throw new BadFlysystemConfigurationException('Path not set for local driver');
         }
-        return new Local(ROOT_DIR . '/' . $config['path']);
+        return new Local(ROOT_DIR . '/' . $config->get('path'));
     }
 
-    private function createDropboxAdapter(array $config): DropboxAdapter
+    private function createDropboxAdapter(Config $config): DropboxAdapter
     {
-        if (!isset($config['token']) || !is_string($config['token'])) {
+        if (!$config->has('token') || !is_string($config->get('token'))) {
             throw new BadFlysystemConfigurationException('Token not set for Dropbox driver');
         }
-        $client = new Client($config['token']);
+        $client = new Client($config->get('token'));
         return new DropboxAdapter($client);
     }
 
-    private function createAzureAdapter(array $config): AzureBlobStorageAdapter
+    private function createAzureAdapter(Config $config): AzureBlobStorageAdapter
     {
-        if (!isset($config['container']) || !is_string($config['container'])) {
+        if (!$config->has('container') || !is_string($config->get('container'))) {
             throw new BadFlysystemConfigurationException('Container not set for Azure driver');
         }
-        if (!isset($config['name']) || !is_string($config['name'])) {
+        if (!$config->has('name') || !is_string($config->get('name'))) {
             throw new BadFlysystemConfigurationException('Account name not set for Azure driver');
         }
-        if (!isset($config['key']) || !is_string($config['key'])) {
+        if (!$config->has('key') || !is_string($config->get('key'))) {
             throw new BadFlysystemConfigurationException('Account key not set for Azure driver');
         }
         $endpoint = sprintf(
             'DefaultEndpointsProtocol=https;AccountName=%s;AccountKey=%s',
-            $config['name'],
-            $config['key']
+            $config->get('name'),
+            $config->get('key')
         );
         $client = BlobRestProxy::createBlobService($endpoint);
         return new AzureBlobStorageAdapter($client, $config['container']);
     }
 
-    private function createS3Adapter(array $config): AwsS3Adapter
+    private function createS3Adapter(Config $config): AwsS3Adapter
     {
-        if (!isset($config['bucket'])) {
+        if (!$config->has('bucket')) {
             throw new BadFlysystemConfigurationException('Bucket not set for S3 driver');
         }
-        if (!isset($config['key'])) {
+        if (!$config->has('key')) {
             throw new BadFlysystemConfigurationException('Key not set for S3 driver');
         }
-        if (!isset($config['secret'])) {
+        if (!$config->has('secret')) {
             throw new BadFlysystemConfigurationException('Secret not set for S3 driver');
         }
-        if (!isset($config['region'])) {
+        if (!$config->has('region')) {
             throw new BadFlysystemConfigurationException('Region not set for S3 driver');
         }
-        if (!isset($config['version'])) {
+        if (!$config->has('version')) {
             throw new BadFlysystemConfigurationException('Version not set for S3 driver');
         }
         $client = new S3Client([
                                 'credentials' => [
-                                                  'key' => $config['key'],
-                                                  'secret' => $config['secret'],
+                                                  'key' => $config->get('key'),
+                                                  'secret' => $config->get('secret'),
                                                  ],
-                                'region' => $config['region'],
-                                'version' => $config['version'],
+                                'region' => $config->get('region'),
+                                'version' => $config->get('version'),
                                ]);
-        return new AwsS3Adapter($client, $config['bucket']);
+        return new AwsS3Adapter($client, $config->get('bucket'));
     }
 
-    private function createSftpAdapter(array $config): SftpAdapter
+    private function createSftpAdapter(Config $config): SftpAdapter
     {
-        if (!isset($config['host'])) {
+        if (!$config->has('host')) {
             throw new BadFlysystemConfigurationException('Host not set for SFTP driver');
         }
-        if (!isset($config['username'])) {
+        if (!$config->has('username')) {
             throw new BadFlysystemConfigurationException('Username not set for SFTP driver');
         }
-        if (!isset($config['password']) && !isset($config['privatekey'])) {
+        if (!$config->has('password') && !$config->has('privatekey')) {
             throw new BadFlysystemConfigurationException('Neither password nor private key set for SFTP driver');
         }
         return new SftpAdapter([
-                                'host' => $config['host'],
-                                'port' => isset($config['port']) ? $config['port'] : 22,
-                                'username' => $config['username'],
-                                'password' => $config['password'],
-                                'privateKey' => isset($config['privatekey']) ? $config['privatekey'] : null,
-                                'root' => isset($config['root']) ? $config['root'] : null,
-                                'timeout' => isset($config['timeout']) ? $config['timeout'] : 10,
+                                'host' => $config->get('host'),
+                                'port' => $config->get('port') ?? 22,
+                                'username' => $config->get('username'),
+                                'password' => $config->get('password'),
+                                'privateKey' => $config->get('privatekey') ?? null,
+                                'root' => $config->get('root') ?? null,
+                                'timeout' => $config->get('timeout') ?? 10,
                                ]);
     }
 
-    private function createFtpAdapter(array $config): FTPAdapter
+    private function createFtpAdapter(Config $config): FTPAdapter
     {
-        if (!isset($config['host'])) {
+        if (!$config->has('host')) {
             throw new BadFlysystemConfigurationException('Host not set for FTP driver');
         }
-        if (!isset($config['username'])) {
+        if (!$config->has('username')) {
             throw new BadFlysystemConfigurationException('Username not set for FTP driver');
         }
-        if (!isset($config['password']) && !isset($config['privatekey'])) {
+        if (!$config->has('password') && !$config->has('privatekey')) {
             throw new BadFlysystemConfigurationException('Neither password nor private key set for FTP driver');
         }
         return new FTPAdapter([
-                               'host' => $config['host'],
-                               'port' => isset($config['port']) ? $config['port'] : 22,
-                               'username' => $config['username'],
-                               'password' => $config['password'],
-                               'privateKey' => isset($config['privatekey']) ? $config['privatekey'] : null,
-                               'root' => isset($config['root']) ? $config['root'] : null,
-                               'timeout' => isset($config['timeout']) ? $config['timeout'] : 10,
+                                'host' => $config->get('host'),
+                                'port' => $config->get('port') ?? 22,
+                                'username' => $config->get('username'),
+                                'password' => $config->get('password'),
+                                'privateKey' => $config->get('privatekey') ?? null,
+                                'root' => $config->get('root') ?? null,
+                                'timeout' => $config->get('timeout') ?? 10,
                               ]);
     }
 }
