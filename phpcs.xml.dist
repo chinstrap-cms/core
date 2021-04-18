@@ -16,6 +16,18 @@
 	<rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
     <rule ref="PSR12" />
     <rule ref="SlevomatCodingStandard.Arrays.DisallowImplicitArrayCreation"/>
+    <rule ref="SlevomatCodingStandard.Classes.ClassMemberSpacing">
+        <properties>
+            <property name="linesCountBetweenMembers" value="1" />
+        </properties>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Classes.MethodSpacing">
+        <properties>
+            <property name="minLinesCount" value="1" />
+            <property name="maxLinesCount" value="1" />
+        </properties>
+    </rule>
+
     <rule ref="SlevomatCodingStandard.Classes.ClassStructure"/>
     <rule ref="SlevomatCodingStandard.Classes.ForbiddenPublicProperty"/>
     <rule ref="SlevomatCodingStandard.Commenting.EmptyComment"/>
