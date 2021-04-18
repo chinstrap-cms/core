@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Chinstrap\Core\Contracts\Factories;
 
 use Psr\Log\LoggerInterface;

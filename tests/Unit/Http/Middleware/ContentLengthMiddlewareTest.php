@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Middlewares\Tests;
 
 use Chinstrap\Core\Http\Middleware\ContentLengthMiddleware;
