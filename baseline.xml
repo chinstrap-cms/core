@@ -179,11 +179,8 @@
     </PropertyNotSetInConstructor>
   </file>
   <file src="src/Sources/MarkdownFiles.php">
-    <MixedArgument occurrences="1">
-      <code>$field</code>
-    </MixedArgument>
-    <MixedAssignment occurrences="2">
-      <code>$field</code>
+    <MixedArgument occurrences="1"/>
+    <MixedAssignment occurrences="1">
       <code>$value</code>
     </MixedAssignment>
     <PossiblyFalseArgument occurrences="1">

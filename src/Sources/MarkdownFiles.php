@@ -72,6 +72,8 @@ final class MarkdownFiles implements Source
     {
         $document = new MarkdownDocument();
         $document->setContent($doc->getContent());
+        /** @var string $field **/
+        /** @var string|array $field **/
         foreach ($doc->getYAML() as $field => $value) {
             $document->setField($field, $value);
         }

@@ -61,7 +61,7 @@ final class MarkdownDocument implements Document, JsonSerializable
 
     /**
      * @param string $key
-     * @param mixed $value
+     * @param array|string $value
      */
     public function setField(string $key, $value): Document
     {
