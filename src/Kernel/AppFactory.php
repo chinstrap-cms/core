@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Chinstrap\Core\Kernel;
 
+use Chinstrap\Core\Http\Middleware\ClockworkMiddleware;
 use Chinstrap\Core\Http\Middleware\ContentLengthMiddleware;
 use Chinstrap\Core\Http\Middleware\MaintenanceModeMiddleware;
 use Chinstrap\Core\Http\Middleware\NotFoundMiddleware;
@@ -31,6 +32,7 @@ final class AppFactory
         $kernel = new Kernel($this->container);
         $kernel->bootstrap();
 
+        $app->pipe($this->container->get(ClockworkMiddleware::class));
         $app->pipe($this->container->get(WhoopsMiddleware::class));
         $app->pipe($this->container->get(ContentLengthMiddleware::class));
         $app->pipe($this->container->get(MaintenanceModeMiddleware::class));

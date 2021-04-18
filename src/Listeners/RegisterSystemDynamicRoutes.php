@@ -56,13 +56,10 @@ final class RegisterSystemDynamicRoutes extends BaseListener
                 ClockworkHandler::class
             );
         }
-        $this->router->get('/images/[{name}]', ImageHandler::class)
-            ->middleware($this->clockworkMiddleware);
+        $this->router->get('/images/[{name}]', ImageHandler::class);
         $this->router->get('/[{name:[a-zA-Z0-9\-\/]+}]', PageHandler::class)
-               ->middleware($this->clockworkMiddleware)
                ->middleware($this->cacheMiddleware)
                ->middleware($this->etagMiddleware);
-        $this->router->post('/[{name:[a-zA-Z0-9\-\/]+}]', SubmissionHandler::class)
-            ->middleware($this->clockworkMiddleware);
+        $this->router->post('/[{name:[a-zA-Z0-9\-\/]+}]', SubmissionHandler::class);
     }
 }
