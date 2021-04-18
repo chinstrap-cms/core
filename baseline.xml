@@ -167,17 +167,15 @@
       <code>$config-&gt;filesystem-&gt;media</code>
     </MixedPropertyFetch>
     <MixedReturnStatement occurrences="2">
-      <code>$container-&gt;get($config-&gt;get('source'))</code>
       <code>Clockwork::init()</code>
     </MixedReturnStatement>
     <MoreSpecificReturnType occurrences="2">
       <code>Config</code>
       <code>Pool</code>
     </MoreSpecificReturnType>
-    <PossiblyInvalidCast occurrences="3">
+    <PossiblyInvalidCast occurrences="2">
       <code>$config-&gt;get('key')</code>
       <code>$config-&gt;get('locale')</code>
-      <code>$config-&gt;get('source')</code>
     </PossiblyInvalidCast>
     <UndefinedConstant occurrences="3">
       <code>ROOT_DIR</code>
