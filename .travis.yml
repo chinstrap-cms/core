@@ -13,6 +13,8 @@ cache:
     - $HOME/.composer/cache
 
 before_script:
+  - mkdir public
+  - touch public/index.php
   - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-dist
 
 script:
