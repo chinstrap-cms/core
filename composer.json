@@ -17,7 +17,7 @@
         }
     ],
     "require": {
-        "php": "~7.2",
+        "php": "~7.4",
         "filp/whoops": "^2.7",
         "itsgoingd/clockwork": "^5.0",
         "laminas/laminas-diactoros": "^2.3",
