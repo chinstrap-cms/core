@@ -12,10 +12,7 @@ use PublishingKit\Config\Config;
 
 final class LaminasFormFactory implements FormFactory
 {
-    /**
-     * @var Factory
-     */
-    private $factory;
+    private Factory $factory;
 
     public function __construct()
     {

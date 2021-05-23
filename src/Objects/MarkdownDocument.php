@@ -10,25 +10,16 @@ use JsonSerializable;
 
 final class MarkdownDocument implements Document, JsonSerializable
 {
-    /**
-     * @var string
-     */
-    protected $content;
+    protected string $content;
 
     /**
      * @var array
      */
-    protected $data = [];
+    protected array $data = [];
 
-    /**
-     * @var string
-     */
-    protected $path;
+    protected string $path;
 
-    /**
-     * @var DateTime
-     */
-    private $updatedAt;
+    private DateTime $updatedAt;
 
     public function __construct()
     {

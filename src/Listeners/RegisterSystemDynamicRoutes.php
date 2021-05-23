@@ -16,25 +16,13 @@ use League\Route\Router;
 
 final class RegisterSystemDynamicRoutes extends BaseListener
 {
-    /**
-     * @var Router
-     */
-    private $router;
+    private Router $router;
 
-    /**
-     * @var HttpCacheMiddleware
-     */
-    private $cacheMiddleware;
+    private HttpCacheMiddleware $cacheMiddleware;
 
-    /**
-     * @var ETagMiddleware
-     */
-    private $etagMiddleware;
+    private ETagMiddleware $etagMiddleware;
 
-    /**
-     * @var ClockworkMiddleware
-     */
-    private $clockworkMiddleware;
+    private ClockworkMiddleware $clockworkMiddleware;
 
     public function __construct(
         Router $router,

@@ -14,7 +14,7 @@ final class HttpCacheMiddleware implements MiddlewareInterface
     /**
      * @var array
      */
-    private $cacheableStatus = [
+    private array $cacheableStatus = [
                                 200,
                                 304,
                                ];

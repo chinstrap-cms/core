@@ -19,15 +19,9 @@ use PublishingKit\Config\Config;
  */
 final class Kernel implements KernelInterface
 {
-    /**
-     * @var ContainerInterface
-     */
-    private $container;
+    private ContainerInterface $container;
 
-    /**
-     * @var EventManagerInterface
-     */
-    private $eventManager;
+    private EventManagerInterface $eventManager;
 
     public function __construct(ContainerInterface $container)
     {

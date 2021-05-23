@@ -12,15 +12,9 @@ use SimpleXMLElement;
 
 final class XmlStringSitemap implements Sitemap
 {
-    /**
-     * @var Config
-     */
-    private $config;
+    private Config $config;
 
-    /**
-     * @var Source
-     */
-    private $source;
+    private Source $source;
 
     public function __construct(Config $config, Source $source)
     {

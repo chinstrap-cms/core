@@ -12,15 +12,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class GenerateIndex extends Command
 {
-    /**
-     * @var Source
-     */
-    protected $source;
+    protected Source $source;
 
-    /**
-     * @var FilesystemInterface
-     */
-    protected $manager;
+    protected FilesystemInterface $manager;
 
     public function __construct(Source $source, FilesystemInterface $manager)
     {

@@ -12,15 +12,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class Shell extends Command
 {
-    /**
-     * @var ContainerInterface
-     */
-    protected $container;
+    protected ContainerInterface $container;
 
-    /**
-     * @var Psysh
-     */
-    protected $shell;
+    protected Psysh $shell;
 
     public function __construct(ContainerInterface $container, Psysh $shell)
     {

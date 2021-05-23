@@ -12,10 +12,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 final class ClockworkMiddleware implements MiddlewareInterface
 {
-    /**
-     * @var Clockwork
-     */
-    private $clockwork;
+    private Clockwork $clockwork;
 
     public function __construct(Clockwork $clockwork)
     {

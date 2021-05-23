@@ -13,9 +13,8 @@ final class ErrorHandler
     /**
      * Response factory instance
      *
-     * @var ResponseFactoryInterface
      */
-    private $factory;
+    private ResponseFactoryInterface $factory;
 
     public function __construct(ResponseFactoryInterface $factory)
     {

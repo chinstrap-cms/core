@@ -12,15 +12,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class GenerateSitemap extends Command
 {
-    /**
-     * @var Sitemap
-     */
-    protected $sitemap;
+    protected Sitemap $sitemap;
 
-    /**
-     * @var FilesystemInterface
-     */
-    protected $manager;
+    protected FilesystemInterface $manager;
 
     public function __construct(Sitemap $sitemap, FilesystemInterface $manager)
     {

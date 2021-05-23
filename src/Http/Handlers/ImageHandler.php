@@ -10,10 +10,7 @@ use Psr\Http\Message\ServerRequestInterface;
 
 final class ImageHandler
 {
-    /**
-     * @var Server
-     */
-    private $glide;
+    private Server $glide;
 
     public function __construct(Server $glide)
     {

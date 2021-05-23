@@ -12,15 +12,9 @@ use PublishingKit\Utilities\Contracts\Collectable;
 
 final class Psr6CacheDecorator implements Source
 {
-    /**
-     * @var CacheItemPoolInterface
-     */
-    private $cache;
+    private CacheItemPoolInterface $cache;
 
-    /**
-     * @var Source
-     */
-    private $source;
+    private Source $source;
 
     public function __construct(CacheItemPoolInterface $cache, Source $source)
     {

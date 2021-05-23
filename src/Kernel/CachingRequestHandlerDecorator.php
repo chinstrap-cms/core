@@ -14,15 +14,9 @@ use PublishingKit\HttpProxy\Proxy;
 
 final class CachingRequestHandlerDecorator implements RequestHandlerInterface
 {
-    /**
-     * @var RequestHandlerInterface
-     */
-    private $handler;
+    private RequestHandlerInterface $handler;
 
-    /**
-     * @var CacheItemPoolInterface
-     */
-    private $cache;
+    private CacheItemPoolInterface $cache;
 
     public function __construct(RequestHandlerInterface $handler, CacheItemPoolInterface $cache)
     {

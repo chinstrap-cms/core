@@ -12,20 +12,9 @@ use Psr\Http\Message\ServerRequestInterface;
 
 final class PageHandler
 {
-    /**
-     * @var ResponseInterface
-     */
-    protected $response;
-
-    /**
-     * @var Source
-     */
-    protected $source;
-
-    /**
-     * @var Renderer
-     */
-    protected $view;
+    private ResponseInterface $response;
+    private Source $source;
+    private Renderer $view;
 
     public function __construct(
         ResponseInterface $response,

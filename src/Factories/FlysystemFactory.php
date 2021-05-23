@@ -24,10 +24,7 @@ use Stash\Pool;
 
 final class FlysystemFactory
 {
-    /**
-     * @var Pool
-     */
-    private $pool;
+    private Pool $pool;
 
     public function __construct(Pool $pool)
     {

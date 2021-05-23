@@ -12,15 +12,9 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 final class NotFoundMiddleware implements MiddlewareInterface
 {
-    /**
-     * @var Renderer
-     */
-    private $renderer;
+    private Renderer $renderer;
 
-    /**
-     * @var ResponseInterface
-     */
-    private $response;
+    private ResponseInterface $response;
 
     public function __construct(Renderer $renderer, ResponseInterface $response)
     {

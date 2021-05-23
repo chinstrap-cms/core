@@ -15,25 +15,10 @@ use Psr\Http\Message\ServerRequestInterface;
 
 final class SubmissionHandler
 {
-    /**
-     * @var ResponseInterface
-     */
-    protected $response;
-
-    /**
-     * @var Source
-     */
-    protected $source;
-
-    /**
-     * @var Renderer
-     */
-    protected $view;
-
-    /**
-     * @var EventManagerInterface
-     */
-    protected $eventManager;
+    private ResponseInterface $response;
+    private Source $source;
+    private Renderer $view;
+    private EventManagerInterface $eventManager;
 
     public function __construct(
         ResponseInterface $response,

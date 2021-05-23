@@ -14,25 +14,13 @@ use Twig\TwigFunction;
 
 final class RegisterViews extends BaseListener
 {
-    /**
-     * @var Environment
-     */
-    private $twig;
+    private Environment $twig;
 
-    /**
-     * @var Version
-     */
-    private $version;
+    private Version $version;
 
-    /**
-     * @var Mix
-     */
-    private $mix;
+    private Mix $mix;
 
-    /**
-     * @var Form
-     */
-    private $form;
+    private Form $form;
 
     public function __construct(Environment $twig, Version $version, Mix $mix, Form $form)
     {

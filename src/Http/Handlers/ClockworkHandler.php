@@ -10,10 +10,7 @@ use Psr\Http\Message\ServerRequestInterface;
 
 final class ClockworkHandler
 {
-    /**
-     * @var Clockwork
-     */
-    private $clockwork;
+    private Clockwork $clockwork;
 
     public function __construct(Clockwork $clockwork)
     {

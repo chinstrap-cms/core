@@ -16,10 +16,7 @@ use PSR7Sessions\Storageless\Http\SessionMiddleware;
 
 final class AppFactory
 {
-    /**
-     * @var ContainerInterface
-     */
-    private $container;
+    private ContainerInterface $container;
 
     public function __construct(ContainerInterface $container)
     {

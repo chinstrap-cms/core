@@ -16,15 +16,9 @@ use PublishingKit\Utilities\Contracts\Collectable;
 
 final class MarkdownFiles implements Source
 {
-    /**
-     * @var FilesystemInterface
-     */
-    protected $fs;
+    protected FilesystemInterface $fs;
 
-    /**
-     * @var Parser
-     */
-    protected $parser;
+    protected Parser $parser;
 
     public function __construct(FilesystemInterface $fs, Parser $parser)
     {

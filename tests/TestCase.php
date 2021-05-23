@@ -15,16 +15,14 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * Container instance
      *
-     * @var \Laminas\ServiceManager\ServiceManager|null
      */
-    protected $container;
+    protected ?\Laminas\ServiceManager\ServiceManager $container = null;
 
     /**
      * App instance
      *
-     * @var \Laminas\Stratigility\MiddlewarePipe|null
      */
-    protected $app;
+    protected ?\Laminas\Stratigility\MiddlewarePipe $app = null;
 
     public function setUp(): void
     {

@@ -15,14 +15,8 @@ use Whoops\RunInterface;
 
 final class WhoopsMiddleware implements MiddlewareInterface
 {
-    /**
-     * @var RunInterface
-     */
-    private $whoops;
-    /**
-     * @var Handler
-     */
-    private $errorHandler;
+    private RunInterface $whoops;
+    private Handler $errorHandler;
 
     public function __construct(RunInterface $whoops, Handler $errorHandler)
     {

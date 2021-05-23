@@ -16,15 +16,9 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 final class RoutesMiddleware implements MiddlewareInterface
 {
-    /**
-     * @var Router
-     */
-    private $router;
+    private Router $router;
 
-    /**
-     * @var EventManagerInterface
-     */
-    private $eventManager;
+    private EventManagerInterface $eventManager;
 
     public function __construct(
         Router $router,

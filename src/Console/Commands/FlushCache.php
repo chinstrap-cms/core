@@ -11,10 +11,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class FlushCache extends Command
 {
-    /**
-     * @var CacheItemPoolInterface
-     */
-    protected $cache;
+    protected CacheItemPoolInterface $cache;
 
     public function __construct(CacheItemPoolInterface $cache)
     {
