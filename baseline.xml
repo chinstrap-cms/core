@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.7.0@d4377c0baf3ffbf0b1ec6998e8d1be2a40971005">
+<files psalm-version="4.7.1@cd53e047a58f71f646dd6bf45476076ab07b5d44">
   <file src="src/Console/Commands/FlushCache.php">
     <UndefinedInterfaceMethod occurrences="1">
       <code>purge</code>
@@ -126,9 +126,8 @@
       <code>$fs</code>
       <code>$source</code>
     </MixedAssignment>
-    <MixedInferredReturnType occurrences="2">
+    <MixedInferredReturnType occurrences="1">
       <code>Clockwork</code>
-      <code>Source</code>
     </MixedInferredReturnType>
     <MixedMethodCall occurrences="3">
       <code>getFilesystem</code>
@@ -145,7 +144,7 @@
       <code>$config-&gt;filesystem-&gt;content</code>
       <code>$config-&gt;filesystem-&gt;media</code>
     </MixedPropertyFetch>
-    <MixedReturnStatement occurrences="2">
+    <MixedReturnStatement occurrences="1">
       <code>Clockwork::init()</code>
     </MixedReturnStatement>
     <MoreSpecificReturnType occurrences="2">
