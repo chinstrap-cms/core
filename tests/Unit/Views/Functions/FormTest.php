@@ -13,7 +13,7 @@ final class FormTest extends TestCase
     /**
      * @dataProvider configProvider
      */
-    public function testRenderForm($data): void
+    public function testRenderForm(array $data): void
     {
         $config = m::mock('PublishingKit\Config\Config');
         $config->shouldReceive('get')
@@ -116,7 +116,7 @@ final class FormTest extends TestCase
         $form->__invoke('contact');
     }
 
-    public function configProvider()
+    public function configProvider(): array
     {
         return [
                 [
