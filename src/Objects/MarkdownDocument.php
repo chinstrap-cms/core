@@ -19,7 +19,12 @@ final class MarkdownDocument implements Document, JsonSerializable
 
     protected string $path;
 
-    private DateTime $updatedAt;
+    /**
+     * Date/time updated
+     *
+     * @var DateTime|null
+     */
+    private $updatedAt;
 
     public function __construct()
     {
@@ -124,7 +129,10 @@ final class MarkdownDocument implements Document, JsonSerializable
         return $this->getField($name);
     }
 
-    public function __set(string $name, string $value): Document
+    /**
+     * @return self
+     */
+    public function __set(string $name, string $value)
     {
         if ($name === 'content') {
             $this->setContent($value);
