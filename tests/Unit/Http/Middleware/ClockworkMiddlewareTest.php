@@ -22,13 +22,11 @@ final class ClockworkMiddlewareTest extends TestCase
         $response = m::mock('Psr\Http\Message\ResponseInterface');
         $handler = m::mock('Psr\Http\Server\RequestHandlerInterface');
         $handler->shouldReceive('handle')->with($request)->andReturn($response);
-        $clockwork = m::mock(Clockwork::class);
-        $clockwork->shouldReceive('usePsrMessage')
-                  ->with($request, $response)
-                  ->once()
-                  ->andReturn($clockwork);
-        $clockwork->shouldReceive('requestProcessed')->once()
-            ->andReturn($response);
+        $clockwork = $this->createStub(Clockwork::class);
+        $clockwork->method('usePsrMessage')
+                  ->willReturn($clockwork);
+        $clockwork->method('requestProcessed')
+            ->willReturn($response);
         $middleware = new ClockworkMiddleware($clockwork);
         $received = $middleware->process($request, $handler);
         $this->assertSame($response, $received);
@@ -45,7 +43,7 @@ final class ClockworkMiddlewareTest extends TestCase
         $response = m::mock('Psr\Http\Message\ResponseInterface');
         $handler = m::mock('Psr\Http\Server\RequestHandlerInterface');
         $handler->shouldReceive('handle')->with($request)->andReturn($response);
-        $clockwork = m::mock(Clockwork::class);
+        $clockwork = $this->createStub(Clockwork::class);
         $middleware = new ClockworkMiddleware($clockwork);
         $received = $middleware->process($request, $handler);
         $this->assertSame($response, $received);
