@@ -26,7 +26,10 @@ final class ETagMiddleware implements MiddlewareInterface
             return $response;
         }
         $etag = md5($response->getBody()->getContents());
-        $requestEtag = str_replace('"', '', $request->getHeader('if-none-match'));
+        $requestEtag = [];
+        if ($request->hasHeader('if-none-match')) {
+            $requestEtag = str_replace('"', '', $request->getHeader('if-none-match'));
+        }
 
         // Check to see if Etag has changed
         if ($requestEtag && $requestEtag[0] === $etag) {

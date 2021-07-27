@@ -28,6 +28,7 @@ final class ETagTest extends TestCase
         $request = m::mock('Psr\Http\Message\ServerRequestInterface');
         $request->shouldReceive('getMethod')->andReturn('GET');
         $request->shouldReceive('getServerParams')->andReturn(['APP_ENV' => 'production']);
+        $request->shouldReceive('hasHeader')->with('if-none-match')->andReturn(true);
         $request->shouldReceive('getHeader')->with('if-none-match')->andReturn([md5('foo')]);
         $response = m::mock('Psr\Http\Message\ResponseInterface');
         $response->shouldReceive('getBody->getContents')->andReturn('foo');
@@ -57,7 +58,7 @@ final class ETagTest extends TestCase
         $request = m::mock('Psr\Http\Message\ServerRequestInterface');
         $request->shouldReceive('getMethod')->andReturn('GET');
         $request->shouldReceive('getServerParams')->andReturn(['APP_ENV' => 'production']);
-        $request->shouldReceive('getHeader')->with('if-none-match')->andReturn(null);
+        $request->shouldReceive('hasHeader')->with('if-none-match')->andReturn(false);
         $response = m::mock('Psr\Http\Message\ResponseInterface');
         $response->shouldReceive('getBody->getContents')->andReturn('foo');
         $response->shouldReceive('withAddedHeader')->andReturn($response);
