@@ -10,22 +10,6 @@ use Mockery as m;
 
 final class ImageHandlerTest extends TestCase
 {
-    public function setUp(): void
-    {
-        parent::setUp();
-        if (!defined('E_STRICT')) {
-            return;
-        }
-
-        error_reporting('E_ALL | E_STRICT');
-    }
-
-    public function tearDown(): void
-    {
-        error_reporting(E_ALL);
-        parent::tearDown();
-    }
-
     public function testGetResponse(): void
     {
         $request = m::mock('Psr\Http\Message\ServerRequestInterface');
