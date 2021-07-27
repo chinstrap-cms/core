@@ -24,10 +24,10 @@ use Laminas\Diactoros\Response;
 use Laminas\Diactoros\Stream;
 use Laminas\EventManager\EventManager;
 use Laminas\EventManager\EventManagerInterface;
-use Laminas\Mail\Transport\InMemory;
 use Laminas\Mail\Transport\TransportInterface;
 use Laminas\ServiceManager\AbstractFactory\ReflectionBasedAbstractFactory;
 use Laminas\ServiceManager\ServiceManager;
+use Lcobucci\JWT\Signer\Key\InMemory;
 use League\Flysystem\FilesystemInterface;
 use League\Flysystem\MountManager;
 use League\Glide\Responses\PsrResponseFactory;
@@ -83,7 +83,7 @@ final class ContainerFactory
                 ): SessionMiddleware {
                     $config = $container->get(Config::class);
                     return SessionMiddleware::fromSymmetricKeyDefaults(
-                        $config->get('key'),
+                        InMemory::base64Encoded($config->get('key')),
                         (int)$config->get('session_time')
                     );
                 },
