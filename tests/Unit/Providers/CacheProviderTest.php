@@ -8,6 +8,18 @@ use Chinstrap\Core\Tests\TestCase;
 
 final class CacheProviderTest extends TestCase
 {
+    public function setUp(): void
+    {
+        parent::setUp();
+        error_reporting(2);
+    }
+
+    public function tearDown(): void
+    {
+        error_reporting(2);
+        parent::tearDown(32767);
+    }
+
     public function testCreateCache(): void
     {
         $cache = $this->container->get('Psr\Cache\CacheItemPoolInterface');
