@@ -27,6 +27,7 @@ final class WhoopsMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $env = $request->getServerParams();
+        assert($this->whoops instanceof \Whoops\Run);
         if ($env['APP_ENV'] === 'production') {
             $this->whoops->prependHandler(new CallbackHandler($this->errorHandler));
         } else {

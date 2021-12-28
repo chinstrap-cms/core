@@ -93,12 +93,6 @@
       <code>$env['MAINTENANCE']</code>
     </MixedArgument>
   </file>
-  <file src="src/Http/Middleware/WhoopsMiddleware.php">
-    <UndefinedInterfaceMethod occurrences="2">
-      <code>prependHandler</code>
-      <code>prependHandler</code>
-    </UndefinedInterfaceMethod>
-  </file>
   <file src="src/Kernel/CachingRequestHandlerDecorator.php">
     <ArgumentTypeCoercion occurrences="1"/>
   </file>
