@@ -49,7 +49,6 @@ final class Kernel implements KernelInterface
         /** @var array<class-string<Plugin>> $plugins **/
         foreach ($plugins as $name) {
             try {
-                /** @var Plugin $plugin **/
                 $plugin = $this->container->get($name);
             } catch (ServiceNotFoundException $e) {
                 throw new PluginNotFound('Plugin could not be resolved by the container');
