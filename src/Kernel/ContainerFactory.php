@@ -85,7 +85,6 @@ final class ContainerFactory
                     $key = $config->get('key');
                     assert(is_string($key));
                     $time = (int)$config->get('session_time');
-                    assert(is_integer($time));
                     return SessionMiddleware::fromSymmetricKeyDefaults(
                         $key,
                         $time
