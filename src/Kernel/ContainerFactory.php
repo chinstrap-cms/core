@@ -28,7 +28,6 @@ use Laminas\Mail\Transport\InMemory;
 use Laminas\Mail\Transport\TransportInterface;
 use Laminas\ServiceManager\AbstractFactory\ReflectionBasedAbstractFactory;
 use Laminas\ServiceManager\ServiceManager;
-use Lcobucci\JWT\Signer\Key\InMemory as JWTInMemory;
 use League\Flysystem\FilesystemInterface;
 use League\Flysystem\MountManager;
 use League\Glide\Responses\PsrResponseFactory;
@@ -83,9 +82,13 @@ final class ContainerFactory
                     ContainerInterface $container
                 ): SessionMiddleware {
                     $config = $container->get(Config::class);
+                    $key = $config->get('key');
+                    assert(is_string($key));
+                    $time = (int)$config->get('session_time');
+                    assert(is_integer($time));
                     return SessionMiddleware::fromSymmetricKeyDefaults(
-                        JWTInMemory::base64Encoded($config->get('key')),
-                        (int)$config->get('session_time')
+                        $key,
+                        $time
                     );
                 },
                 \Faker\Generator::class => function (
