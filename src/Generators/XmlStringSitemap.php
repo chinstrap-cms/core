@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Chinstrap\Core\Generators;
 
 use Chinstrap\Core\Contracts\Generators\Sitemap;
+use Chinstrap\Core\Contracts\Objects\Document;
 use Chinstrap\Core\Contracts\Sources\Source;
 use DOMDocument;
 use PublishingKit\Config\Config;
@@ -30,8 +31,9 @@ final class XmlStringSitemap implements Sitemap
             . '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" />'
         );
         foreach ($documents as $document) {
+            assert($document instanceof Document);
             $item = $xml->addChild('url');
-            $item->addChild('loc', $this->config->get('base_url') . $document->getUrl());
+            $item->addChild('loc', ($this->config->get('base_url') ?? '') . $document->getUrl());
         }
         $doc = new DOMDocument();
         $doc->preserveWhiteSpace = false;
