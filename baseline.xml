@@ -66,17 +66,6 @@
       <code>$config-&gt;get('token')</code>
     </PossiblyInvalidCast>
   </file>
-  <file src="src/Generators/XmlStringSitemap.php">
-    <MixedAssignment occurrences="1">
-      <code>$document</code>
-    </MixedAssignment>
-    <MixedMethodCall occurrences="1">
-      <code>getUrl</code>
-    </MixedMethodCall>
-    <MixedOperand occurrences="1">
-      <code>$document-&gt;getUrl()</code>
-    </MixedOperand>
-  </file>
   <file src="src/Http/Middleware/ClockworkMiddleware.php">
     <MixedInferredReturnType occurrences="1">
       <code>ResponseInterface</code>
@@ -166,15 +155,6 @@
     <MixedReturnStatement occurrences="1">
       <code>$this-&gt;getField($name)</code>
     </MixedReturnStatement>
-  </file>
-  <file src="src/Sources/MarkdownFiles.php">
-    <MixedArgument occurrences="1"/>
-    <MixedAssignment occurrences="1">
-      <code>$value</code>
-    </MixedAssignment>
-    <PossiblyFalseArgument occurrences="1">
-      <code>$this-&gt;fs-&gt;getTimestamp("content://" . $path)</code>
-    </PossiblyFalseArgument>
   </file>
   <file src="src/Views/Filters/Mix.php">
     <PossiblyFalseOperand occurrences="1">
