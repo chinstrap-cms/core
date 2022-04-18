@@ -67,13 +67,16 @@ final class MarkdownFiles implements Source
         $document = new MarkdownDocument();
         $document->setContent($doc->getContent());
         /** @var string $field **/
-        /** @var string|array $field **/
+        /** @var string|array $value **/
         foreach ($doc->getYAML() as $field => $value) {
+            assert(is_string($field));
             $document->setField($field, $value);
         }
         $document->setPath($path);
         $lastUpdated = new DateTime();
-        $lastUpdated->setTimestamp($this->fs->getTimestamp("content://" . $path));
+        if ($timestamp = $this->fs->getTimestamp("content://" . $path)) {
+            $lastUpdated->setTimestamp($timestamp);
+        }
         $document->setUpdatedAt($lastUpdated);
         return $document;
     }
